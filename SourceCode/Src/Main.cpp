@@ -42,7 +42,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 
 #pragma region Misc
-
+#pragma warning(disable:4996)
 extern "C"
 {
 	int _sprintf(char* buffer, const char* format, ...)
