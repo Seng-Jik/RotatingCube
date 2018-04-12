@@ -6,6 +6,7 @@
 #include "CommonClass.h"
 #include <cstdio>
 
+#include "Device.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -27,6 +28,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	CSystem::SetWindowTitle(WindowTitle.c_str());
 
 	const HWND hWnd = FindWindow("Darkstar Window Class", WindowTitle.c_str());
+	Engine::Rendering::Device device(hWnd);
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while( CSystem::EngineMainLoop() )
