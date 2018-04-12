@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <cmath>
 
-#include <optional>
 #include <memory>
 #include <stack>
 #include <ostream>
