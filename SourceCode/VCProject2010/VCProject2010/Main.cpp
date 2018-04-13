@@ -31,10 +31,11 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	Engine::Rendering::Device device(hWnd);
 
 	// 引擎主循环，处理屏幕图像刷新等工作
-	while( CSystem::EngineMainLoop() )
+	while(device.EngineMainLoop(hWnd))
 	{
 		// 获取两次调用之间的时间差，传递给游戏逻辑处理
 		const float	fTimeDelta	=	CSystem::GetTimeDelta();
+
 	};
 
 	// 关闭游戏引擎

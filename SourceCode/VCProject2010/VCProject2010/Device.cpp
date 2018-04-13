@@ -5,7 +5,10 @@
 Engine::Rendering::Device::Device(HWND hwnd)
 {
 	UINT x4MsaaQuality;
-	//=========================================================Device
+	RECT winRect;
+	GetClientRect(hwnd, &winRect);
+
+	// Device
 	{
 		std::array<D3D_FEATURE_LEVEL, 6> featureLevels =
 		{
@@ -44,27 +47,79 @@ Engine::Rendering::Device::Device(HWND hwnd)
 			device_->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, 4, &x4MsaaQuality)));
 	}
 
-	//=========================================================SwapChain
+	// SwapChain
 	{
 		DXGI_SWAP_CHAIN_DESC scDesc{ 0 };
 		scDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-		scDesc.BufferDesc.Width = 640;
-		scDesc.BufferDesc.Height = 480;
+		scDesc.BufferDesc.Height = winRect.bottom - winRect.top;
+		scDesc.BufferDesc.Width = winRect.right - winRect.left;
 		scDesc.BufferDesc.RefreshRate.Numerator = 60;
 		scDesc.BufferDesc.RefreshRate.Denominator = 1;
-		scDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;          //固定参数  
-		scDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;  //固定参数  
-		scDesc.BufferCount = 1;                 //缓冲区个数  
-		scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;       //Usage为Render Target Output  
+		scDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+		scDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+		scDesc.BufferCount = 1;
+		scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		scDesc.Flags = 0;
-		scDesc.OutputWindow = hwnd;           //主窗口句柄  
-		scDesc.SampleDesc.Count = 4;            //4个采样点  
-		scDesc.SampleDesc.Quality = x4MsaaQuality - 1;    //4重采样支持等级  
-		scDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;   //常用参数  
-		scDesc.Windowed = true;             //窗口模式  
+		scDesc.OutputWindow = hwnd;
+		scDesc.SampleDesc.Count = 4;
+		scDesc.SampleDesc.Quality = x4MsaaQuality - 1;
+		scDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+		scDesc.Windowed = true;
+
+		IDXGIDevice *pDxgiDevice = nullptr;
+		Must(SUCCEEDED(device_.Get()->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&pDxgiDevice))));
+		IDXGIAdapter *pDxgiAdapter = nullptr;
+		Must(SUCCEEDED(pDxgiDevice->GetParent(__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&pDxgiAdapter))));
+		IDXGIFactory *pDxgiFactory = nullptr;
+		Must(SUCCEEDED(pDxgiAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pDxgiFactory))));
+		Must(SUCCEEDED(pDxgiFactory->CreateSwapChain(device_.Get(), &scDesc, swapChain_.GetAddressOf())));
+	}
+
+	// RenderTargetView
+	{
+		ID3D11Texture2D* backBuffer = nullptr;
+		Must(SUCCEEDED(
+			swapChain_->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&backBuffer))));
+
+		Must(SUCCEEDED(
+			device_->CreateRenderTargetView(backBuffer,nullptr,renderTargetView_.GetAddressOf())));
+
+		backBuffer->Release();
+	}
+
+	// Viewport
+	{
+		D3D11_VIEWPORT v
+		{
+			0.0f,
+			0.0f,
+			float(winRect.right - winRect.left),
+			float(winRect.bottom - winRect.top),
+			0.0f,
+			1.0f
+		};
+
+		context_->RSSetViewports(1,&v);
 	}
 }
 
-Engine::Rendering::Device::~Device()
+bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 {
+
+	MSG msg;
+	if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE)) {
+
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+
+		if (msg.message == WM_DESTROY)
+			return false;
+	}
+
+	const float color[4] = { 1,0,0,1 };
+	Context().ClearRenderTargetView(&RenderTargetView(), color);
+
+	swapChain_->Present(0, 0);
+
+	return true;
 }

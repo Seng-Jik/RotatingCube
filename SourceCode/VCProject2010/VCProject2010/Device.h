@@ -14,12 +14,28 @@ namespace Engine
 			ComPtr<ID3D11Device> device_;
 			ComPtr<ID3D11DeviceContext> context_;
 			ComPtr<IDXGISwapChain> swapChain_;
-
+			ComPtr<ID3D11RenderTargetView> renderTargetView_;
 		public:
 			Device(HWND hwnd);
-			~Device();
 
 			Device(const Device&) = delete;
+
+			inline auto& RenderTargetView()
+			{
+				return *renderTargetView_.Get();
+			}
+
+			inline auto& D3DDevice()
+			{
+				return *device_.Get();
+			}
+
+			inline auto& Context()
+			{
+				return *context_.Get();
+			}
+
+			bool EngineMainLoop(HWND hWnd);
 		};
 	}
 }
