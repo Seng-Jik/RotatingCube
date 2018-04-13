@@ -73,6 +73,10 @@ Engine::Rendering::Device::Device(HWND hwnd)
 		IDXGIFactory *pDxgiFactory = nullptr;
 		Must(SUCCEEDED(pDxgiAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pDxgiFactory))));
 		Must(SUCCEEDED(pDxgiFactory->CreateSwapChain(device_.Get(), &scDesc, swapChain_.GetAddressOf())));
+	
+		pDxgiDevice->Release();
+		pDxgiAdapter->Release();
+		pDxgiFactory->Release();
 	}
 
 	// RenderTargetView
@@ -105,21 +109,22 @@ Engine::Rendering::Device::Device(HWND hwnd)
 
 bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 {
+	const bool run = IsWindow(hWnd);
 
-	MSG msg;
-	if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE)) {
+	if (run)
+	{
+		MSG msg;
+		if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE)) {
 
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
 
-		if (msg.message == WM_DESTROY)
-			return false;
+		const float color[4] = { 1,0,0,1 };
+		Context().ClearRenderTargetView(&RenderTargetView(), color);
+
+		swapChain_->Present(0, 0);
 	}
 
-	const float color[4] = { 1,0,0,1 };
-	Context().ClearRenderTargetView(&RenderTargetView(), color);
-
-	swapChain_->Present(0, 0);
-
-	return true;
+	return run;
 }

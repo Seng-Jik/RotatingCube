@@ -40,6 +40,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 	// ¹Ø±ÕÓÎÏ·ÒıÇæ
 	CSystem::ShutdownGameEngine();
+
 	return 0;
 }
 
