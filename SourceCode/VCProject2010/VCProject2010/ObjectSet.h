@@ -30,6 +30,12 @@ namespace Engine
 			return live_; 
 		}
 
+		template <typename T,typename ...TArgs>
+		void NewObject(TArgs&&... args)
+		{
+			objects_.emplace_back(std::make_unique<T>(std::forward<TArgs>(args)...));
+		}
+
 		void Kill()
 		{
 			live_ = false;
