@@ -31,9 +31,11 @@ namespace Engine
 		}
 
 		template <typename T,typename ...TArgs>
-		void NewObject(TArgs&&... args)
+		T& NewObject(TArgs&&... args)
 		{
-			objects_.emplace_back(std::make_unique<T>(std::forward<TArgs>(args)...));
+			auto pObj = new T(std::forward<TArgs>(args)...);
+			objects_.push_back(std::unique_ptr<ObjectType>(pObj));
+			return *pObj;
 		}
 
 		void Kill()

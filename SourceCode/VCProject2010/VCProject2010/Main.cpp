@@ -9,6 +9,7 @@
 #include "Device.h"
 #include "Optional.h"
 #include "ObjectSet.h"
+#include "BlueScreen.h"
 
 static Engine::ObjectSet<Engine::GameObject> root;
 
@@ -35,6 +36,8 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	
 	Engine::Rendering::InitDevice(hWnd);
 	auto& device = Engine::Rendering::GetDevice();
+
+	root.NewObject<Game::EngineTests::BlueScreen>();
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while(device.EngineMainLoop(hWnd))
