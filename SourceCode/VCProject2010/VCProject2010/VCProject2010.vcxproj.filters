@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Engine\Rendering">
       <UniqueIdentifier>{70ba516a-69ea-4888-9f22-6fd66cb736db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{2b6a3e1b-9be4-4a4c-ae8e-3a96c0d0e59d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\EngineTests">
+      <UniqueIdentifier>{dd30c586-99ea-4988-b9f1-f3dfc5fdeba2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -49,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="Optional.h">
       <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectSet.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueScreen.h">
+      <Filter>Header Files\Game\EngineTests</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

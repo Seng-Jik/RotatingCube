@@ -117,8 +117,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlueScreen.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="ObjectSet.h" />
     <ClInclude Include="Optional.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

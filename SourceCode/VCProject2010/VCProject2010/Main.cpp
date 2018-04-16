@@ -8,6 +8,9 @@
 
 #include "Device.h"
 #include "Optional.h"
+#include "ObjectSet.h"
+
+static Engine::ObjectSet<Engine::GameObject> root;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -39,6 +42,8 @@ int PASCAL WinMain(HINSTANCE hInstance,
 		// 获取两次调用之间的时间差，传递给游戏逻辑处理
 		const float	fTimeDelta	=	CSystem::GetTimeDelta();
 
+		root.Update(fTimeDelta);
+		root.Draw();
 	};
 
 	// 关闭游戏引擎

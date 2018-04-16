@@ -122,9 +122,6 @@ bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 			DispatchMessage(&msg);
 		}
 
-		const float color[4] = { 1,0,0,1 };
-		Context().ClearRenderTargetView(&RenderTargetView(), color);
-
 		swapChain_->Present(0, 0);
 	}
 
