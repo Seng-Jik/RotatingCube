@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Device.h"
 #include "Globals.h"
+#include "Optional.h"
+using namespace Engine::Rendering;
 
 Engine::Rendering::Device::Device(HWND hwnd)
 {
@@ -128,3 +130,15 @@ bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 
 	return run;
 }
+
+static Engine::Optional<Device> device;
+Device & Engine::Rendering::GetDevice()
+{
+	return device.Value();
+}
+
+void Engine::Rendering::InitDevice(HWND hWnd)
+{
+	device.Emplace(hWnd);
+}
+

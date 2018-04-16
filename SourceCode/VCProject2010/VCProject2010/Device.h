@@ -37,5 +37,8 @@ namespace Engine
 
 			bool EngineMainLoop(HWND hWnd);
 		};
+
+		Device& GetDevice();
+		void InitDevice(HWND hWnd);
 	}
 }
