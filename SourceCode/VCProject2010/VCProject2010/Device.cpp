@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Device.h"
-#include "Globals.h"
 #include "Optional.h"
+#include "Shaders.h"
+#include "Assets.h"
 using namespace Engine::Rendering;
 
 Engine::Rendering::Device::Device(HWND hwnd)
@@ -91,6 +92,9 @@ Engine::Rendering::Device::Device(HWND hwnd)
 			device_->CreateRenderTargetView(backBuffer,nullptr,renderTargetView_.GetAddressOf())));
 
 		backBuffer->Release();
+
+		auto rt = renderTargetView_.Get();
+		context_->OMSetRenderTargets(1, &rt, nullptr);
 	}
 
 	// Viewport
@@ -107,6 +111,32 @@ Engine::Rendering::Device::Device(HWND hwnd)
 
 		context_->RSSetViewports(1,&v);
 	}
+
+	//Vertex Shader And Input Layout
+	{
+		auto buf = Engine::LoadAssets("VSDefaultWVP.cso");
+
+		Must(SUCCEEDED(device_->CreateVertexShader(
+			buf.data(),
+			buf.size(),
+			nullptr,
+			vs_.GetAddressOf()
+		)));
+
+		context_->VSSetShader(vs_.Get(), nullptr, 0);
+
+		const std::vector<D3D11_INPUT_ELEMENT_DESC> desc = 
+		{
+			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,	0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT,	0, 12,D3D11_INPUT_PER_VERTEX_DATA, 0 },
+			{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,		0, 28,D3D11_INPUT_PER_VERTEX_DATA, 0 }
+		};
+
+		Must(SUCCEEDED(device_->CreateInputLayout(desc.data(), desc.size(), buf.data(), buf.size(), inputLayout_.GetAddressOf())));
+		context_->IASetInputLayout(inputLayout_.Get());
+	}
+
+	
 }
 
 bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)

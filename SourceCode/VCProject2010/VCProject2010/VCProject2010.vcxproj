@@ -14,7 +14,6 @@
     <ProjectGuid>{67DF80B2-7718-4470-AAC1-1F2D83FB9707}</ProjectGuid>
     <RootNamespace>VCProject2010</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -59,9 +58,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(ProjectDir)..\..\Src;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(ProjectDir)..\..\Src;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -75,6 +76,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <DisableSpecificWarnings>4838</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -86,8 +88,17 @@
       <AdditionalOptions>/NODEFAULTLIB:"LIBCMT" %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
-      <Command>copy /Y $(ProjectDir)*.fx $(OutDir)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -98,6 +109,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <DisableSpecificWarnings>4838</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -111,37 +123,44 @@
       <AdditionalOptions>/NODEFAULTLIB:"LIBCMT" %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
-      <Command>copy /Y $(ProjectDir)*.fx $(OutDir)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Device.cpp" />
-    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="VertexIn.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assets.h" />
     <ClInclude Include="BlueScreen.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Device.h" />
-    <ClInclude Include="Effect.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="VertexIn.h" />
     <ClInclude Include="ObjectSet.h" />
     <ClInclude Include="Optional.h" />
+    <ClInclude Include="Shaders.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="White.fx" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FX11\Effects11_2015.vcxproj">
-      <Project>{df460eab-570d-4b50-9089-2e2fc801bf38}</Project>
-    </ProjectReference>
+    <FxCompile Include="PSGreen.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="VSDefaultWVP.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,3 +18,4 @@
 #include <deque>
 #include <cassert>
 
+#include "Globals.h"

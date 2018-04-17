@@ -54,8 +54,14 @@
     <ClCompile Include="Cube.cpp">
       <Filter>Source Files\Game\EngineTests</Filter>
     </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>Source Files\Engine\Rendering</Filter>
+    <ClCompile Include="Shaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexIn.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,13 +89,22 @@
     <ClInclude Include="Cube.h">
       <Filter>Header Files\Game\EngineTests</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
+    <ClInclude Include="Shaders.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexIn.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="White.fx">
+    <FxCompile Include="VSDefaultWVP.hlsl">
       <Filter>Shaders</Filter>
-    </None>
+    </FxCompile>
+    <FxCompile Include="PSGreen.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

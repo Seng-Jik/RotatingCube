@@ -4,10 +4,10 @@
 
 namespace Engine
 {
-	using Microsoft::WRL::ComPtr;
-
 	namespace Rendering
 	{
+		using Microsoft::WRL::ComPtr;
+
 		class Device
 		{
 		private:
@@ -15,6 +15,9 @@ namespace Engine
 			ComPtr<ID3D11DeviceContext> context_;
 			ComPtr<IDXGISwapChain> swapChain_;
 			ComPtr<ID3D11RenderTargetView> renderTargetView_;
+			ComPtr<ID3D11VertexShader> vs_;
+
+			ComPtr<ID3D11InputLayout> inputLayout_;
 		public:
 			Device(HWND hwnd);
 
