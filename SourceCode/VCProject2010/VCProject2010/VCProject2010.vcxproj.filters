@@ -31,6 +31,15 @@
     <Filter Include="Header Files\Game\EngineTests">
       <UniqueIdentifier>{dd30c586-99ea-4988-b9f1-f3dfc5fdeba2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{bf2b917a-2f89-40fc-a436-5842c11b5c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{f3ffb0cd-f379-4a11-87ca-2563aa36c919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\EngineTests">
+      <UniqueIdentifier>{84a15c49-00ac-4a19-b04b-24be62e589e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device.cpp">
@@ -41,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files\Game\EngineTests</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,5 +80,16 @@
     <ClInclude Include="BlueScreen.h">
       <Filter>Header Files\Game\EngineTests</Filter>
     </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files\Game\EngineTests</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="White.fx">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

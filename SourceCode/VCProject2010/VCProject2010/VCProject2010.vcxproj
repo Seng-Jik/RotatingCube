@@ -85,6 +85,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/NODEFAULTLIB:"LIBCMT" %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <PreBuildEvent>
+      <Command>copy /Y $(ProjectDir)*.fx $(OutDir)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -107,9 +110,14 @@
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/NODEFAULTLIB:"LIBCMT" %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <PreBuildEvent>
+      <Command>copy /Y $(ProjectDir)*.fx $(OutDir)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -118,12 +126,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlueScreen.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="Device.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ObjectSet.h" />
     <ClInclude Include="Optional.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="White.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FX11\Effects11_2015.vcxproj">
+      <Project>{df460eab-570d-4b50-9089-2e2fc801bf38}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -123,6 +123,10 @@ bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 		}
 
 		swapChain_->Present(0, 0);
+
+		const float blue[4] = { 0,0,0,1 };
+		auto& device = Engine::Rendering::GetDevice();
+		device.Context().ClearRenderTargetView(&device.RenderTargetView(), blue);
 	}
 
 	return run;
