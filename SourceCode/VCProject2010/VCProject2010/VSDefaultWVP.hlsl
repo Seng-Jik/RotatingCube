@@ -1,15 +1,18 @@
+#include "VertexOut.hlsli"
 
-//float4x4 wvp;
 
 struct VertexIn
 {
-	float4 pos : POSITION;
+	float3 pos : POSITION;
 	float4 color : COLOR;
 	float2 texCoord : TEXCOORD;
 };
 
-float4 main(VertexIn vIn) : SV_POSITION
+VertexOut main(VertexIn vIn)
 {
-	return vIn.pos;
-	//return mul(pos,wvp);
+	VertexOut vOut;
+	vOut.pos = float4(vIn.pos,1.0f);
+	vOut.color = vIn.color;
+	vOut.texCoord = vIn.texCoord;
+	return vOut;
 }
