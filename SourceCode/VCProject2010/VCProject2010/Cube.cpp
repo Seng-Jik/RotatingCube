@@ -69,7 +69,7 @@ void Game::EngineTests::Cube::Update(float deltaTime)
 {
 	rot_ += 1.0f * deltaTime;
 
-	DirectX::XMVECTOR eye = XMVectorSet(0, 0, -8.0f, 0);
+	DirectX::XMVECTOR eye = XMVectorSet(0, 0, -128.0f, 0);
 	DirectX::XMVECTOR focus = XMVectorSet(0, 0, 1, 0);
 	DirectX::XMVECTOR up = XMVectorSet(0, 1, 0, 0);
 
