@@ -94,10 +94,28 @@ Engine::Rendering::Device::Device(HWND hwnd)
 		backBuffer->Release();
 
 		auto rt = renderTargetView_.Get();
-		context_->OMSetRenderTargets(1, &rt, nullptr);
+
+
+		D3D11_TEXTURE2D_DESC dsDesc;
+		dsDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		dsDesc.Width = winRect.right - winRect.left;
+		dsDesc.Height = winRect.bottom - winRect.top;
+		dsDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+		dsDesc.MipLevels = 1;
+		dsDesc.ArraySize = 1;
+		dsDesc.CPUAccessFlags = 0;
+		dsDesc.SampleDesc.Count = 4;
+		dsDesc.SampleDesc.Quality = x4MsaaQuality - 1;
+		dsDesc.MiscFlags = 0;
+		dsDesc.Usage = D3D11_USAGE_DEFAULT;
+		Must(SUCCEEDED(device_->CreateTexture2D(&dsDesc, 0, zBuffer_.GetAddressOf())));
+		Must(SUCCEEDED(device_->CreateDepthStencilView(zBuffer_.Get(), 0, zBufferView_.GetAddressOf())));
+
+		auto zb = zBufferView_.Get();
+		context_->OMSetRenderTargets(1, &rt, zb);
 	}
 
-	// Viewport
+	// Viewportt
 	{
 		D3D11_VIEWPORT v
 		{
@@ -134,6 +152,8 @@ Engine::Rendering::Device::Device(HWND hwnd)
 
 		Must(SUCCEEDED(device_->CreateInputLayout(desc.data(), desc.size(), buf.data(), buf.size(), inputLayout_.GetAddressOf())));
 		context_->IASetInputLayout(inputLayout_.Get());
+
+		context_->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	}
 
 	// Perspective
@@ -174,6 +194,7 @@ bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 		const float blue[4] = { 0,0,0,1 };
 		auto& device = Engine::Rendering::GetDevice();
 		device.Context().ClearRenderTargetView(&device.RenderTargetView(), blue);
+		device.Context().ClearDepthStencilView(&device.DepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 	}
 
 	return run;

@@ -20,7 +20,7 @@ VertexOut main(VertexIn vIn)
 
 	vOut.pos = mul(float4(vIn.pos,1.0f), world);
 	vOut.pos = mul(vOut.pos, view);
-	//vOut.pos = mul(vOut.pos, prj);
+	vOut.pos = mul(vOut.pos, prj);
 	vOut.color = vIn.color;
 	vOut.texCoord = vIn.texCoord;
 	return vOut;

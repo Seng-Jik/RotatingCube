@@ -6,19 +6,23 @@ namespace Game
 {
 	namespace EngineTests
 	{
-		class Cube : public Engine::GameObject
+		class DemoCube : public Engine::GameObject
 		{
 		private:
-			Engine::Rendering::ComPtr<ID3D11Buffer> buf_;
+			Engine::Rendering::ComPtr<ID3D11Buffer> vb_;
+			std::size_t vbSize_;
 			Engine::Rendering::ComPtr<ID3D11PixelShader> ps_;
 
 			Engine::Rendering::ComPtr<ID3D11Buffer> constBuffer_;
 
-			float rot_ = 0;
+			Engine::Rendering::Transform buildTransform(DirectX::XMMATRIX world);
+
 		public:
-			Cube();
+			DemoCube();
 			void Update(float) override;
 			void Draw() const override;
+
+			void SetRotation(float x, float y, float z);
 		};
 	}
 }

@@ -18,6 +18,8 @@ namespace Engine
 			ComPtr<ID3D11RenderTargetView> renderTargetView_;
 			ComPtr<ID3D11VertexShader> vs_;
 
+			ComPtr<ID3D11Texture2D> zBuffer_;
+			ComPtr<ID3D11DepthStencilView> zBufferView_;
 			ComPtr<ID3D11InputLayout> inputLayout_;
 
 			DirectX::XMMATRIX perspective_;
@@ -34,6 +36,11 @@ namespace Engine
 			inline auto& RenderTargetView()
 			{
 				return *renderTargetView_.Get();
+			}
+
+			inline auto& DepthStencilView()
+			{
+				return *zBufferView_.Get();
 			}
 
 			inline auto& D3DDevice()

@@ -17,7 +17,22 @@ namespace Engine
 			DirectX::XMFLOAT2 texCoord;
 
 			static ComPtr<ID3D11Buffer> CreateBuffer(const std::vector<VertexIn>& vtx);
-			static void UpdateBuffer(const ComPtr<ID3D11Buffer>& dst, const std::vector<VertexIn>& src);
+		};
+
+		struct Transform
+		{
+			DirectX::XMMATRIX world;
+			DirectX::XMMATRIX view;
+			DirectX::XMMATRIX prj;
+
+			Transform Transpose() const
+			{
+				return{
+					DirectX::XMMatrixTranspose(world),
+					DirectX::XMMatrixTranspose(view),
+					DirectX::XMMatrixTranspose(prj)
+				};
+			}
 		};
 
 
