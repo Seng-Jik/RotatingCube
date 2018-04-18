@@ -1,5 +1,6 @@
 #pragma once
 #include <d3d11.h>
+#include <DirectXMath.h>
 #include <wrl/client.h>
 
 namespace Engine
@@ -18,10 +19,17 @@ namespace Engine
 			ComPtr<ID3D11VertexShader> vs_;
 
 			ComPtr<ID3D11InputLayout> inputLayout_;
+
+			DirectX::XMMATRIX perspective_;
 		public:
 			Device(HWND hwnd);
 
 			Device(const Device&) = delete;
+
+			auto Perspective()
+			{
+				return perspective_;
+			}
 
 			inline auto& RenderTargetView()
 			{

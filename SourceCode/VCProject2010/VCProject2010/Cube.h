@@ -11,6 +11,10 @@ namespace Game
 		private:
 			Engine::Rendering::ComPtr<ID3D11Buffer> buf_;
 			Engine::Rendering::ComPtr<ID3D11PixelShader> ps_;
+
+			Engine::Rendering::ComPtr<ID3D11Buffer> constBuffer_;
+
+			float rot_ = 0;
 		public:
 			Cube();
 			void Update(float) override;

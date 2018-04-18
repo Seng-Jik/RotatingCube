@@ -136,6 +136,23 @@ Engine::Rendering::Device::Device(HWND hwnd)
 		context_->IASetInputLayout(inputLayout_.Get());
 	}
 
+	// Perspective
+	{
+		const auto aspect = float(winRect.right - winRect.left) / (winRect.bottom - winRect.top);
+		perspective_ = DirectX::XMMatrixPerspectiveFovLH(
+			DirectX::XM_PIDIV2,
+			aspect,
+			0.1f,
+			100.0f
+		);
+
+		ComPtr<ID3D11RasterizerState> raster;
+		CD3D11_DEFAULT def;
+		CD3D11_RASTERIZER_DESC desc(def);
+		desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
+		device_->CreateRasterizerState(&desc, raster.GetAddressOf());
+		context_->RSSetState(raster.Get());
+	}
 	
 }
 

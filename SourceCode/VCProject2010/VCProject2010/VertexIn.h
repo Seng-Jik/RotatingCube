@@ -17,6 +17,32 @@ namespace Engine
 			DirectX::XMFLOAT2 texCoord;
 
 			static ComPtr<ID3D11Buffer> CreateBuffer(const std::vector<VertexIn>& vtx);
+			static void UpdateBuffer(const ComPtr<ID3D11Buffer>& dst, const std::vector<VertexIn>& src);
 		};
+
+
+		template <typename TPODStruct>
+		ComPtr<ID3D11Buffer> CreateConstantBuffer(const TPODStruct& data)
+		{
+			ComPtr<ID3D11Buffer> ret;
+
+			D3D11_BUFFER_DESC desc{ 0 };
+			desc.Usage = D3D11_USAGE_DEFAULT;
+			desc.ByteWidth = sizeof(TPODStruct);
+			desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+			desc.CPUAccessFlags = 0;
+
+			D3D11_SUBRESOURCE_DATA initData{ 0 };
+			initData.pSysMem = &data;
+			Must(SUCCEEDED(GetDevice().D3DDevice().CreateBuffer(&desc, &initData, ret.GetAddressOf())));
+
+			return ret;
+		}
+
+		template <typename TPODStruct>
+		void UpdateBuffer(const ComPtr<ID3D11Buffer>& dst, const TPODStruct& src)
+		{
+			GetDevice().Context().UpdateSubresource(dst.Get(), 0, nullptr, &src, 0, 0);
+		}
 	}
 }

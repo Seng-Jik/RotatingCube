@@ -1,5 +1,11 @@
 #include "VertexOut.hlsli"
 
+cbuffer Transform : register(b0)
+{
+	matrix world;
+	matrix view;
+	matrix prj;
+}
 
 struct VertexIn
 {
@@ -11,7 +17,10 @@ struct VertexIn
 VertexOut main(VertexIn vIn)
 {
 	VertexOut vOut;
-	vOut.pos = float4(vIn.pos,1.0f);
+
+	vOut.pos = mul(float4(vIn.pos,1.0f), world);
+	vOut.pos = mul(vOut.pos, view);
+	//vOut.pos = mul(vOut.pos, prj);
 	vOut.color = vIn.color;
 	vOut.texCoord = vIn.texCoord;
 	return vOut;
