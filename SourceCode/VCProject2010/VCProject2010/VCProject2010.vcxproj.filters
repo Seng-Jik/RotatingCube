@@ -109,7 +109,7 @@
     <FxCompile Include="VSDefaultWVP.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="PSGreen.hlsl">
+    <FxCompile Include="PSColorOnly.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

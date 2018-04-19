@@ -27,13 +27,11 @@ Engine::Rendering::Device::Device(HWND hwnd)
 
 		const auto result = D3D11CreateDevice(
 			nullptr,
-#ifdef _DEBUG
-			D3D_DRIVER_TYPE_REFERENCE,
-			nullptr,
-			D3D11_CREATE_DEVICE_DEBUG | D3D11_CREATE_DEVICE_SINGLETHREADED,
-#else
 			D3D_DRIVER_TYPE_HARDWARE,
 			nullptr,
+#ifdef _DEBUG
+			D3D11_CREATE_DEVICE_DEBUG | D3D11_CREATE_DEVICE_SINGLETHREADED,
+#else
 			D3D11_CREATE_DEVICE_SINGLETHREADED,
 #endif
 			featureLevels.data(),
@@ -166,12 +164,12 @@ Engine::Rendering::Device::Device(HWND hwnd)
 			100.0f
 		);
 
-		ComPtr<ID3D11RasterizerState> raster;
+		/*ComPtr<ID3D11RasterizerState> raster;
 		CD3D11_DEFAULT def;
 		CD3D11_RASTERIZER_DESC desc(def);
 		desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 		device_->CreateRasterizerState(&desc, raster.GetAddressOf());
-		context_->RSSetState(raster.Get());
+		context_->RSSetState(raster.Get());*/
 	}
 	
 }

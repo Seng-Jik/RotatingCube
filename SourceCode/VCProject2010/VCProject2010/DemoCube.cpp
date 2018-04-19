@@ -10,7 +10,7 @@ using namespace DirectX;
 
 
 
-Engine::Rendering::Transform Game::EngineTests::DemoCube::buildTransform(DirectX::XMMATRIX world)
+Engine::Rendering::Transform Game::EngineTests::DemoCube::buildTransform(const DirectX::XMMATRIX& world)
 {
 	DirectX::XMVECTOR eye = XMVectorSet(0, 0, 1.5f, 0);
 	DirectX::XMVECTOR focus = XMVectorSet(0, 0, -1, 0);
@@ -27,68 +27,67 @@ Engine::Rendering::Transform Game::EngineTests::DemoCube::buildTransform(DirectX
 
 Game::EngineTests::DemoCube::DemoCube()
 {
-	ps_ = LoadPShader("Green");
+	ps_ = LoadPShader("ColorOnly");
 
 	
 	std::vector<VertexIn> v = 
 	{
 		//前
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 		
 
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
 		//后
 		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
 		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
 		//左
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 		
 
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
 		//右
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(1.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(1.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
 		//上
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
-		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, 0.5f, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, -0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, 0.5f, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
 
 		//下
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-
-
-		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(0.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
-		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 0.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		
+		VertexIn{ XMFLOAT3(0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, 0.5f), XMFLOAT4(1.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		VertexIn{ XMFLOAT3(-0.5f, -0.5f, -0.5f), XMFLOAT4(1.0f, 0.0f, 1.0f,1.0f), XMFLOAT2(0.5f, 0.5f) },
+		
 	};
 
 	vb_ = VertexIn::CreateBuffer(v);

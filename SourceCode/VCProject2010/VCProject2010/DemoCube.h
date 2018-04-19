@@ -15,7 +15,7 @@ namespace Game
 
 			Engine::Rendering::ComPtr<ID3D11Buffer> constBuffer_;
 
-			Engine::Rendering::Transform buildTransform(DirectX::XMMATRIX world);
+			Engine::Rendering::Transform buildTransform(const DirectX::XMMATRIX& world);
 
 		public:
 			DemoCube();
