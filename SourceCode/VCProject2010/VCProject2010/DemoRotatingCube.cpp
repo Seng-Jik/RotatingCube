@@ -16,5 +16,5 @@ void Game::EngineTests::DemoRotatingCube::Update(float deltaTime)
 	x_ += deltaTime;
 	y_ += deltaTime / 4;
 	z_ += deltaTime / 8;
-	cube_.SetRotation(x_, y_, 0);
+	cube_.SetRotation(x_,y_,z_);
 }
