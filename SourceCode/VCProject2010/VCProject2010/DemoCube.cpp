@@ -5,6 +5,7 @@
 #include "Device.h"
 
 using namespace Engine::Rendering;
+using namespace Engine;
 using namespace DirectX;
 
 

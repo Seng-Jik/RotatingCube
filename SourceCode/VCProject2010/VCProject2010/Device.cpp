@@ -3,9 +3,9 @@
 #include "Optional.h"
 #include "Shaders.h"
 #include "Assets.h"
-using namespace Engine::Rendering;
+using namespace Engine;
 
-Engine::Rendering::Device::Device(HWND hwnd)
+Engine::Device::Device(HWND hwnd)
 {
 	UINT x4MsaaQuality;
 	RECT winRect;
@@ -163,18 +163,11 @@ Engine::Rendering::Device::Device(HWND hwnd)
 			0.1f,
 			100.0f
 		);
-
-		/*ComPtr<ID3D11RasterizerState> raster;
-		CD3D11_DEFAULT def;
-		CD3D11_RASTERIZER_DESC desc(def);
-		desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
-		device_->CreateRasterizerState(&desc, raster.GetAddressOf());
-		context_->RSSetState(raster.Get());*/
 	}
 	
 }
 
-bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
+bool Engine::Device::EngineMainLoop(HWND hWnd)
 {
 	const bool run = IsWindow(hWnd);
 
@@ -184,13 +177,39 @@ bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 		if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE)) {
 
 			TranslateMessage(&msg);
+
+			if (msg.message == WM_LBUTTONDOWN)
+			{
+				std::get<0>(mouse_) = true;
+				SetCapture(hWnd);
+			}
+			else if (msg.message == WM_LBUTTONUP)
+			{
+				std::get<0>(mouse_) = false;
+				ReleaseCapture();
+			}
+			else if (msg.message == WM_MOUSEMOVE)
+			{
+				RECT r;
+				GetClientRect(hWnd, &r);
+
+				std::get<1>(mouse_) = DirectX::XMFLOAT2
+				{
+					int16_t(LOWORD(msg.lParam)) / float(r.right - r.left),
+					int16_t(HIWORD(msg.lParam)) / float(r.bottom - r.top)
+				};
+			}
+
 			DispatchMessage(&msg);
+
+
+
 		}
 
 		swapChain_->Present(0, 0);
 
 		const float blue[4] = { 0,0,0,1 };
-		auto& device = Engine::Rendering::GetDevice();
+		auto& device = Engine::GetDevice();
 		device.Context().ClearRenderTargetView(&device.RenderTargetView(), blue);
 		device.Context().ClearDepthStencilView(&device.DepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 	}
@@ -199,12 +218,12 @@ bool Engine::Rendering::Device::EngineMainLoop(HWND hWnd)
 }
 
 static Engine::Optional<Device> device;
-Device & Engine::Rendering::GetDevice()
+Device & Engine::GetDevice()
 {
 	return device.Value();
 }
 
-void Engine::Rendering::InitDevice(HWND hWnd)
+void Engine::InitDevice(HWND hWnd)
 {
 	device.Emplace(hWnd);
 }

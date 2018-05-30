@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DemoRotatingCube.h"
+#include "Device.h"
 
 Game::EngineTests::DemoRotatingCube::DemoRotatingCube():
 	cube_ { NewObject<DemoCube>() },
@@ -13,8 +14,11 @@ void Game::EngineTests::DemoRotatingCube::Update(float deltaTime)
 {
 	Engine::ObjectSet<DemoCube>::Update(deltaTime);
 
-	x_ += deltaTime;
-	y_ += deltaTime / 4;
+	if (std::get<0>(Engine::GetDevice().Mouse()))
+	{
+		x_ = std::get<1>(Engine::GetDevice().Mouse()).x;
+		y_ = std::get<1>(Engine::GetDevice().Mouse()).y;
+	}
 	z_ += deltaTime / 8;
 	cube_.SetRotation(x_,y_,z_);
 }

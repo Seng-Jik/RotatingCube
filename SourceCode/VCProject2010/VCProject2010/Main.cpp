@@ -34,8 +34,8 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 	const HWND hWnd = FindWindow("Darkstar Window Class", WindowTitle.c_str());
 	
-	Engine::Rendering::InitDevice(hWnd);
-	auto& device = Engine::Rendering::GetDevice();
+	Engine::InitDevice(hWnd);
+	auto& device = Engine::GetDevice();
 
 	root.NewObject<Game::EngineTests::DemoRotatingCube>();
 
@@ -77,7 +77,7 @@ extern "C"
 //
 void CSystem::OnMouseMove(const float fMouseX, const float fMouseY)
 {
-	// 可以在此添加游戏需要的响应函数
+	
 
 }
 //==========================================================================
@@ -88,7 +88,6 @@ void CSystem::OnMouseMove(const float fMouseX, const float fMouseY)
 //
 void CSystem::OnMouseClick(const int iMouseType, const float fMouseX, const float fMouseY)
 {
-	// 可以在此添加游戏需要的响应函数
 }
 //==========================================================================
 //
@@ -98,7 +97,6 @@ void CSystem::OnMouseClick(const int iMouseType, const float fMouseX, const floa
 //
 void CSystem::OnMouseUp(const int iMouseType, const float fMouseX, const float fMouseY)
 {
-	// 可以在此添加游戏需要的响应函数
 }
 //==========================================================================
 //

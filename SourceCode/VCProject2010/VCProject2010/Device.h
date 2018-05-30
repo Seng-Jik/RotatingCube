@@ -5,58 +5,63 @@
 
 namespace Engine
 {
-	namespace Rendering
+	using Microsoft::WRL::ComPtr;
+
+	class Device
 	{
-		using Microsoft::WRL::ComPtr;
+	private:
+		ComPtr<ID3D11Device> device_;
+		ComPtr<ID3D11DeviceContext> context_;
+		ComPtr<IDXGISwapChain> swapChain_;
+		ComPtr<ID3D11RenderTargetView> renderTargetView_;
+		ComPtr<ID3D11VertexShader> vs_;
 
-		class Device
+		ComPtr<ID3D11Texture2D> zBuffer_;
+		ComPtr<ID3D11DepthStencilView> zBufferView_;
+		ComPtr<ID3D11InputLayout> inputLayout_;
+
+		DirectX::XMMATRIX perspective_;
+
+		std::tuple<bool, DirectX::XMFLOAT2> mouse_;
+	public:
+		Device(HWND hwnd);
+
+		Device(const Device&) = delete;
+
+		auto Perspective()
 		{
-		private:
-			ComPtr<ID3D11Device> device_;
-			ComPtr<ID3D11DeviceContext> context_;
-			ComPtr<IDXGISwapChain> swapChain_;
-			ComPtr<ID3D11RenderTargetView> renderTargetView_;
-			ComPtr<ID3D11VertexShader> vs_;
+			return perspective_;
+		}
 
-			ComPtr<ID3D11Texture2D> zBuffer_;
-			ComPtr<ID3D11DepthStencilView> zBufferView_;
-			ComPtr<ID3D11InputLayout> inputLayout_;
+		inline auto& RenderTargetView()
+		{
+			return *renderTargetView_.Get();
+		}
 
-			DirectX::XMMATRIX perspective_;
-		public:
-			Device(HWND hwnd);
+		inline auto& DepthStencilView()
+		{
+			return *zBufferView_.Get();
+		}
 
-			Device(const Device&) = delete;
+		inline auto& D3DDevice()
+		{
+			return *device_.Get();
+		}
 
-			auto Perspective()
-			{
-				return perspective_;
-			}
+		inline auto& Context()
+		{
+			return *context_.Get();
+		}
 
-			inline auto& RenderTargetView()
-			{
-				return *renderTargetView_.Get();
-			}
+		inline auto Mouse() const
+		{
+			return mouse_;
+		}
 
-			inline auto& DepthStencilView()
-			{
-				return *zBufferView_.Get();
-			}
+		bool EngineMainLoop(HWND hWnd);
+	};
 
-			inline auto& D3DDevice()
-			{
-				return *device_.Get();
-			}
+	Device& GetDevice();
+	void InitDevice(HWND hWnd);
 
-			inline auto& Context()
-			{
-				return *context_.Get();
-			}
-
-			bool EngineMainLoop(HWND hWnd);
-		};
-
-		Device& GetDevice();
-		void InitDevice(HWND hWnd);
-	}
 }

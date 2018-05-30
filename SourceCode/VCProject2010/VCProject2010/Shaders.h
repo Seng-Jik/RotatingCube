@@ -9,7 +9,6 @@ namespace Engine
 	{
 		using Microsoft::WRL::ComPtr;
 
-		//ComPtr<ID3D11VertexShader> LoadVShader(const std::string& name);
 		ComPtr<ID3D11PixelShader> LoadPShader(const std::string& name);
 	}
 }
