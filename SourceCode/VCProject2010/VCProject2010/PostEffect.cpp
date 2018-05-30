@@ -19,6 +19,8 @@ Engine::Rendering::PostEffect::PostEffect(const char * peps):
 		DirectX::XMMatrixIdentity(),
 		DirectX::XMMatrixIdentity()
 	};
+
+	Rendering::CreateConstantBuffer(t.Transpose());
 }
 
 void Engine::Rendering::PostEffect::SetConstantBuffer(const ComPtr<ID3D11Buffer>& cb)
