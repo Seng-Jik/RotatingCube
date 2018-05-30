@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Game\EngineTests">
       <UniqueIdentifier>{84a15c49-00ac-4a19-b04b-24be62e589e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\Title">
+      <UniqueIdentifier>{d569a653-b2f5-43b6-82fe-50a98385f807}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -110,6 +113,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="PSColorOnly.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="TitleBackground.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
