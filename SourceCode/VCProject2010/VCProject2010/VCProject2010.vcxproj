@@ -134,6 +134,7 @@
     <ClCompile Include="DemoRotatingCube.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -149,6 +150,7 @@
     <ClInclude Include="Device.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="PostEffect.h" />
     <ClInclude Include="VertexIn.h" />
     <ClInclude Include="ObjectSet.h" />
     <ClInclude Include="Optional.h" />
