@@ -165,7 +165,7 @@
     <None Include="VertexOut.hlsli">
       <FileType>Document</FileType>
     </None>
-    <FxCompile Include="TitleBackground.hlsl">
+    <FxCompile Include="PSTitleBackground.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
     </FxCompile>

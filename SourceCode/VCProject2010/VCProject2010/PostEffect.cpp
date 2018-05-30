@@ -9,9 +9,13 @@ Engine::Rendering::PostEffect::PostEffect(const char * peps):
 	peps_ { LoadPShader(peps) },
 	vb_ { VertexIn::CreateBuffer(std::vector<VertexIn>
 {
-	VertexIn{ XMFLOAT3(0, 0, 0), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 0) },
-	VertexIn{ XMFLOAT3(1, 0, 0), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 0) },
-	VertexIn{ XMFLOAT3(0, 1, 0), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 0) }
+	VertexIn{ XMFLOAT3(-1, -1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 0) },
+	VertexIn{ XMFLOAT3(-1, 1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 1) },
+	VertexIn{ XMFLOAT3(1, -1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(1, 0) },
+
+	VertexIn{ XMFLOAT3(1, 1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(1, 1) },
+	VertexIn{ XMFLOAT3(1, -1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(1, 0) },
+	VertexIn{ XMFLOAT3(-1, 1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 1) }
 }) }
 {
 	Rendering::Transform t{
@@ -20,7 +24,7 @@ Engine::Rendering::PostEffect::PostEffect(const char * peps):
 		DirectX::XMMatrixIdentity()
 	};
 
-	Rendering::CreateConstantBuffer(t.Transpose());
+	vscb_ = Rendering::CreateConstantBuffer(t.Transpose());
 }
 
 void Engine::Rendering::PostEffect::SetConstantBuffer(const ComPtr<ID3D11Buffer>& cb)
@@ -35,13 +39,11 @@ void Engine::Rendering::PostEffect::Draw() const
 	d.Context().PSSetConstantBuffers(0, 1, pscb_.GetAddressOf());
 	d.Context().PSSetShader(peps_.Get(), nullptr, 0);
 
-	
-
 	auto buf = vb_.Get();
 	const UINT stride[] = { sizeof(VertexIn) };
 	const UINT offset[] = { 0 };
 
 	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
-	d.Context().Draw(3, 0);
+	d.Context().Draw(6, 0);
 }
 

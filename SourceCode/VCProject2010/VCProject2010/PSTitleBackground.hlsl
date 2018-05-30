@@ -108,8 +108,8 @@ float4 main(VertexOut vOut) : SV_TARGET
 	float4 fragColor;
 	fragColor.rgb = environment(ro, rd);
 
-	[unroll(1)]
-	for (int i = 0; i < 200; i += 1)
+    [unroll(2)]
+	for (int i = 0; i < 16; i ++)
 	{
 		float d = scene(ro);
 

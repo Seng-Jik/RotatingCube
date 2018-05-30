@@ -121,7 +121,7 @@
     <FxCompile Include="PSColorOnly.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="TitleBackground.hlsl">
+    <FxCompile Include="PSTitleBackground.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>
