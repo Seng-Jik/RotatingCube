@@ -82,7 +82,7 @@
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Tex2D.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

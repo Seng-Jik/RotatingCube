@@ -5,6 +5,7 @@
 #include "Shaders.h"
 #include "Tween.h"
 #include "TaskList.h"
+#include "Tex2D.h"
 
 namespace Game
 {
