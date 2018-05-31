@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="TaskList.h" />
     <ClInclude Include="Tex2D.h" />
     <ClInclude Include="Title.h" />

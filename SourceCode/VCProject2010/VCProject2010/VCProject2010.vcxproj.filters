@@ -134,6 +134,9 @@
     <ClInclude Include="Tex2D.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite2D.h">
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VSDefaultWVP.hlsl">
