@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="TaskList.cpp" />
+    <ClCompile Include="Tex2D.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="DemoCube.cpp" />
     <ClCompile Include="DemoRotatingCube.cpp" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Assets.h" />
     <ClInclude Include="TaskList.h" />
+    <ClInclude Include="Tex2D.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="DemoCube.h" />
     <ClInclude Include="DemoRotatingCube.h" />
