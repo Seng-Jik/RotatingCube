@@ -18,4 +18,10 @@
 #include <deque>
 #include <cassert>
 
+#include "Device.h"
+#include "ObjectSet.h"
+#include "TaskList.h"
+#include "Tween.h"
+#include "Optional.h"
+
 #include "Globals.h"

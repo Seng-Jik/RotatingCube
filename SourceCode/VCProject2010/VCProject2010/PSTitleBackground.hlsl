@@ -11,6 +11,7 @@ cbuffer TitleBackground
 	float iTime;
 	float2 iMouse;
 	float iWdivH;
+	float iLight;
 };
 
 float3 rotateX(float a, float3 v)
@@ -124,6 +125,7 @@ float4 main(VertexOut vOut) : SV_TARGET
 	fragColor.rgb = sqrt(fragColor.rgb);
 	fragColor.a = 1.0;
 
+	fragColor.rgb *= iLight;
 	return fragColor;
 }
 

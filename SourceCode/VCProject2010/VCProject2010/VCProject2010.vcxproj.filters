@@ -119,6 +119,9 @@
     <ClInclude Include="Title.h">
       <Filter>Header Files\Game\Title</Filter>
     </ClInclude>
+    <ClInclude Include="Tween.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VSDefaultWVP.hlsl">

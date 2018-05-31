@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="TaskList.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="DemoCube.cpp" />
     <ClCompile Include="DemoRotatingCube.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="TaskList.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="DemoCube.h" />
     <ClInclude Include="DemoRotatingCube.h" />
@@ -152,6 +154,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="PostEffect.h" />
+    <ClInclude Include="Tween.h" />
     <ClInclude Include="VertexIn.h" />
     <ClInclude Include="ObjectSet.h" />
     <ClInclude Include="Optional.h" />

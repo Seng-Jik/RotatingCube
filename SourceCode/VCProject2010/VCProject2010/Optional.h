@@ -29,7 +29,7 @@ namespace Engine
 
 		bool Exist() const 
 		{
-			return obj != nullptr;
+			return obj_ != nullptr;
 		}
 
 		T& Value() 
