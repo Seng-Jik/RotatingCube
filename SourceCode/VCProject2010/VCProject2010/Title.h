@@ -1,6 +1,6 @@
 #pragma once
 #include "Device.h"
-#include "GameObject.h"
+#include "ObjectSet.h"
 #include "PostEffect.h"
 #include "Shaders.h"
 #include "Tween.h"
@@ -10,7 +10,7 @@ namespace Game
 {
 	namespace Title
 	{
-		class Title : public Engine::GameObject
+		class Title : public Engine::ObjectSet<Engine::GameObject>
 		{
 		private:
 			Engine::Rendering::PostEffect pe_;
@@ -25,9 +25,11 @@ namespace Game
 			};
 
 			Engine::TaskList tl_;
-			Engine::Tween<float> light_;
+			Engine::Tween<float> light_,bkCamera_;
 			TitleBackgroundCBuffer pecbcpu_;
 			Engine::Rendering::ComPtr<ID3D11Buffer> pecb_;
+
+			bool reciveMouseClick_ = false;
 		public:
 			Title();
 			void Draw() const override;
