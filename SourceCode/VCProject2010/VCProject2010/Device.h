@@ -22,6 +22,8 @@ namespace Engine
 
 		DirectX::XMMATRIX perspective_;
 
+		const void* hWnd_;
+
 		std::tuple<bool, DirectX::XMFLOAT2> mouse_;
 	public:
 		Device(HWND hwnd);
@@ -58,7 +60,10 @@ namespace Engine
 			return mouse_;
 		}
 
-		bool EngineMainLoop(HWND hWnd);
+		DirectX::XMINT2 GetScreenSize() const;
+		float GetScreenWdivH() const;
+
+		bool EngineMainLoop();
 	};
 
 	Device& GetDevice();

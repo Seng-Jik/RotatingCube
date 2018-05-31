@@ -43,6 +43,9 @@
     <Filter Include="Header Files\Game\Title">
       <UniqueIdentifier>{d569a653-b2f5-43b6-82fe-50a98385f807}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Title">
+      <UniqueIdentifier>{dc60ce27-790d-4402-a892-d441d21b39e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -72,6 +75,9 @@
     <ClCompile Include="PostEffect.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Source Files\Game\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -88,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="ObjectSet.h">
       <Filter>Header Files\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="BlueScreen.h">
-      <Filter>Header Files\Game\EngineTests</Filter>
     </ClInclude>
     <ClInclude Include="Shaders.h">
       <Filter>Header Files\Engine\Rendering</Filter>
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="PostEffect.h">
       <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Header Files\Game\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

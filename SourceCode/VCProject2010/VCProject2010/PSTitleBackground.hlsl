@@ -100,7 +100,7 @@ float4 main(VertexOut vOut) : SV_TARGET
 	uv.x *= iWdivH;
 	float3 ro = float3(0.0, 0.2, 1.0), rd = float3(uv, -0.9);
 
-	float2 angs = float2(1.0, 1.0 - iMouse.x * 0.01);
+	float2 angs = float2(1.0 - iMouse.y * 0.01, 1.0 - iMouse.x * 0.01);
 
 	ro = rotateY(angs.y, ro) + float3(0.0, 0.6, 0.0);
 	rd = rotateY(angs.y, rotateX(angs.x, rd));
@@ -108,8 +108,7 @@ float4 main(VertexOut vOut) : SV_TARGET
 	float4 fragColor;
 	fragColor.rgb = environment(ro, rd);
 
-    [unroll(2)]
-	for (int i = 0; i < 16; i ++)
+	for (int i = 0; i < 100; i ++)
 	{
 		float d = scene(ro);
 

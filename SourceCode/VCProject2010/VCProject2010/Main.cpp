@@ -10,7 +10,7 @@
 #include "Optional.h"
 #include "ObjectSet.h"
 #include "DemoRotatingCube.h"
-#include "BlueScreen.h"
+#include "Title.h"
 
 static Engine::ObjectSet<Engine::GameObject> root;
 
@@ -38,10 +38,10 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	Engine::InitDevice(hWnd);
 	auto& device = Engine::GetDevice();
 
-	root.NewObject<Game::EngineTests::BlueScreen>();
+	root.NewObject<Game::Title::Title>();
 
 	// 引擎主循环，处理屏幕图像刷新等工作
-	while(device.EngineMainLoop(hWnd))
+	while(device.EngineMainLoop())
 	{
 		// 获取两次调用之间的时间差，传递给游戏逻辑处理
 		const float	fTimeDelta	=	CSystem::GetTimeDelta();

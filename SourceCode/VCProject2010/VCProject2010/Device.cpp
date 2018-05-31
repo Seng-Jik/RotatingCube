@@ -5,7 +5,8 @@
 #include "Assets.h"
 using namespace Engine;
 
-Engine::Device::Device(HWND hwnd)
+Engine::Device::Device(HWND hwnd) :
+	hWnd_{ hwnd }
 {
 	UINT x4MsaaQuality;
 	RECT winRect;
@@ -167,21 +168,36 @@ Engine::Device::Device(HWND hwnd)
 	
 }
 
-bool Engine::Device::EngineMainLoop(HWND hWnd)
+DirectX::XMINT2 Engine::Device::GetScreenSize() const
 {
-	const bool run = IsWindow(hWnd);
+	RECT r;
+	GetClientRect((HWND)hWnd_, &r);
+	return DirectX::XMINT2(r.right - r.left, r.bottom - r.top);
+}
+
+float Engine::Device::GetScreenWdivH() const
+{
+	auto size = GetScreenSize();
+	return size.x / float(size.y);
+}
+
+bool Engine::Device::EngineMainLoop()
+{
+	const bool run = IsWindow((HWND)hWnd_);
+
+	static_assert(sizeof(HWND) == sizeof(hWnd_),"HWND failed.");
 
 	if (run)
 	{
 		MSG msg;
-		if (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE)) {
+		if (PeekMessage(&msg, (HWND)hWnd_, 0, 0, PM_REMOVE)) {
 
 			TranslateMessage(&msg);
 
 			if (msg.message == WM_LBUTTONDOWN)
 			{
 				std::get<0>(mouse_) = true;
-				SetCapture(hWnd);
+				SetCapture((HWND)hWnd_);
 			}
 			else if (msg.message == WM_LBUTTONUP)
 			{
@@ -191,7 +207,7 @@ bool Engine::Device::EngineMainLoop(HWND hWnd)
 			else if (msg.message == WM_MOUSEMOVE)
 			{
 				RECT r;
-				GetClientRect(hWnd, &r);
+				GetClientRect((HWND)hWnd_, &r);
 
 				std::get<1>(mouse_) = DirectX::XMFLOAT2
 				{

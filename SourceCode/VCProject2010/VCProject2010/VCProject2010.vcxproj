@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="DemoCube.cpp" />
     <ClCompile Include="DemoRotatingCube.cpp" />
     <ClCompile Include="Device.cpp" />
@@ -144,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
-    <ClInclude Include="BlueScreen.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="DemoCube.h" />
     <ClInclude Include="DemoRotatingCube.h" />
     <ClInclude Include="Device.h" />
@@ -168,6 +169,8 @@
     <FxCompile Include="PSTitleBackground.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="VSDefaultWVP.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
