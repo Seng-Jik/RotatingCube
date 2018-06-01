@@ -14,9 +14,10 @@ namespace Engine
 			DirectX::XMFLOAT4 colorMod_;
 			DirectX::XMFLOAT2 position_;
 			float zoom_;
+			std::array<VertexIn, 6> vbcpu_;
 			Engine::Rendering::PtrTex2D tex_;
-			Engine::Rendering::PtrCBuffer cb_;
 			Engine::Rendering::PtrVBuffer vb_;
+			
 
 			static PtrCBuffer getCBuffer();
 

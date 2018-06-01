@@ -17,7 +17,8 @@ PtrCBuffer Engine::Rendering::Sprite::getCBuffer()
 	return cb;
 }
 
-Engine::Rendering::Sprite::Sprite(const char * tex)
+Engine::Rendering::Sprite::Sprite(const char * tex) :
+	tex_ { LoadTex2D(tex) }
 {
 }
 
