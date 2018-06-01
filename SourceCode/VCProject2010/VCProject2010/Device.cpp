@@ -165,6 +165,25 @@ Engine::Device::Device(HWND hwnd) :
 			100.0f
 		);
 	}
+
+	//Blend State
+	{
+		ComPtr<ID3D11BlendState> blendState;
+		D3D11_BLEND_DESC d = CD3D11_BLEND_DESC{ CD3D11_DEFAULT{} };
+		d.AlphaToCoverageEnable = true;
+		d.RenderTarget[0].BlendEnable = true;
+		d.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		d.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		d.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		d.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		d.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		d.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		device_->CreateBlendState(&d, blendState.GetAddressOf());
+		d.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		constexpr float t[] = { 1,1,1,1 };
+		context_->OMSetBlendState(blendState.Get(),t,0xFFFFFFFF);
+	}
 	
 }
 
@@ -224,7 +243,7 @@ bool Engine::Device::EngineMainLoop()
 
 		swapChain_->Present(0, 0);
 
-		const float blue[4] = { 0,0,0,1 };
+		const float blue[4] = { 0,0,0,0 };
 		auto& device = Engine::GetDevice();
 		device.Context().ClearRenderTargetView(&device.RenderTargetView(), blue);
 		device.Context().ClearDepthStencilView(&device.DepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);

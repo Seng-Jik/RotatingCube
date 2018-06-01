@@ -121,10 +121,8 @@ float4 main(VertexOut vOut) : SV_TARGET
 		ro += rd * d * 0.2;
 	}
 
-	fragColor.rgb = sqrt(fragColor.rgb);
-	fragColor.a = 1.0;
-
-	fragColor.rgb *= iLight;
+    fragColor.rgb = sqrt(fragColor.rgb) * iLight;
+    fragColor.a = 1.0;
 	return fragColor;
 }
 

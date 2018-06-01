@@ -5,5 +5,6 @@ SamplerState smp;
 
 float4 main(VertexOut vIn) : SV_TARGET
 {
-	return spTex.Sample(smp,vIn.texCoord);
+	float4 p = spTex.Sample(smp,vIn.texCoord);
+    return p;
 }

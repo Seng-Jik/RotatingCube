@@ -45,6 +45,23 @@ ComPtr<ID3D11SamplerState> Engine::Rendering::Sprite2D::getSamplerState()
 	return smp;
 }
 
+ComPtr<ID3D11BlendState> Engine::Rendering::Sprite2D::createBlendState()
+{
+	ComPtr<ID3D11BlendState> blendState;
+	D3D11_BLEND_DESC d = CD3D11_BLEND_DESC{ CD3D11_DEFAULT{} };
+	d.RenderTarget[0].BlendEnable = true;
+	d.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	d.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	Engine::GetDevice().D3DDevice().CreateBlendState(&d, blendState.GetAddressOf());
+	return blendState;
+}
+
+ComPtr<ID3D11BlendState> Engine::Rendering::Sprite2D::getBlendState()
+{
+	static auto p = createBlendState();
+	return p;
+}
+
 Engine::Rendering::Sprite2D::Sprite2D(const char * tex) 
 {
 	vbcpu_[0].texCoord = DirectX::XMFLOAT2(0, 1);
@@ -129,6 +146,8 @@ void Engine::Rendering::Sprite2D::Draw() const
 	d.Context().VSSetConstantBuffers(0, 1, &cbp);
 	d.Context().PSSetConstantBuffers(0, 0, nullptr);
 	d.Context().PSSetShader(getPShader().Get(), nullptr, 0);
+	constexpr float col[] = { 0,0,0,0 };
+	//d.Context().OMSetBlendState(getBlendState().Get(), col, 0);
 
 	d.Context().PSSetShaderResources(0, 1, texResView_.GetAddressOf());
 	d.Context().PSSetSamplers(0, 1, getSamplerState().GetAddressOf());
@@ -139,4 +158,6 @@ void Engine::Rendering::Sprite2D::Draw() const
 
 	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
 	d.Context().Draw(6, 0);
+
+	//d.Context().OMSetBlendState(nullptr, nullptr, 0);
 }

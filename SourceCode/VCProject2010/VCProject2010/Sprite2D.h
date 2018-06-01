@@ -25,6 +25,8 @@ namespace Engine
 			static ID3D11Buffer* getCBuffer();
 			static ComPtr<ID3D11PixelShader> getPShader();
 			static ComPtr<ID3D11SamplerState> getSamplerState();
+			static ComPtr<ID3D11BlendState> createBlendState();
+			static ComPtr<ID3D11BlendState> getBlendState();
 
 		public:
 			Sprite2D(const Sprite2D&) = delete;
