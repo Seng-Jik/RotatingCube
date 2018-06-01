@@ -144,6 +144,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TitleGUI.cpp" />
     <ClCompile Include="VertexIn.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="PostEffect.h" />
+    <ClInclude Include="TitleGUI.h" />
     <ClInclude Include="Tween.h" />
     <ClInclude Include="VertexIn.h" />
     <ClInclude Include="ObjectSet.h" />

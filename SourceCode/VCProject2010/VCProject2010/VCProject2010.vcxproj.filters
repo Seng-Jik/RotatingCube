@@ -87,6 +87,9 @@
     <ClCompile Include="Sprite2D.cpp">
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="TitleGUI.cpp">
+      <Filter>Source Files\Game\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -139,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="Sprite2D.h">
       <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleGUI.h">
+      <Filter>Header Files\Game\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

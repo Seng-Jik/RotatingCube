@@ -17,10 +17,9 @@ Game::Title::Title::Title()	:
 
 	tl_.AddTask([this] {
 		reciveMouseClick_ = true;
-	}, 1.5f);
+	}, 2.5f);
 
-	auto& sp = NewObject<Engine::Rendering::Sprite2D>("cube");
-	sp.SetZoom(0.25f);
+	titleGUI_.Emplace(&NewObject<TitleGUI>());
 }
 
 
@@ -46,6 +45,8 @@ void Game::Title::Title::Update(float time)
 	if (std::get<0>(Engine::GetDevice().Mouse()) && reciveMouseClick_)
 	{
 		reciveMouseClick_ = false;
+		titleGUI_.Value()->Click();
+		titleGUI_.Clear();
 		bkCamera_.Run(1, 0.5f, 1);
 	}
 }

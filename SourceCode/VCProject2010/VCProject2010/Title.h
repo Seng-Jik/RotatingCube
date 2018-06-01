@@ -6,6 +6,7 @@
 #include "Tween.h"
 #include "TaskList.h"
 #include "Tex2D.h"
+#include "TitleGUI.h"
 
 namespace Game
 {
@@ -31,6 +32,8 @@ namespace Game
 			Engine::Rendering::ComPtr<ID3D11Buffer> pecb_;
 
 			bool reciveMouseClick_ = false;
+
+			Engine::Optional<TitleGUI*> titleGUI_;
 		public:
 			Title();
 			void Draw() const override;
