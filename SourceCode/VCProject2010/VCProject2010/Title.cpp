@@ -27,7 +27,7 @@ Game::Title::Title::Title()	:
 void Game::Title::Title::Draw() const
 {
 	Engine::Rendering::UpdateCBuffer(pecb_, pecbcpu_);
-	//pe_.Draw();
+	pe_.Draw();
 
 	Engine::ObjectSet<Engine::GameObject>::Draw();
 }
