@@ -7,7 +7,7 @@ using namespace DirectX;
 
 Engine::Rendering::PostEffect::PostEffect(const char * peps):
 	peps_ { LoadPShader(peps) },
-	vb_ { VertexIn::CreateBuffer(std::vector<VertexIn>
+	vb_ { VertexIn::CreateVBuffer(std::array<VertexIn,6>
 {
 	VertexIn{ XMFLOAT3(-1, -1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 0) },
 	VertexIn{ XMFLOAT3(-1, 1, 0.5f), XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f), XMFLOAT2(0, 1) },

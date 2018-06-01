@@ -1,6 +1,9 @@
 #pragma once
 #include "GameObject.h"
 #include "Device.h"
+#include "Tex2D.h"
+#include "VertexIn.h"
+
 namespace Engine
 {
 	namespace Rendering
@@ -8,6 +11,12 @@ namespace Engine
 		class Sprite : public GameObject
 		{
 		private:
+			DirectX::XMFLOAT4 colorMod_;
+			DirectX::XMFLOAT2 position_;
+			float zoom_;
+			Engine::Rendering::PtrTex2D tex_;
+			Engine::Rendering::PtrCBuffer cb_;
+			Engine::Rendering::PtrVBuffer vb_;
 
 		public:
 			Sprite(const Sprite&) = delete;
@@ -18,6 +27,7 @@ namespace Engine
 			void SetAlpha(float a);
 			void SetZoom(float zoom);
 			void SetPos(float x, float y);
+			void Draw() const override;
 		};
 	}
 }

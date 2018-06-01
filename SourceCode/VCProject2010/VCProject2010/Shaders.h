@@ -9,6 +9,8 @@ namespace Engine
 	{
 		using Microsoft::WRL::ComPtr;
 
-		ComPtr<ID3D11PixelShader> LoadPShader(const std::string& name);
+		using PtrPShader = ComPtr<ID3D11PixelShader>;
+
+		PtrPShader LoadPShader(const std::string& name);
 	}
 }

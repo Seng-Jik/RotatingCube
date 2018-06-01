@@ -10,13 +10,21 @@ namespace Engine
 	{
 		using Microsoft::WRL::ComPtr;
 
+		using PtrVBuffer = ComPtr<ID3D11Buffer>;
 		struct VertexIn
 		{
 			DirectX::XMFLOAT3 position;
 			DirectX::XMFLOAT4 color;
 			DirectX::XMFLOAT2 texCoord;
 
-			static ComPtr<ID3D11Buffer> CreateBuffer(const std::vector<VertexIn>& vtx);
+			static PtrVBuffer CreateVBuffer(const std::vector<VertexIn>& vtx);
+			static PtrVBuffer CreateVBuffer(const VertexIn* vtx,size_t size);
+
+			template <size_t Size>
+			static PtrVBuffer CreateVBuffer(const std::array<VertexIn, Size>& vtx)
+			{
+				return CreateVBuffer(vtx.data(), Size);
+			}
 		};
 
 		struct Transform
@@ -36,10 +44,11 @@ namespace Engine
 		};
 
 
+		using PtrCBuffer = ComPtr<ID3D11Buffer>;
 		template <typename TPODStruct>
-		ComPtr<ID3D11Buffer> CreateConstantBuffer(const TPODStruct& data)
+		PtrCBuffer CreateConstantBuffer(const TPODStruct& data)
 		{
-			ComPtr<ID3D11Buffer> ret;
+			PtrCBuffer ret;
 
 			D3D11_BUFFER_DESC desc{ 0 };
 			desc.Usage = D3D11_USAGE_DEFAULT;

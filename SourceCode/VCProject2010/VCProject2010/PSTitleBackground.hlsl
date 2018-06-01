@@ -1,6 +1,5 @@
 // @eddbiddulph
 // By Shadertoy fizzer
-// Use the mouse to rotate the view!
 
 #include "VertexOut.hlsli"
 

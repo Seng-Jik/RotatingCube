@@ -91,7 +91,7 @@ Game::EngineTests::DemoCube::DemoCube()
 		
 	};
 
-	vb_ = VertexIn::CreateBuffer(v);
+	vb_ = VertexIn::CreateVBuffer(v);
 	vbSize_ = v.size();
 
 	constBuffer_ = CreateConstantBuffer(buildTransform(DirectX::XMMatrixIdentity()));

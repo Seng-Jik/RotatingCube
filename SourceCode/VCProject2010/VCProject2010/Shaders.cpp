@@ -5,9 +5,9 @@
 
 using namespace Engine::Rendering;
 
-ComPtr<ID3D11PixelShader> Engine::Rendering::LoadPShader(const std::string & name)
+PtrPShader Engine::Rendering::LoadPShader(const std::string & name)
 {
-	ComPtr<ID3D11PixelShader> ret;
+	PtrPShader ret;
 
 	auto buf = Engine::LoadAssets("PS" + name + ".cso");
 
