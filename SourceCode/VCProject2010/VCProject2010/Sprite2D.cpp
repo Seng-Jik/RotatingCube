@@ -131,7 +131,7 @@ void Engine::Rendering::Sprite2D::Draw() const
 	d.Context().PSSetShader(getPShader().Get(), nullptr, 0);
 
 	d.Context().PSSetShaderResources(0, 1, texResView_.GetAddressOf());
-	d.Context().PSSetSamplers(0, 1, &getSamplerState());
+	d.Context().PSSetSamplers(0, 1, getSamplerState().GetAddressOf());
 
 	auto buf = vb_.Get();
 	const UINT stride[] = { sizeof(VertexIn) };
