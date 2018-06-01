@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Title.h"
+#include "Sprite2D.h"
 
 Game::Title::Title::Title()	:
 	pe_ { "TitleBackground" },
@@ -17,17 +18,23 @@ Game::Title::Title::Title()	:
 	tl_.AddTask([this] {
 		reciveMouseClick_ = true;
 	}, 1.5f);
+
+	auto& sp = NewObject<Engine::Rendering::Sprite2D>("cube");
+	sp.SetZoom(0.25f);
 }
 
 
 void Game::Title::Title::Draw() const
 {
-	Engine::Rendering::UpdateBuffer(pecb_, pecbcpu_);
-	pe_.Draw();
+	Engine::Rendering::UpdateCBuffer(pecb_, pecbcpu_);
+	//pe_.Draw();
+
+	Engine::ObjectSet<Engine::GameObject>::Draw();
 }
 
 void Game::Title::Title::Update(float time)
 {
+	Engine::ObjectSet<Engine::GameObject>::Update(time);
 	pecbcpu_.iTime += time;
 	light_.Update(time);
 	bkCamera_.Update(time);

@@ -119,7 +119,7 @@ void Game::EngineTests::DemoCube::Draw() const
 
 void Game::EngineTests::DemoCube::SetRotation(float x, float y, float z)
 {
-	UpdateBuffer(constBuffer_,
+	UpdateCBuffer(constBuffer_,
 		buildTransform(
 			DirectX::XMMatrixRotationX(x) * 
 			DirectX::XMMatrixRotationY(y) * 

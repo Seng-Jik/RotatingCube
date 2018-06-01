@@ -1,51 +1,142 @@
 #include "stdafx.h"
 #include "Sprite2D.h"
 #include "Device.h"
+#include "Shaders.h"
 
 using namespace Engine::Rendering;
 
 
-PtrCBuffer Engine::Rendering::Sprite::getCBuffer()
+ID3D11Buffer* Engine::Rendering::Sprite2D::getCBuffer()
 {
 	static const Transform tsf {
 		DirectX::XMMatrixIdentity(),
 		DirectX::XMMatrixOrthographicLH(800,600,0,1),
-		Engine::GetDevice().Perspective()
+		DirectX::XMMatrixIdentity()
 	};
 
 	static auto cb = Engine::Rendering::CreateConstantBuffer(tsf.Transpose());
-	return cb;
+	return cb.Get();
 }
 
-Engine::Rendering::Sprite::Sprite(const char * tex) :
-	tex_ { LoadTex2D(tex) }
+ComPtr<ID3D11PixelShader> Engine::Rendering::Sprite2D::getPShader()
 {
+	static const auto ret = LoadPShader("Sprite2DDefault");
+	return ret;
 }
 
-void Engine::Rendering::Sprite::SetColorMod(DirectX::XMFLOAT3 rgb)
+ComPtr<ID3D11SamplerState> Engine::Rendering::Sprite2D::getSamplerState()
+{
+	static D3D11_SAMPLER_DESC samplerDesc = 
+	{
+		D3D11_FILTER_MIN_MAG_MIP_LINEAR,
+		D3D11_TEXTURE_ADDRESS_WRAP,
+		D3D11_TEXTURE_ADDRESS_WRAP,
+		D3D11_TEXTURE_ADDRESS_WRAP,
+		0.0f,
+		1,
+		D3D11_COMPARISON_ALWAYS,
+		{0,0,0,0},
+		0,
+		D3D11_FLOAT32_MAX
+	};
+
+	static auto smp = Engine::Rendering::CreateSampler(samplerDesc);
+
+	return smp;
+}
+
+Engine::Rendering::Sprite2D::Sprite2D(const char * tex) 
+{
+	vbcpu_[0].texCoord = DirectX::XMFLOAT2(0, 1);
+	vbcpu_[1].texCoord = DirectX::XMFLOAT2(0, 0);
+	vbcpu_[2].texCoord = DirectX::XMFLOAT2(1, 1);
+
+	vbcpu_[3].texCoord = DirectX::XMFLOAT2(1, 0);
+	vbcpu_[4].texCoord = DirectX::XMFLOAT2(1, 1);
+	vbcpu_[5].texCoord = DirectX::XMFLOAT2(0, 0);
+
+	for (auto& p : vbcpu_)
+		p.position.z = 0.4f;
+	
+
+	PtrTex2D t;
+	DirectX::XMINT2 size;
+	std::tie(t, size) = LoadTex2D(tex);
+	const_cast<PtrTex2D&>(tex_) = std::move(t);
+	const_cast<PtrTex2DShaderResView&>(texResView_) = Engine::Rendering::CreateShaderResView(tex_);
+	const_cast<DirectX::XMINT2&>(size_) = std::move(size);
+}
+
+void Engine::Rendering::Sprite2D::SetColorMod(DirectX::XMFLOAT3 rgb)
 {
 	colorMod_.x = rgb.x;
 	colorMod_.y = rgb.y;
 	colorMod_.z = rgb.z;
+	updatevb_ = true;
 }
 
-void Engine::Rendering::Sprite::SetAlpha(float a)
+void Engine::Rendering::Sprite2D::SetAlpha(float a)
 {
 	colorMod_.w = a;
+	updatevb_ = true;
 }
 
-void Engine::Rendering::Sprite::SetZoom(float zoom)
+void Engine::Rendering::Sprite2D::SetZoom(float zoom)
 {
 	zoom_ = zoom;
+	updatevb_ = true;
 }
 
-void Engine::Rendering::Sprite::SetPos(float x, float y)
+void Engine::Rendering::Sprite2D::SetPos(float x, float y)
 {
 	position_.x = x;
 	position_.y = y;
+	updatevb_ = true;
 }
 
-void Engine::Rendering::Sprite::Draw() const
+void Engine::Rendering::Sprite2D::Draw() const
 {
-	
+	if (updatevb_)
+	{
+		updatevb_ = false;
+		
+		for (auto& p : vbcpu_)
+			p.color = colorMod_;
+
+		vbcpu_[0].position.x = position_.x - size_.x * zoom_;
+		vbcpu_[0].position.y = position_.y - size_.y * zoom_;
+
+		vbcpu_[1].position.x = position_.x - size_.x * zoom_;
+		vbcpu_[1].position.y = position_.y + size_.y * zoom_;
+
+		vbcpu_[2].position.x = position_.x + size_.x * zoom_;
+		vbcpu_[2].position.y = position_.y - size_.y * zoom_;
+
+		vbcpu_[3].position.x = position_.x + size_.x * zoom_;
+		vbcpu_[3].position.y = position_.y + size_.y * zoom_;
+
+		vbcpu_[4].position.x = position_.x + size_.x * zoom_;
+		vbcpu_[4].position.y = position_.y - size_.y * zoom_;
+
+		vbcpu_[5].position.x = position_.x - size_.x * zoom_;
+		vbcpu_[5].position.y = position_.y + size_.y * zoom_;
+		
+		VertexIn::UpdateVBuffer(vb_, vbcpu_.data());
+	}
+
+	auto& d = Engine::GetDevice();
+	auto cbp = getCBuffer();
+	d.Context().VSSetConstantBuffers(0, 1, &cbp);
+	d.Context().PSSetConstantBuffers(0, 0, nullptr);
+	d.Context().PSSetShader(getPShader().Get(), nullptr, 0);
+
+	d.Context().PSSetShaderResources(0, 1, texResView_.GetAddressOf());
+	d.Context().PSSetSamplers(0, 1, &getSamplerState());
+
+	auto buf = vb_.Get();
+	const UINT stride[] = { sizeof(VertexIn) };
+	const UINT offset[] = { 0 };
+
+	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
+	d.Context().Draw(6, 0);
 }

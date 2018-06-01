@@ -4,7 +4,7 @@
 
 using namespace Engine::Rendering;
 
-PtrTex2D Engine::Rendering::LoadTex2D(const char * texName)
+std::tuple<PtrTex2D, DirectX::XMINT2> Engine::Rendering::LoadTex2D(const char * texName)
 {
 	std::ifstream in(texName + std::string(".sst"), std::ios::binary);
 	Must(in.good());
@@ -49,5 +49,24 @@ PtrTex2D Engine::Rendering::LoadTex2D(const char * texName)
 	const auto res = Engine::GetDevice().D3DDevice().CreateTexture2D(&desc, &data, ret.GetAddressOf());
 	Must(SUCCEEDED(res));
 
+	return std::make_tuple(ret,DirectX::XMINT2(w,h));
+}
+
+PtrTex2DShaderResView Engine::Rendering::CreateShaderResView(const PtrTex2D & p)
+{
+	PtrTex2DShaderResView ret;
+	D3D11_SHADER_RESOURCE_VIEW_DESC desc;
+	desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	desc.Texture2D.MipLevels = -1;
+	desc.Texture2D.MostDetailedMip = 0;
+	Engine::GetDevice().D3DDevice().CreateShaderResourceView(p.Get(), &desc, ret.GetAddressOf());
 	return ret;
+}
+
+PtrSampler Engine::Rendering::CreateSampler(D3D11_SAMPLER_DESC desc)
+{
+	PtrSampler smp;
+	Engine::GetDevice().D3DDevice().CreateSamplerState(&desc,smp.GetAddressOf());
+	return smp;
 }

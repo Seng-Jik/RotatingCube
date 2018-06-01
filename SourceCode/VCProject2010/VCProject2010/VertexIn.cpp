@@ -27,3 +27,8 @@ PtrVBuffer Engine::Rendering::VertexIn::CreateVBuffer(const VertexIn* vtx, size_
 
 	return buf;
 }
+
+void Engine::Rendering::VertexIn::UpdateVBuffer(const PtrVBuffer & vb, const VertexIn * vin)
+{
+	GetDevice().Context().UpdateSubresource(vb.Get(), 0, nullptr, vin, 0, 0);
+}

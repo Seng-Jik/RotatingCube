@@ -25,6 +25,8 @@ namespace Engine
 			{
 				return CreateVBuffer(vtx.data(), Size);
 			}
+
+			static void UpdateVBuffer(const PtrVBuffer& vb, const VertexIn* vin);
 		};
 
 		struct Transform
@@ -64,7 +66,7 @@ namespace Engine
 		}
 
 		template <typename TPODStruct>
-		void UpdateBuffer(const ComPtr<ID3D11Buffer>& dst, const TPODStruct& src)
+		void UpdateCBuffer(const PtrCBuffer& dst, const TPODStruct& src)
 		{
 			GetDevice().Context().UpdateSubresource(dst.Get(), 0, nullptr, &src, 0, 0);
 		}
