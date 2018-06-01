@@ -9,7 +9,10 @@ namespace Engine
 		{
 		private:
 			ComPtr<ID3D11PixelShader> peps_;
-			ComPtr<ID3D11Buffer> pscb_,vb_,vscb_;
+			ComPtr<ID3D11Buffer> pscb_;
+
+			static std::tuple<PtrCBuffer,PtrVBuffer> getVSBuffers();
+			
 		public:
 			PostEffect(const char* peps);
 			PostEffect(const PostEffect&) = delete;

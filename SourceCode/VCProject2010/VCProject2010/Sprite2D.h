@@ -18,6 +18,8 @@ namespace Engine
 			Engine::Rendering::PtrCBuffer cb_;
 			Engine::Rendering::PtrVBuffer vb_;
 
+			static PtrCBuffer getCBuffer();
+
 		public:
 			Sprite(const Sprite&) = delete;
 			const Sprite& operator = (const Sprite&) = delete;
