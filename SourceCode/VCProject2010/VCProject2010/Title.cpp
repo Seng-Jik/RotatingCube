@@ -45,6 +45,7 @@ void Game::Title::Title::Update(float time)
 	if (std::get<0>(Engine::GetDevice().Mouse()) && reciveMouseClick_)
 	{
 		reciveMouseClick_ = false;
+		Engine::ShowCursor(true);
 		titleGUI_.Value()->Click();
 		titleGUI_.Clear();
 		bkCamera_.Run(1, 0.5f, 1);

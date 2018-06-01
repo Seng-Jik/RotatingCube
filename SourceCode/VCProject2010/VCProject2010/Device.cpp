@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Device.h"
 #include "Optional.h"
+#include "CommonClass.h"
 #include "Shaders.h"
 #include "Assets.h"
 using namespace Engine;
@@ -166,13 +167,27 @@ Engine::Device::Device(HWND hwnd) :
 		);
 	}
 
+	//Depth States
+	{
+		D3D11_DEPTH_STENCIL_DESC desc = CD3D11_DEPTH_STENCIL_DESC{ CD3D11_DEFAULT{} };
+		desc.DepthEnable = true;
+		device_->CreateDepthStencilState(&desc, depthEnable_.GetAddressOf());
+
+		desc.DepthEnable = false;
+		device_->CreateDepthStencilState(&desc, depthDisable_.GetAddressOf());
+
+		DepthTest(false);
+	}
+
 	//Blend State
 	{
 		ComPtr<ID3D11BlendState> blendState;
 		D3D11_BLEND_DESC d = CD3D11_BLEND_DESC{ CD3D11_DEFAULT{} };
 		d.RenderTarget[0].BlendEnable = true;
 		d.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		d.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
 		d.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		d.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
 		d.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
 		device_->CreateBlendState(&d, blendState.GetAddressOf());
 
@@ -180,6 +195,11 @@ Engine::Device::Device(HWND hwnd) :
 		context_->OMSetBlendState(blendState.Get(),t,0xFFFFFFFF);
 	}
 	
+}
+
+void Engine::Device::DepthTest(bool b)
+{
+	context_->OMSetDepthStencilState((b ? depthEnable_ : depthDisable_).Get(),0);
 }
 
 DirectX::XMINT2 Engine::Device::GetScreenSize() const
@@ -229,7 +249,7 @@ bool Engine::Device::EngineMainLoop()
 					int16_t(HIWORD(msg.lParam)) / float(r.bottom - r.top)
 				};
 			}
-
+			
 			DispatchMessage(&msg);
 
 

@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="TaskList.cpp" />
     <ClCompile Include="Tex2D.cpp" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="TaskList.h" />
     <ClInclude Include="Tex2D.h" />

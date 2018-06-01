@@ -25,6 +25,8 @@ namespace Engine
 		const void* hWnd_;
 
 		std::tuple<bool, DirectX::XMFLOAT2> mouse_;
+
+		ComPtr<ID3D11DepthStencilState> depthEnable_, depthDisable_;
 	public:
 		Device(HWND hwnd);
 
@@ -59,6 +61,8 @@ namespace Engine
 		{
 			return mouse_;
 		}
+
+		void DepthTest(bool);
 
 		DirectX::XMINT2 GetScreenSize() const;
 		float GetScreenWdivH() const;

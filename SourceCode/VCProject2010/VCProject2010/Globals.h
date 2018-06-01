@@ -9,6 +9,8 @@ namespace Engine
 		if (!b) std::terminate();
 	}
 
+	void ShowCursor(bool b);
+
 	namespace LogImpl
 	{
 		template<typename T>

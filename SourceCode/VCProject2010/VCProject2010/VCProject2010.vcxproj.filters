@@ -90,6 +90,9 @@
     <ClCompile Include="TitleGUI.cpp">
       <Filter>Source Files\Game\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="TitleGUI.h">
       <Filter>Header Files\Game\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,12 +5,14 @@
 
 #include "CommonClass.h"
 #include <cstdio>
-
+#include "Cursor.h"
 #include "Device.h"
 #include "Optional.h"
 #include "ObjectSet.h"
 #include "DemoRotatingCube.h"
 #include "Title.h"
+#include "Cursor.h"
+#include <Windows.h>
 
 static Engine::ObjectSet<Engine::GameObject> root;
 
@@ -19,6 +21,23 @@ static Engine::ObjectSet<Engine::GameObject> root;
 // 主函数入口
 //
 //////////////////////////////////////////////////////////////////////////////////////////
+
+static Engine::Cursor& GetMouseCursor()
+{
+	static Engine::Cursor cur;
+	return cur;
+}
+
+namespace Engine
+{
+	void ShowCursor(bool b)
+	{
+		b ?
+			GetMouseCursor().Show() :
+			GetMouseCursor().Hide();
+	}
+}
+
 int PASCAL WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
                    LPSTR     lpCmdLine,
@@ -34,10 +53,11 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	CSystem::SetWindowTitle(WindowTitle.c_str());
 
 	const HWND hWnd = FindWindow("Darkstar Window Class", WindowTitle.c_str());
-	
+
 	Engine::InitDevice(hWnd);
 	auto& device = Engine::GetDevice();
 
+	
 	root.NewObject<Game::Title::Title>();
 
 	// 引擎主循环，处理屏幕图像刷新等工作
@@ -48,6 +68,9 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 		root.Update(fTimeDelta);
 		root.Draw();
+
+		GetMouseCursor().Update(fTimeDelta);
+		GetMouseCursor().Draw();
 	};
 
 	// 关闭游戏引擎
