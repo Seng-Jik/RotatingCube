@@ -11,12 +11,12 @@ namespace Engine
 		class Sprite : public GameObject
 		{
 		private:
-			DirectX::XMFLOAT4 colorMod_;
-			DirectX::XMFLOAT2 position_;
-			float zoom_;
+			DirectX::XMFLOAT4 colorMod_ = { 1,1,1,1 };
+			DirectX::XMFLOAT2 position_{ 0,0, };
+			float zoom_ = 1.0f;
 			std::array<VertexIn, 6> vbcpu_;
 			Engine::Rendering::PtrTex2D tex_;
-			Engine::Rendering::PtrVBuffer vb_;
+			Engine::Rendering::PtrVBuffer vb_ = VertexIn::CreateVBuffer(vbcpu_);
 			
 
 			static PtrCBuffer getCBuffer();
