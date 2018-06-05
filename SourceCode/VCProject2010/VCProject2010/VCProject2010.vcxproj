@@ -132,6 +132,7 @@
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="SavaData.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
     <ClCompile Include="TaskList.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="StageSelectGUI.h" />
     <ClInclude Include="TaskList.h" />
