@@ -36,6 +36,8 @@ namespace Engine
 			void SetZoom(float zoom);
 			void SetPos(float x, float y);
 			void Draw() const override;
+
+			DirectX::XMFLOAT4 GetSpriteRect() const;
 		};
 	}
 }

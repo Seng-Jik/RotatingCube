@@ -144,3 +144,12 @@ void Engine::Rendering::Sprite2D::Draw() const
 	d.Context().Draw(6, 0);
 
 }
+
+DirectX::XMFLOAT4 Engine::Rendering::Sprite2D::GetSpriteRect() const
+{
+	return DirectX::XMFLOAT4(
+		position_.x - size_.x * zoom_,
+		position_.y - size_.y*zoom_, 
+		position_.x + size_.x*zoom_,
+		position_.y + size_.y*zoom_);
+}

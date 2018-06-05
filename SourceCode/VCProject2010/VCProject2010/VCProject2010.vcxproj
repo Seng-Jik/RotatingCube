@@ -130,8 +130,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
+    <ClCompile Include="StageSelectGUI.cpp" />
     <ClCompile Include="TaskList.cpp" />
     <ClCompile Include="Tex2D.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -150,8 +152,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Sprite2D.h" />
+    <ClInclude Include="StageSelectGUI.h" />
     <ClInclude Include="TaskList.h" />
     <ClInclude Include="Tex2D.h" />
     <ClInclude Include="Title.h" />

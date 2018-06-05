@@ -108,7 +108,7 @@ float4 main(VertexOut vOut) : SV_TARGET
 	float4 fragColor;
 	fragColor.rgb = environment(ro, rd);
 
-	for (int i = 0; i < 100; i ++)
+	/*for (int i = 0; i < 100; i ++)
 	{
 		float d = scene(ro);
 
@@ -119,7 +119,7 @@ float4 main(VertexOut vOut) : SV_TARGET
 		}
 
 		ro += rd * d * 0.2;
-	}
+	}*/
 
     fragColor.rgb = sqrt(fragColor.rgb) * iLight;
     fragColor.a = 1.0;

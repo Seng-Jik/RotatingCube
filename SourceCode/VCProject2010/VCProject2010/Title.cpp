@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Title.h"
 #include "Sprite2D.h"
+#include "StageSelectGUI.h"
 
 Game::Title::Title::Title()	:
 	pe_ { "TitleBackground" },
@@ -49,6 +50,8 @@ void Game::Title::Title::Update(float time)
 		titleGUI_.Value()->Click();
 		titleGUI_.Clear();
 		bkCamera_.Run(1, 0.5f, 1);
+
+		NewObject<StageSelectGUI>();
 	}
 }
 
