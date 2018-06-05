@@ -103,7 +103,7 @@
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="StageSelectMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
