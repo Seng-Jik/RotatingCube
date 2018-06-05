@@ -10,13 +10,26 @@ namespace Engine
 	{
 	private:
 		std::vector<std::unique_ptr<ObjectType>> objects_;
+		std::stack<std::unique_ptr<ObjectType>> newObjs_;
 		bool live_ = true;
 
 	public:
 		virtual void Update(float deltaTime)
 		{
+			while (!newObjs_.empty())
+			{
+				objects_.push_back(std::move(newObjs_.top()));
+				newObjs_.pop();
+			}
 			for (auto& p : objects_)
 				p->Update(deltaTime);
+
+			const auto nend = std::remove_if(objects_.begin(),objects_.end(),
+				[](const auto& obj) {
+				return !obj->Live();
+			});
+
+			objects_.erase(nend, objects_.end());
 		}
 
 		virtual void Draw() const 
@@ -34,7 +47,7 @@ namespace Engine
 		T& NewObject(TArgs&&... args)
 		{
 			auto pObj = new T(std::forward<TArgs>(args)...);
-			objects_.push_back(std::unique_ptr<ObjectType>(pObj));
+			newObjs_.emplace(std::unique_ptr<ObjectType>(pObj));
 			return *pObj;
 		}
 

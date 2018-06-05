@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "ObjectSet.h"
 #include "Button.h"
+#include "Title.h"
+#include "TaskList.h"
 
 namespace Game
 {
@@ -11,9 +13,10 @@ namespace Game
 		{
 		private:
 			Engine::Button& back_;
-
+			Engine::TaskList tl_;
 		public:
-			StageSelectGUI();
+			StageSelectGUI(Title& t);
+			void Update(float time) override;
 		};
 	}
 }

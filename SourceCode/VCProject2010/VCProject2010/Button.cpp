@@ -1,7 +1,12 @@
 #include "stdafx.h"
 #include "Button.h"
 
-void Engine::Button::Update(float time) 
+void Engine::Button::SetOnClick(const std::function<void()>& onClick)
+{
+	onClick_ = onClick;
+}
+
+void Engine::Button::Update(float time)
 {
 	alpha_.Update(time);
 	zoom_.Update(time);
@@ -27,10 +32,31 @@ void Engine::Button::Update(float time)
 		mousePos.x > spRect.x && mousePos.y > spRect.y &&
 		mousePos.x < spRect.z && mousePos.y < spRect.w;
 
-	if (mouseInRect != lastMode)
-	{
-		lastMode = mouseInRect;
+	const bool mode =
+		mouseInRect ?
+			(mouseBtnDown ?
+				!mouseInRect :
+				mouseInRect)
+		:
+			false;
 
-		zoom_.Run(mouseInRect ? 0.75F : 0.5F, 0.25F, 1);
+	if (mode != lastMode)
+	{
+		lastMode = mode;
+
+		zoom_.Run(mode ? 0.6F : 0.5F, 0.15F, 1);
 	}
+
+	if (mouseInRect && clickEnabled_ && lastMouseDown && !mouseBtnDown)
+	{
+		clickEnabled_ = false;
+		onClick_();
+	}
+
+	lastMouseDown = mouseBtnDown;
+}
+
+void Engine::Button::SetEnable(bool b)
+{
+	clickEnabled_ = b;
 }

@@ -10,7 +10,8 @@ Game::Title::Title::Title()	:
 {
 	pe_.SetConstantBuffer(pecb_);
 	light_ = 0;
-	bkCamera_ = 0;
+	bkCamera_ = 1;
+	bkCamera_.Run(0, 2.5F, 1);
 
 	tl_.AddTask([this] {
 		light_.Run(1.0F, 1, 1);
@@ -51,7 +52,19 @@ void Game::Title::Title::Update(float time)
 		titleGUI_.Clear();
 		bkCamera_.Run(1, 0.5f, 1);
 
-		NewObject<StageSelectGUI>();
+		NewObject<StageSelectGUI>(*this);
 	}
+}
+
+void Game::Title::Title::ReturnToLogo()
+{
+	reciveMouseClick_ = false;
+	Engine::ShowCursor(true);
+	bkCamera_.Run(0, 2.5f, 1);
+
+	titleGUI_.Emplace(&NewObject<TitleGUI>());
+	tl_.AddTask([this] {
+		reciveMouseClick_ = true;
+	}, 2.5f);
 }
 

@@ -38,6 +38,8 @@ namespace Game
 			Title();
 			void Draw() const override;
 			void Update(float time) override;
+
+			void ReturnToLogo();
 		};
 	}
 }
