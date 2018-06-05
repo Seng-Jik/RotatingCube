@@ -5,7 +5,8 @@
 using namespace Engine;
 
 Game::Title::StageSelectGUI::StageSelectGUI(Title& t) :
-	back_ { NewObject<Button>("back") }
+	back_ { NewObject<Button>("back") },
+	menu_ { NewObject<StageSelectMenu>() }
 {
 	back_.Alpha() = 0;
 	back_.Alpha().Run(1, 0.5f, 1);
@@ -24,6 +25,7 @@ Game::Title::StageSelectGUI::StageSelectGUI(Title& t) :
 		tl_.AddTask([this] { Kill(); },0.5f);
 
 		t.ReturnToLogo();
+		menu_.ReturnToLogo();
 	});
 }
 

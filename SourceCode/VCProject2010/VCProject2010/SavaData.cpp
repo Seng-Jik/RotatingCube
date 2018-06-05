@@ -3,6 +3,10 @@
 
 using namespace Game;
 
+Game::SaveData::SaveData()
+{
+}
+
 SaveData & Game::SaveData::Get()
 {
 	static SaveData sv;

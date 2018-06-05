@@ -135,6 +135,7 @@
     <ClCompile Include="SavaData.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
+    <ClCompile Include="StageSelectMenu.cpp" />
     <ClCompile Include="TaskList.cpp" />
     <ClCompile Include="Tex2D.cpp" />
     <ClCompile Include="Title.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="StageSelectGUI.h" />
+    <ClInclude Include="StageSelectMenu.h" />
     <ClInclude Include="TaskList.h" />
     <ClInclude Include="Tex2D.h" />
     <ClInclude Include="Title.h" />

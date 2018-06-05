@@ -102,6 +102,9 @@
     <ClCompile Include="SavaData.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="StageSelectMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="SavaData.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectMenu.h">
+      <Filter>Header Files\Game\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

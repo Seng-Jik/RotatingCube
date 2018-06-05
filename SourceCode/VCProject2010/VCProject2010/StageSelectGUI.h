@@ -4,6 +4,7 @@
 #include "Button.h"
 #include "Title.h"
 #include "TaskList.h"
+#include "StageSelectMenu.h"
 
 namespace Game
 {
@@ -14,6 +15,7 @@ namespace Game
 		private:
 			Engine::Button& back_;
 			Engine::TaskList tl_;
+			StageSelectMenu& menu_;
 		public:
 			StageSelectGUI(Title& t);
 			void Update(float time) override;
