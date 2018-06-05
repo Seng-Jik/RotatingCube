@@ -31,9 +31,12 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 			{
 				btn.SetOnClick([&mainBackground,this,&gui] {
 					tl_.AddTask([&mainBackground, this, &gui] {
-						Exit();
+						for (auto& p : btnAniBatch)
+							for (auto i : p)
+								i->DisableActive();
 						gui.FadeOut();
 						mainBackground.InToGame();
+						Exit();
 					},0.5f);
 				});
 			}

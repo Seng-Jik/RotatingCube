@@ -25,5 +25,6 @@ void Engine::TaskList::Clear()
 
 void Engine::TaskList::AddTask(std::function<void()> func, float time)
 {
-	m_tasks.push_back({ func,time });
+	if (time <= 0) func();
+	else m_tasks.push_back({ func,time });
 }
