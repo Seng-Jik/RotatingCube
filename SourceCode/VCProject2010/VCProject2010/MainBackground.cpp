@@ -68,3 +68,8 @@ void Game::MainBackground::ReturnToLogo()
 	}, 2.5f);
 }
 
+void Game::MainBackground::InToGame()
+{
+	bkCamera_.Run(2, 1, 1);
+}
+

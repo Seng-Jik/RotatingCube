@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "SavaData.h"
 #include "StageSelectMenu.h"
+#include "StageSelectGUI.h"
 
-Game::Title::StageSelectMenu::StageSelectMenu()
+Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, StageSelectGUI& gui)
 {
 	Engine::Button* btns[6] = { nullptr };
 
@@ -25,6 +26,15 @@ Game::Title::StageSelectMenu::StageSelectMenu()
 			btn.SetEnable(stageOpened);
 
 			btns[num - 1] = &btn;
+
+			if (stageOpened)
+			{
+				btn.SetOnClick([&mainBackground,this,&gui] {
+					Exit();
+					gui.FadeOut();
+					mainBackground.InToGame();
+				});
+			}
 		}
 	}
 
@@ -53,7 +63,7 @@ void Game::Title::StageSelectMenu::Update(float time)
 	tl_.Update(time);
 }
 
-void Game::Title::StageSelectMenu::ReturnToLogo()
+void Game::Title::StageSelectMenu::Exit()
 {
 	for (int i = 0; i < 4; ++i)
 	{
@@ -62,4 +72,8 @@ void Game::Title::StageSelectMenu::ReturnToLogo()
 				p->Zoom().Run(0, 0.15f, 1);
 		}, i * 0.05f);
 	}
+
+	tl_.AddTask([this] {
+		Kill();
+	}, 0.3f);
 }

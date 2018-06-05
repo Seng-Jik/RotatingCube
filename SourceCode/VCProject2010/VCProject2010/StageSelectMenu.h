@@ -2,11 +2,14 @@
 #include "Button.h"
 #include "ObjectSet.h"
 #include "TaskList.h"
+#include "MainBackground.h"
+
 
 namespace Game
 {
 	namespace Title
 	{
+		class StageSelectGUI;
 		class StageSelectMenu : public Engine::ObjectSet<Engine::Button>
 		{
 		private:
@@ -14,11 +17,11 @@ namespace Game
 
 			std::vector<Engine::Button*> btnAniBatch[4];
 		public:
-			StageSelectMenu();
+			StageSelectMenu(MainBackground& mainBackground, StageSelectGUI& gui);
 
 			void Update(float time) override;
 
-			void ReturnToLogo();
+			void Exit();
 		};
 	}
 }

@@ -6,7 +6,7 @@ using namespace Engine;
 
 Game::Title::StageSelectGUI::StageSelectGUI(MainBackground& t) :
 	back_ { NewObject<Button>("back") },
-	menu_ { NewObject<StageSelectMenu>() }
+	menu_ { NewObject<StageSelectMenu>(t,*this) }
 {
 	back_.Alpha() = 0;
 	back_.Alpha().Run(1, 0.5f, 1);
@@ -25,7 +25,7 @@ Game::Title::StageSelectGUI::StageSelectGUI(MainBackground& t) :
 		tl_.AddTask([this] { Kill(); },0.5f);
 
 		t.ReturnToLogo();
-		menu_.ReturnToLogo();
+		menu_.Exit();
 	});
 }
 
@@ -33,4 +33,14 @@ void Game::Title::StageSelectGUI::Update(float time)
 {
 	tl_.Update(time);
 	Engine::ObjectSet<Engine::GameObject>::Update(time);
+}
+
+void Game::Title::StageSelectGUI::FadeOut()
+{
+	back_.Alpha().Run(0, 0.5f, 1);
+	back_.PosX().Run(-100, 0.5f, 2);
+
+	tl_.AddTask([this] {
+		Kill();
+	}, 0.75F);
 }

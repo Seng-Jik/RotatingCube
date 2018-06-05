@@ -39,7 +39,7 @@ namespace Game
 
 		void ReturnToLogo();
 
-
+		void InToGame();
 	};
 
 }

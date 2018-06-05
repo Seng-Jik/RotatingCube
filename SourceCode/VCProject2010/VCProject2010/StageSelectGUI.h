@@ -19,6 +19,7 @@ namespace Game
 		public:
 			StageSelectGUI(MainBackground& t);
 			void Update(float time) override;
+			void FadeOut();
 		};
 	}
 }

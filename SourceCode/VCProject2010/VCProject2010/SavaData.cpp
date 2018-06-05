@@ -15,7 +15,7 @@ SaveData & Game::SaveData::Get()
 
 bool Game::SaveData::StageOpened(int stage) const
 {
-	if (stage == 1)
+	if (stage == 1 || stage == 2 || stage == 5)
 		return true;
 	return false;
 }
