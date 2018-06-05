@@ -30,9 +30,11 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 			if (stageOpened)
 			{
 				btn.SetOnClick([&mainBackground,this,&gui] {
-					Exit();
-					gui.FadeOut();
-					mainBackground.InToGame();
+					tl_.AddTask([&mainBackground, this, &gui] {
+						Exit();
+						gui.FadeOut();
+						mainBackground.InToGame();
+					},0.5f);
 				});
 			}
 		}

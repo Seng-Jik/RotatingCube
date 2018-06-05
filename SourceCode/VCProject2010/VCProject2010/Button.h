@@ -14,6 +14,8 @@ namespace Engine
 		bool lastMouseDown = false;
 		bool clickEnabled_ = false;
 		std::function<void()> onClick_;
+
+		bool activeEnabled_ = true;
 	public:
 		using Sprite2D::Sprite2D;
 
@@ -42,5 +44,7 @@ namespace Engine
 		void Update(float time) override;
 
 		void SetEnable(bool b);
+
+		void DisableActive();
 	};
 }
