@@ -4,7 +4,7 @@
 
 using namespace Engine;
 
-Game::Title::StageSelectGUI::StageSelectGUI(Title& t) :
+Game::Title::StageSelectGUI::StageSelectGUI(MainBackground& t) :
 	back_ { NewObject<Button>("back") },
 	menu_ { NewObject<StageSelectMenu>() }
 {

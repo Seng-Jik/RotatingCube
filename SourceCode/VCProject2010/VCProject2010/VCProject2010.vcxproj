@@ -138,7 +138,7 @@
     <ClCompile Include="StageSelectMenu.cpp" />
     <ClCompile Include="TaskList.cpp" />
     <ClCompile Include="Tex2D.cpp" />
-    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="MainBackground.cpp" />
     <ClCompile Include="DemoCube.cpp" />
     <ClCompile Include="DemoRotatingCube.cpp" />
     <ClCompile Include="Device.cpp" />
@@ -162,7 +162,7 @@
     <ClInclude Include="StageSelectMenu.h" />
     <ClInclude Include="TaskList.h" />
     <ClInclude Include="Tex2D.h" />
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="MainBackground.h" />
     <ClInclude Include="DemoCube.h" />
     <ClInclude Include="DemoRotatingCube.h" />
     <ClInclude Include="Device.h" />

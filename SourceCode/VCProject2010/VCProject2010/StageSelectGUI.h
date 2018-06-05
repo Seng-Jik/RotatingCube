@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "ObjectSet.h"
 #include "Button.h"
-#include "Title.h"
+#include "MainBackground.h"
 #include "TaskList.h"
 #include "StageSelectMenu.h"
 
@@ -17,7 +17,7 @@ namespace Game
 			Engine::TaskList tl_;
 			StageSelectMenu& menu_;
 		public:
-			StageSelectGUI(Title& t);
+			StageSelectGUI(MainBackground& t);
 			void Update(float time) override;
 		};
 	}

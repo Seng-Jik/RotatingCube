@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "Title.h"
+#include "MainBackground.h"
 #include "Sprite2D.h"
 #include "StageSelectGUI.h"
 
-Game::Title::Title::Title()	:
+Game::MainBackground::MainBackground()	:
 	pe_ { "TitleBackground" },
 	pecbcpu_{ 0,DirectX::XMFLOAT2(0,0),Engine::GetDevice().GetScreenWdivH(),0 },
 	pecb_{ Engine::Rendering::CreateConstantBuffer(pecbcpu_) }
@@ -21,11 +21,11 @@ Game::Title::Title::Title()	:
 		reciveMouseClick_ = true;
 	}, 2.5f);
 
-	titleGUI_.Emplace(&NewObject<TitleGUI>());
+	titleGUI_.Emplace(&NewObject<Title::TitleGUI>());
 }
 
 
-void Game::Title::Title::Draw() const
+void Game::MainBackground::Draw() const
 {
 	Engine::Rendering::UpdateCBuffer(pecb_, pecbcpu_);
 	pe_.Draw();
@@ -33,7 +33,7 @@ void Game::Title::Title::Draw() const
 	Engine::ObjectSet<Engine::GameObject>::Draw();
 }
 
-void Game::Title::Title::Update(float time)
+void Game::MainBackground::Update(float time)
 {
 	Engine::ObjectSet<Engine::GameObject>::Update(time);
 	pecbcpu_.iTime += time;
@@ -52,17 +52,17 @@ void Game::Title::Title::Update(float time)
 		titleGUI_.Clear();
 		bkCamera_.Run(1, 0.5f, 1);
 
-		NewObject<StageSelectGUI>(*this);
+		NewObject<Title::StageSelectGUI>(*this);
 	}
 }
 
-void Game::Title::Title::ReturnToLogo()
+void Game::MainBackground::ReturnToLogo()
 {
 	reciveMouseClick_ = false;
 	Engine::ShowCursor(true);
 	bkCamera_.Run(0, 2.5f, 1);
 
-	titleGUI_.Emplace(&NewObject<TitleGUI>());
+	titleGUI_.Emplace(&NewObject<Title::TitleGUI>());
 	tl_.AddTask([this] {
 		reciveMouseClick_ = true;
 	}, 2.5f);

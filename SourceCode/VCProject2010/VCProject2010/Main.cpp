@@ -10,7 +10,7 @@
 #include "Optional.h"
 #include "ObjectSet.h"
 #include "DemoRotatingCube.h"
-#include "Title.h"
+#include "MainBackground.h"
 #include "Cursor.h"
 #include <Windows.h>
 
@@ -58,7 +58,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	auto& device = Engine::GetDevice();
 
 	
-	root.NewObject<Game::Title::Title>();
+	root.NewObject<Game::MainBackground>();
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while(device.EngineMainLoop())
