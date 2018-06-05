@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "SavaData.h"
 #include "StageSelectMenu.h"
 
 Game::Title::StageSelectMenu::StageSelectMenu()
@@ -12,13 +13,16 @@ Game::Title::StageSelectMenu::StageSelectMenu()
 		{
 			num++;
 
-			std::string texName = "num" + std::to_string(num);
+			const auto stageOpened = Game::SaveData::Get().StageOpened(num);
+			std::string texName = stageOpened ? "num" + std::to_string(num) : "locked";
 			auto& btn = NewObject<Engine::Button>(texName.c_str());
 
 			btn.PosX() = x * 150.0f;
 			btn.PosY() = y * -150.0f + 200.0f;
 
 			btn.Zoom() = 0;
+
+			btn.SetEnable(stageOpened);
 
 			btns[num - 1] = &btn;
 		}
