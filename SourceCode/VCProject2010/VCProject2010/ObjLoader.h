@@ -6,7 +6,7 @@ namespace Engine
 {
 	namespace Renderer
 	{
-		using VecVertex = std::vector<DirectX::XMFLOAT3>;
+		using VecVertex = std::vector<DirectX::XMFLOAT4>;
 		using VecIndicis = std::vector<size_t>;
 
 		std::tuple<VecVertex, VecIndicis> LoadObjModel(const std::string& assetPath);

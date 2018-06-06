@@ -6,7 +6,7 @@
 using namespace Engine::Renderer;
 std::tuple<VecVertex, VecIndicis> Engine::Renderer::LoadObjModel(const std::string & assetPath)
 {
-	auto obj = Engine::LoadAssets(assetPath);
+	auto obj = Engine::LoadAssets(assetPath + ".obj");
 	obj.push_back('\0');
 
 	std::stringstream objss(obj.data());
@@ -19,7 +19,7 @@ std::tuple<VecVertex, VecIndicis> Engine::Renderer::LoadObjModel(const std::stri
 		std::string line;
 		std::getline(objss,line);
 
-		std::stringstream liness;
+		std::stringstream liness(line);
 		
 		std::string command;
 		std::string args[3];
@@ -27,17 +27,25 @@ std::tuple<VecVertex, VecIndicis> Engine::Renderer::LoadObjModel(const std::stri
 		liness >> command;
 		if (command == "v")
 		{
-			DirectX::XMFLOAT3 vtx;
+			DirectX::XMFLOAT4 vtx;
 			liness >> vtx.x;
 			liness >> vtx.y;
 			liness >> vtx.z;
+			vtx.w = 1;
+			vertexComponent.push_back(vtx);
 		}
 
 		else if (command == "f")
 		{
-
+			size_t a, b, c;
+			liness >> a;
+			liness >> b;
+			liness >> c;
+			indicisComponent.push_back(a - 1);
+			indicisComponent.push_back(b - 1);
+			indicisComponent.push_back(c - 1);
 		}
 	}
 	
-	throw std::exception("No impl!");
+	return std::make_tuple(std::move(vertexComponent), std::move(indicisComponent));
 }
