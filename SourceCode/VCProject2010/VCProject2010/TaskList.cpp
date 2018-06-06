@@ -3,6 +3,12 @@
 
 void Engine::TaskList::Update(float deltaTime)
 {
+	while (!m_newTasks.empty())
+	{
+		m_tasks.push_back(std::move(m_newTasks.front()));
+		m_newTasks.pop();
+	}
+
 	for (auto& func : m_tasks)
 	{
 		func.timer -= deltaTime;
@@ -26,5 +32,5 @@ void Engine::TaskList::Clear()
 void Engine::TaskList::AddTask(std::function<void()> func, float time)
 {
 	if (time <= 0) func();
-	else m_tasks.push_back({ func,time });
+	else m_newTasks.push({ func,time });
 }

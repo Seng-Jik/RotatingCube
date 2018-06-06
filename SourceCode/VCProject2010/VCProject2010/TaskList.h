@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 #include <vector>
-
+#include <queue>
 namespace Engine
 {
 	class TaskList
@@ -18,5 +18,6 @@ namespace Engine
 		};
 
 		std::vector<SecTask> m_tasks;
+		std::queue<SecTask> m_newTasks;
 	};
 }
