@@ -19,6 +19,7 @@ namespace Engine
 
 			static PtrVBuffer CreateVBuffer(const std::vector<VertexIn>& vtx);
 			static PtrVBuffer CreateVBuffer(const VertexIn* vtx,size_t size);
+			static PtrVBuffer CreateIBuffer(const size_t* ib, size_t size);
 
 			template <size_t Size>
 			static PtrVBuffer CreateVBuffer(const std::array<VertexIn, Size>& vtx)

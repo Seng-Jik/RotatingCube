@@ -106,7 +106,10 @@
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="ObjLoader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjModel.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +185,9 @@
     <ClInclude Include="ObjLoader.h">
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="ObjModel.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VSDefaultWVP.hlsl">
@@ -194,6 +200,9 @@
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="PSSprite2DDefault.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="CubeModel.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

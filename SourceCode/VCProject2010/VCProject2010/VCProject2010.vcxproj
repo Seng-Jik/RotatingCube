@@ -133,6 +133,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
+    <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="SavaData.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="ObjLoader.h" />
+    <ClInclude Include="ObjModel.h" />
     <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="StageSelectGUI.h" />
@@ -180,6 +182,10 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="CubeModel.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+    </FxCompile>
     <FxCompile Include="PSColorOnly.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>

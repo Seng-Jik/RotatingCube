@@ -3,8 +3,8 @@
 #include "Assets.h"
 #include <sstream>
 
-using namespace Engine::Renderer;
-std::tuple<VecVertex, VecIndicis> Engine::Renderer::LoadObjModel(const std::string & assetPath)
+using namespace Engine::Rendering;
+std::tuple<VecVertex, VecIndicis> Engine::Rendering::LoadObjModel(const std::string & assetPath)
 {
 	auto obj = Engine::LoadAssets(assetPath + ".obj");
 	obj.push_back('\0');
@@ -27,11 +27,12 @@ std::tuple<VecVertex, VecIndicis> Engine::Renderer::LoadObjModel(const std::stri
 		liness >> command;
 		if (command == "v")
 		{
-			DirectX::XMFLOAT4 vtx;
-			liness >> vtx.x;
-			liness >> vtx.y;
-			liness >> vtx.z;
-			vtx.w = 1;
+			VertexIn vtx;
+			liness >> vtx.position.x;
+			liness >> vtx.position.y;
+			liness >> vtx.position.z;
+			vtx.color = DirectX::XMFLOAT4(1, 1, 1, 1);
+			vtx.texCoord = DirectX::XMFLOAT2(1, 1);
 			vertexComponent.push_back(vtx);
 		}
 
