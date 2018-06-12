@@ -49,7 +49,7 @@ float BlinPhong(
 
 float Lighting(Light light, float3 normal, float3 wpos)
 {
-	float l = BlinPhong(normal, light.pos - wpos, eyepos - wpos, 70.0f);
+	float l = BlinPhong(normal, light.pos - wpos, eyepos - wpos, 10.0f);
 	return l * 0.5f + 0.25f;
 }
 
