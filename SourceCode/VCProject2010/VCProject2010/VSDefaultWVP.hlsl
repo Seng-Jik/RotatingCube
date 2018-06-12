@@ -18,6 +18,7 @@ VertexOut main(VertexIn vIn)
 {
 	VertexOut vOut;
 
+	vOut.worldPos = mul(float4(vIn.pos,1.0f),world).xyz;
 	vOut.pos = mul(float4(vIn.pos,1.0f), world);
 	vOut.pos = mul(vOut.pos, view);
 	vOut.pos = mul(vOut.pos, prj);
