@@ -14,8 +14,8 @@ Game::ObjModel::ObjModel(const std::string & modelName)
 	Engine::Rendering::Transform tsfcpu;
 	tsfcpu.prj = Engine::GetDevice().Perspective();
 
-	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 1.5f, 0);
-	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, 0, -10, 0);
+	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 50.0f, 0);
+	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, 0, -1, 0);
 	DirectX::XMVECTOR up = DirectX::XMVectorSet(0, 1, 0, 0);
 
 	tsfcpu.view = DirectX::XMMatrixLookAtLH(eye,focus,up);
@@ -44,6 +44,20 @@ void Game::ObjModel::Draw() const
 	d.Context().IASetIndexBuffer(nullptr, DXGI_FORMAT_R32_UINT, 0);
 }
 
-void Game::ObjModel::Update(float)
+void Game::ObjModel::Update(float d)
 {
+	Engine::Rendering::Transform tsfcpu;
+	tsfcpu.prj = Engine::GetDevice().Perspective();
+
+	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 5.0f, 0);
+	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, timer_ * 4, -1, 0);
+	DirectX::XMVECTOR up = DirectX::XMVectorSet(0, 1, 0, 0);
+
+	timer_ += d;
+	Engine::Log(timer_ * 4);
+
+	tsfcpu.view = DirectX::XMMatrixLookAtLH(eye, focus, up);
+	tsfcpu.world = DirectX::XMMatrixScaling(0.25f, 0.25f, 0.25f);
+
+	Engine::Rendering::UpdateCBuffer(tsf_, tsfcpu);
 }

@@ -19,6 +19,8 @@ namespace Game
 
 		Engine::Rendering::PtrPShader ps_;
 
+		float timer_ = 0;
+
 		size_t ibSize_;
 
 	public:
