@@ -15,9 +15,10 @@ namespace Game
 		Engine::Rendering::PtrVBuffer ibo_;
 
 		
+		
 		Engine::Rendering::PtrCBuffer tsf_;
-
 		Engine::Rendering::PtrPShader ps_;
+		Engine::Rendering::PtrGShader gs_;
 
 		float timer_ = 0;
 

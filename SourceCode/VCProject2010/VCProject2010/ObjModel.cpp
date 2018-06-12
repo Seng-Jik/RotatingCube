@@ -10,6 +10,7 @@ Game::ObjModel::ObjModel(const std::string & modelName)
 	ibSize_ = std::get<1>(obj).size();
 
 	ps_ = Engine::Rendering::LoadPShader("CubeModel");
+	gs_ = Engine::Rendering::LoadGShader("NormalCalc");
 
 	Engine::Rendering::Transform tsfcpu;
 	tsfcpu.prj = Engine::GetDevice().Perspective();
@@ -28,6 +29,7 @@ void Game::ObjModel::Draw() const
 {
 	auto& d = Engine::GetDevice();
 	d.Context().VSSetConstantBuffers(0, 1, tsf_.GetAddressOf());
+	d.Context().GSSetShader(gs_.Get(), nullptr, 0);
 	d.Context().PSSetConstantBuffers(0, 0, nullptr);
 	d.Context().PSSetShader(ps_.Get(), nullptr, 0);
 	constexpr float col[] = { 0,0,0,0 };
@@ -40,6 +42,8 @@ void Game::ObjModel::Draw() const
 	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
 	d.Context().IASetIndexBuffer(ibo_.Get(), DXGI_FORMAT_R32_UINT, 0);
 	d.Context().DrawIndexed(ibSize_, 0,0);
+
+	d.Context().GSSetShader(nullptr, nullptr, 0);
 
 	d.Context().IASetIndexBuffer(nullptr, DXGI_FORMAT_R32_UINT, 0);
 }

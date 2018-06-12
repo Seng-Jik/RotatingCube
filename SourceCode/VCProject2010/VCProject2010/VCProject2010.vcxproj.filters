@@ -205,6 +205,9 @@
     <FxCompile Include="PSCubeModel.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="GSNormalCalc.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="VertexOut.hlsli">

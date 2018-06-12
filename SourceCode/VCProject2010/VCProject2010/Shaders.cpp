@@ -20,3 +20,19 @@ PtrPShader Engine::Rendering::LoadPShader(const std::string & name)
 
 	return ret;
 }
+
+PtrGShader Engine::Rendering::LoadGShader(const std::string & name)
+{
+	PtrGShader ret;
+
+	auto buf = Engine::LoadAssets("GS" + name + ".cso");
+
+	Must(SUCCEEDED(Engine::GetDevice().D3DDevice().CreateGeometryShader(
+		buf.data(),
+		buf.size(),
+		nullptr,
+		ret.GetAddressOf()
+	)));
+
+	return ret;
+}
