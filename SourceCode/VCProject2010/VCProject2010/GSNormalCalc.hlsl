@@ -13,7 +13,8 @@ void main(
 {
 	float3 tan1 = input[2].xyz - input[0].xyz;
 	float3 tan2 = input[1].xyz - input[0].xyz;
-	float3 norm = cross(tan1, tan2);
+	float3 norm = normalize(cross(tan1, tan2));
+
 	for (uint i = 0; i < 3; i++)
 	{
 		GSOutput element;
