@@ -6,6 +6,11 @@ struct GSOutput
 	float3 wpos : WORLDPOSITION;
 };
 
+cbuffer GSCB
+{
+	float4 eyepos;
+};
+
 struct Light
 {
 	float3 pos;
@@ -23,10 +28,29 @@ float Lambert(
 				normalize(lightDirection)));
 }
 
+float BlinPhong(
+	float3 normal,
+	float3 lightDirection,
+	float3 viewDirection,
+	float specPower)
+{
+	float diff = Lambert(normal, lightDirection);
+	float3 halfVector = normalize(lightDirection + viewDirection);
+	float spec = pow(
+		max(
+			0.0f,
+			dot(
+				halfVector,
+				normalize(normal)))
+		, specPower);
+
+	return diff + spec;
+}
+
 float Lighting(Light light, float3 normal, float3 wpos)
 {
-	float lambert = Lambert(normal, light.pos - wpos);
-	return lambert * 0.75f + 0.25f;
+	float l = BlinPhong(normal, light.pos - wpos, eyepos - wpos, 70.0f);
+	return l * 0.5f + 0.25f;
 }
 
 float4 main(GSOutput input) : SV_TARGET

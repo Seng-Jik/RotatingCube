@@ -10,13 +10,17 @@ namespace Game
 	{
 	private:
 		
+		struct GSCB
+		{
+			DirectX::XMVECTOR eyepos;
+		};
 
 		Engine::Rendering::PtrVBuffer vbo_;
 		Engine::Rendering::PtrVBuffer ibo_;
 
 		
 		
-		Engine::Rendering::PtrCBuffer tsf_;
+		Engine::Rendering::PtrCBuffer tsf_,gscb_;
 		Engine::Rendering::PtrPShader ps_;
 		Engine::Rendering::PtrGShader gs_;
 

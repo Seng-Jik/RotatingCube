@@ -23,6 +23,9 @@ Game::ObjModel::ObjModel(const std::string & modelName)
 	tsfcpu.world = DirectX::XMMatrixIdentity();
 
 	tsf_ = Engine::Rendering::CreateConstantBuffer(tsfcpu);
+
+	GSCB gscb;
+	gscb_ = Engine::Rendering::CreateConstantBuffer(gscb);
 }
 
 void Game::ObjModel::Draw() const
@@ -30,6 +33,7 @@ void Game::ObjModel::Draw() const
 	auto& d = Engine::GetDevice();
 	d.Context().VSSetConstantBuffers(0, 1, tsf_.GetAddressOf());
 	d.Context().GSSetShader(gs_.Get(), nullptr, 0);
+	d.Context().GSSetConstantBuffers(0, 1, gscb_.GetAddressOf());
 	d.Context().PSSetConstantBuffers(0, 0, nullptr);
 	d.Context().PSSetShader(ps_.Get(), nullptr, 0);
 	constexpr float col[] = { 0,0,0,0 };
@@ -44,6 +48,7 @@ void Game::ObjModel::Draw() const
 	d.Context().DrawIndexed(ibSize_, 0,0);
 
 	d.Context().GSSetShader(nullptr, nullptr, 0);
+	d.Context().GSSetConstantBuffers(0, 0, nullptr);
 
 	d.Context().IASetIndexBuffer(nullptr, DXGI_FORMAT_R32_UINT, 0);
 }
@@ -64,4 +69,9 @@ void Game::ObjModel::Update(float d)
 	tsfcpu.world = DirectX::XMMatrixRotationY(timer_) * DirectX::XMMatrixRotationX(timer_);
 
 	Engine::Rendering::UpdateCBuffer(tsf_, tsfcpu.Transpose());
+
+	GSCB gscb;
+	gscb.eyepos = eye;
+
+	Engine::Rendering::UpdateCBuffer(gscb_, gscb);
 }
