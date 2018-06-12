@@ -9,10 +9,12 @@ namespace Game
 	class ObjModel : public Engine::GameObject
 	{
 	private:
+		
+
 		Engine::Rendering::PtrVBuffer vbo_;
 		Engine::Rendering::PtrVBuffer ibo_;
 
-		Engine::Rendering::Transform tsfcpu_;
+		
 		Engine::Rendering::PtrCBuffer tsf_;
 
 		Engine::Rendering::PtrPShader ps_;

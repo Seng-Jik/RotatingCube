@@ -202,7 +202,7 @@
     <FxCompile Include="PSSprite2DDefault.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="CubeModel.hlsl">
+    <FxCompile Include="PSCubeModel.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
   </ItemGroup>

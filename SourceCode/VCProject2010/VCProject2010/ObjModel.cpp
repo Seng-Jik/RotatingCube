@@ -10,6 +10,18 @@ Game::ObjModel::ObjModel(const std::string & modelName)
 	ibSize_ = std::get<1>(obj).size();
 
 	ps_ = Engine::Rendering::LoadPShader("CubeModel");
+
+	Engine::Rendering::Transform tsfcpu;
+	tsfcpu.prj = Engine::GetDevice().Perspective();
+
+	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 1.5f, 0);
+	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, 0, -10, 0);
+	DirectX::XMVECTOR up = DirectX::XMVectorSet(0, 1, 0, 0);
+
+	tsfcpu.view = DirectX::XMMatrixLookAtLH(eye,focus,up);
+	tsfcpu.world = DirectX::XMMatrixIdentity();
+
+	tsf_ = Engine::Rendering::CreateConstantBuffer(tsfcpu);
 }
 
 void Game::ObjModel::Draw() const
