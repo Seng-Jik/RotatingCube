@@ -49,15 +49,15 @@ void Game::ObjModel::Update(float d)
 	Engine::Rendering::Transform tsfcpu;
 	tsfcpu.prj = Engine::GetDevice().Perspective();
 
-	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 5.0f, 0);
-	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, timer_ * 4, -1, 0);
+	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 80.0f, 0);
+	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, 0, -1, 0);
 	DirectX::XMVECTOR up = DirectX::XMVectorSet(0, 1, 0, 0);
 
 	timer_ += d;
-	Engine::Log(timer_ * 4);
+
 
 	tsfcpu.view = DirectX::XMMatrixLookAtLH(eye, focus, up);
-	tsfcpu.world = DirectX::XMMatrixScaling(0.25f, 0.25f, 0.25f);
+	tsfcpu.world = DirectX::XMMatrixRotationY(timer_) * DirectX::XMMatrixRotationX(timer_);
 
-	Engine::Rendering::UpdateCBuffer(tsf_, tsfcpu);
+	Engine::Rendering::UpdateCBuffer(tsf_, tsfcpu.Transpose());
 }

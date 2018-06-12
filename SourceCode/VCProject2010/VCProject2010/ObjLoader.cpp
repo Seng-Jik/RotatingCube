@@ -45,6 +45,7 @@ std::tuple<VecVertex, VecIndicis> Engine::Rendering::LoadObjModel(const std::str
 			indicisComponent.push_back(a - 1);
 			indicisComponent.push_back(b - 1);
 			indicisComponent.push_back(c - 1);
+			
 		}
 	}
 	
