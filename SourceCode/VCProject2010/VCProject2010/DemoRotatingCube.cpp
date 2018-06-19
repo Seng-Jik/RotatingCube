@@ -14,7 +14,7 @@ void Game::EngineTests::DemoRotatingCube::Update(float deltaTime)
 {
 	Engine::ObjectSet<DemoCube>::Update(deltaTime);
 
-	if (std::get<0>(Engine::GetDevice().Mouse()))
+	if (std::get<0>(Engine::GetDevice().Mouse()) == Engine::MouseState::Down)
 	{
 		x_ = std::get<1>(Engine::GetDevice().Mouse()).x;
 		y_ = std::get<1>(Engine::GetDevice().Mouse()).y;

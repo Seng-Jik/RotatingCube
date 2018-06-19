@@ -7,6 +7,14 @@ namespace Engine
 {
 	using Microsoft::WRL::ComPtr;
 
+	enum class MouseState
+	{
+		JustDown,
+		Down,
+		JustUp,
+		Up
+	};
+
 	class Device
 	{
 	private:
@@ -24,7 +32,7 @@ namespace Engine
 
 		const void* hWnd_;
 
-		std::tuple<bool, DirectX::XMFLOAT2> mouse_;
+		std::tuple<MouseState, DirectX::XMFLOAT2> mouse_ = std::make_tuple(MouseState::Up,DirectX::XMFLOAT2(0,0));
 
 		ComPtr<ID3D11DepthStencilState> depthEnable_, depthDisable_;
 	public:

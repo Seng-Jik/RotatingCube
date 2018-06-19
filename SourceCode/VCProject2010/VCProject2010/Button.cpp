@@ -20,7 +20,7 @@ void Engine::Button::Update(float time)
 	if (activeEnabled_)
 	{
 
-		bool mouseBtnDown;
+		MouseState mouseBtnDown;
 		DirectX::XMFLOAT2 mousePos;
 		std::tie(mouseBtnDown, mousePos) = Engine::GetDevice().Mouse();
 		mousePos.x *= 800;
@@ -36,7 +36,7 @@ void Engine::Button::Update(float time)
 
 		const bool mode =
 			mouseInRect ?
-			(mouseBtnDown ?
+			(mouseBtnDown == MouseState::Down ?
 				!mouseInRect :
 				mouseInRect)
 			:
@@ -49,7 +49,7 @@ void Engine::Button::Update(float time)
 			zoom_.Run(mode ? 0.6F : 0.5F, 0.15F, 1);
 		}
 
-		if (mouseInRect && clickEnabled_ && lastMouseDown && !mouseBtnDown)
+		if (mouseInRect && clickEnabled_ && lastMouseDown == MouseState::Down && mouseBtnDown != MouseState::Down)
 		{
 			clickEnabled_ = false;
 			DisableActive();

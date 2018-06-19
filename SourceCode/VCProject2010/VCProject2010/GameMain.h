@@ -2,6 +2,7 @@
 #include "ObjectSet.h"
 #include "ObjModel.h"
 #include "StageData.h"
+#include "RotatingCube.h"
 
 namespace Game
 {
@@ -10,11 +11,10 @@ namespace Game
 		class GameMain : public Engine::ObjectSet<Engine::GameObject>
 		{
 		private:
-			decltype(*Stages)& stageData_;
+			RotatingCube& rotCube_;
+
 		public:
 			GameMain(const decltype(*Stages)& stage);
-			void Draw() const override;
-			void Update(float d) override;
 		};
 	}
 }

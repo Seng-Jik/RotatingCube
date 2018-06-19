@@ -11,7 +11,7 @@ namespace Engine
 		Tween<float> posX_ = 0, posY_ = 0, alpha_ = 1, zoom_ = 1;
 
 		bool lastMode = false;
-		bool lastMouseDown = false;
+		MouseState lastMouseDown = MouseState::Up;
 		bool clickEnabled_ = false;
 		std::function<void()> onClick_;
 

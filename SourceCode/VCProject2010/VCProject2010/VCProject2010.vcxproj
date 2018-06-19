@@ -136,6 +136,7 @@
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="ObjModel.cpp" />
+    <ClCompile Include="RotatingCube.cpp" />
     <ClCompile Include="SavaData.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="ModelTest.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="ObjModel.h" />
+    <ClInclude Include="RotatingCube.h" />
     <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="StageData.h" />

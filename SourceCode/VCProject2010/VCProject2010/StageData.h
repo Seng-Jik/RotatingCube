@@ -20,16 +20,18 @@ namespace Game
 		{
 			const char* ModelName;
 			DirectX::XMFLOAT3 AnswerRotating;
-			DirectX::XMFLOAT3 Scaling, CenterOffset;
+			float Scaling;
+			DirectX::XMFLOAT3 CenterOffset;
 			StageName NextStage;
+			DirectX::XMFLOAT3 InitRotating;
 		} Stages[] = 
 		{
-			{ "box",DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,-20),Stage2 },
-			{ "box",DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,-20),Stage3 },
-			{ "box",DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,-20),Stage4 },
-			{ "box",DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,-20),Stage5 },
-			{ "box",DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,-20),Stage6 },
-			{ "box",DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,0),DirectX::XMFLOAT3(0,0,-20),None },
+			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage2,DirectX::XMFLOAT3(0,0,0) },
+			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage3,DirectX::XMFLOAT3(0,0,0) },
+			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage4,DirectX::XMFLOAT3(0,0,0) },
+			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage5,DirectX::XMFLOAT3(0,0,0) },
+			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage6,DirectX::XMFLOAT3(0,0,0) },
+			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),None,DirectX::XMFLOAT3(0,0,0) },
 		};
 	}
 }

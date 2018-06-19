@@ -17,11 +17,11 @@ void Game::EngineTests::ModelTest::Update(float d)
 {
 	Engine::ObjectSet<Engine::Rendering::ObjModel>::Update(d);
 
-	bool isDown;
+	Engine::MouseState mouseState;
 	DirectX::XMFLOAT2 mpos;
-	std::tie(isDown, mpos) = Engine::GetDevice().Mouse();
+	std::tie(mouseState, mpos) = Engine::GetDevice().Mouse();
 
-	if (isDown)
+	if (mouseState == Engine::MouseState::Down)
 	{
 		rotX_ = mpos.y * 4;
 		rotY_ = mpos.x * 4;

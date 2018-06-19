@@ -221,6 +221,11 @@ bool Engine::Device::EngineMainLoop()
 
 	static_assert(sizeof(HWND) == sizeof(hWnd_),"HWND failed.");
 
+	if (std::get<0>(mouse_) == MouseState::JustDown)
+		std::get<0>(mouse_) = MouseState::Down;
+	else if (std::get<0>(mouse_) == MouseState::JustUp)
+		std::get<0>(mouse_) = MouseState::Up;
+
 	if (run)
 	{
 		MSG msg;
@@ -230,12 +235,12 @@ bool Engine::Device::EngineMainLoop()
 
 			if (msg.message == WM_LBUTTONDOWN)
 			{
-				std::get<0>(mouse_) = true;
+				std::get<0>(mouse_) = MouseState::JustDown;
 				SetCapture((HWND)hWnd_);
 			}
 			else if (msg.message == WM_LBUTTONUP)
 			{
-				std::get<0>(mouse_) = false;
+				std::get<0>(mouse_) = MouseState::JustUp;
 				ReleaseCapture();
 			}
 			else if (msg.message == WM_MOUSEMOVE)

@@ -123,6 +123,9 @@
     <ClCompile Include="GameMain.cpp">
       <Filter>Source Files\Game\GamePlay</Filter>
     </ClCompile>
+    <ClCompile Include="RotatingCube.cpp">
+      <Filter>Source Files\Game\GamePlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -207,6 +210,9 @@
       <Filter>Header Files\Game\GamePlay</Filter>
     </ClInclude>
     <ClInclude Include="StageData.h">
+      <Filter>Header Files\Game\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="RotatingCube.h">
       <Filter>Header Files\Game\GamePlay</Filter>
     </ClInclude>
   </ItemGroup>
