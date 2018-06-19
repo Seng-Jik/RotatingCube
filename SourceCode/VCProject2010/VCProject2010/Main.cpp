@@ -4,6 +4,7 @@
 #include "stdafx.h"
 
 #include "CommonClass.h"
+#include "ModelTest.h"
 #include <cstdio>
 #include "Cursor.h"
 #include "Device.h"
@@ -59,7 +60,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	auto& device = Engine::GetDevice();
 
 	
-	root.NewObject<Game::ObjModel>("box");
+	root.NewObject<Game::EngineTests::ModelTest>("box");
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while(device.EngineMainLoop())

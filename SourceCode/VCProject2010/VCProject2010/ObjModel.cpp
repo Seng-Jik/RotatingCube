@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "ObjModel.h"
 #include "ObjLoader.h"
-Game::ObjModel::ObjModel(const std::string & modelName)
+
+using namespace Engine::Rendering;
+
+ObjModel::ObjModel(const std::string & modelName)
 {
 	const auto obj = Engine::Rendering::LoadObjModel(modelName);
 	
@@ -28,7 +31,7 @@ Game::ObjModel::ObjModel(const std::string & modelName)
 	gscb_ = Engine::Rendering::CreateConstantBuffer(gscb);
 }
 
-void Game::ObjModel::Draw() const
+void ObjModel::Draw() const
 {
 	auto& d = Engine::GetDevice();
 	d.Context().VSSetConstantBuffers(0, 1, tsf_.GetAddressOf());
@@ -53,20 +56,23 @@ void Game::ObjModel::Draw() const
 	d.Context().IASetIndexBuffer(nullptr, DXGI_FORMAT_R32_UINT, 0);
 }
 
-void Game::ObjModel::Update(float d)
+void ObjModel::Update(float d)
 {
 	Engine::Rendering::Transform tsfcpu;
 	tsfcpu.prj = Engine::GetDevice().Perspective();
 
-	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 80.0f, 0);
-	DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, 0, -1, 0);
-	DirectX::XMVECTOR up = DirectX::XMVectorSet(0, 1, 0, 0);
+	const DirectX::XMVECTOR eye = DirectX::XMVectorSet(0, 0, 80.0f, 0);
+	const DirectX::XMVECTOR focus = DirectX::XMVectorSet(0, 0, -1, 0);
+	const DirectX::XMVECTOR up = DirectX::XMVectorSet(0, 1, 0, 0);
 
 	timer_ += d;
 
 
 	tsfcpu.view = DirectX::XMMatrixLookAtLH(eye, focus, up);
-	tsfcpu.world = DirectX::XMMatrixRotationY(timer_) * DirectX::XMMatrixRotationX(timer_);
+	tsfcpu.world = 
+		DirectX::XMMatrixRotationY(rotY_) * 
+		DirectX::XMMatrixRotationX(rotX_) * 
+		DirectX::XMMatrixRotationZ(rotZ_);
 
 	Engine::Rendering::UpdateCBuffer(tsf_, tsfcpu.Transpose());
 
@@ -74,4 +80,11 @@ void Game::ObjModel::Update(float d)
 	gscb.eyepos = eye;
 
 	Engine::Rendering::UpdateCBuffer(gscb_, gscb);
+}
+
+void Engine::Rendering::ObjModel::SetRotating(float rotX, float rotY, float rotZ)
+{
+	rotX_ = rotX;
+	rotY_ = rotY;
+	rotZ_ = rotZ;
 }

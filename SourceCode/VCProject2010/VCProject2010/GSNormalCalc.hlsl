@@ -13,9 +13,9 @@ void main(
 	inout TriangleStream< GSOutput > output
 )
 {
-	float3 tan1 = inputw[2].xyz - inputw[0].xyz;
-	float3 tan2 = inputw[1].xyz - inputw[0].xyz;
-	float3 norm = normalize(cross(tan1, tan2));
+	float3 tan1 = normalize(inputw[2].xyz - inputw[0].xyz);
+	float3 tan2 = normalize(inputw[1].xyz - inputw[0].xyz);
+	float3 norm = -normalize(cross(tan1, tan2));
 
 	for (uint i = 0; i < 3; i++)
 	{

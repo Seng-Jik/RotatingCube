@@ -109,7 +109,10 @@
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="ObjModel.cpp">
-      <Filter>Source Files\Game</Filter>
+      <Filter>Source Files\Engine\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelTest.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +189,10 @@
       <Filter>Header Files\Engine\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="ObjModel.h">
-      <Filter>Header Files\Game</Filter>
+      <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTest.h">
+      <Filter>Header Files\Game\EngineTests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

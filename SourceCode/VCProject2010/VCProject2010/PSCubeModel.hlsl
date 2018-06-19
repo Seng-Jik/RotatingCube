@@ -57,11 +57,11 @@ float4 main(GSOutput input) : SV_TARGET
 {
 	//这里有个魔法光源
 	Light light;
-	light.pos.x = 50.0f;
-	light.pos.y = -50.0f;
-	light.pos.z = -10.0f;
+	light.pos.x = 100.0f;
+	light.pos.y = 15.0f;
+	light.pos.z = 100.0f;
 
 	float rgb = Lighting(light, input.normal, input.wpos);
-
+	//return float4(input.normal.x, input.normal.y, input.normal.z, 1);
 	return float4(rgb,rgb,rgb,1.0f);
 }
