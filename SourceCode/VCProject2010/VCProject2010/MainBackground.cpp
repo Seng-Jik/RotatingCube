@@ -44,7 +44,7 @@ void Game::MainBackground::Update(float time)
 
 	pecbcpu_.iMouse = DirectX::XMFLOAT2(400 * bkCamera_, -64 * bkCamera_);
 
-	if (std::get<0>(Engine::GetDevice().Mouse()) == Engine::MouseState::Down && reciveMouseClick_)
+	if (std::get<0>(Engine::GetDevice().Mouse()) == Engine::MouseState::JustUp && reciveMouseClick_)
 	{
 		reciveMouseClick_ = false;
 		Engine::ShowCursor(true);

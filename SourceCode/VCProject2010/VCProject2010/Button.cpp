@@ -49,7 +49,7 @@ void Engine::Button::Update(float time)
 			zoom_.Run(mode ? 0.6F : 0.5F, 0.15F, 1);
 		}
 
-		if (mouseInRect && clickEnabled_ && lastMouseDown == MouseState::Down && mouseBtnDown != MouseState::Down)
+		if (mouseInRect && clickEnabled_ && lastMouseDown == MouseState::Down && mouseBtnDown == MouseState::JustUp)
 		{
 			clickEnabled_ = false;
 			DisableActive();
