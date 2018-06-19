@@ -39,7 +39,7 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 						mainBackground.InToGame();
 						Exit();
 
-						mainBackground.NewObject<Game::GamePlay::GameMain>(Game::GamePlay::Stages[num]);
+						mainBackground.NewObject<Game::GamePlay::GameMain>(Game::GamePlay::Stages[num - 1]);
 					},0.5f);
 				});
 			}

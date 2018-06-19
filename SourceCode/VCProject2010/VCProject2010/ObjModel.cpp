@@ -84,6 +84,11 @@ void ObjModel::Update(float d)
 	Engine::Rendering::UpdateCBuffer(gscb_, gscb);
 }
 
+void Engine::Rendering::ObjModel::SetRotating(DirectX::XMFLOAT3 rot)
+{
+	SetRotating(rot.x, rot.y, rot.z);
+}
+
 void Engine::Rendering::ObjModel::SetRotating(float rotX, float rotY, float rotZ)
 {
 	rotX_ = rotX;

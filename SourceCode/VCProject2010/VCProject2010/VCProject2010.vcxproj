@@ -162,6 +162,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="ModelTest.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="ObjModel.h" />

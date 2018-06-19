@@ -215,6 +215,9 @@
     <ClInclude Include="RotatingCube.h">
       <Filter>Header Files\Game\GamePlay</Filter>
     </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VSDefaultWVP.hlsl">

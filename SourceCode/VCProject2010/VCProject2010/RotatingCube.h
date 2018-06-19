@@ -11,7 +11,11 @@ namespace Game
 		{
 		private:
 			Engine::Rendering::ObjModel& model_;
-			
+
+			DirectX::XMFLOAT3
+				force_ = DirectX::XMFLOAT3(0,0,0),
+				rotating_ = DirectX::XMFLOAT3(0,0,0);
+
 		public:
 			RotatingCube(const decltype(*Stages)& stage);
 

@@ -41,6 +41,7 @@ namespace Engine
 			void Draw() const override;
 			void Update(float) override;
 
+			void SetRotating(DirectX::XMFLOAT3 rot);
 			void SetRotating(float rotX, float rotY, float rotZ);
 			void SetScale(float scale);
 			void SetCenterOffset(float x,float y,float z);
