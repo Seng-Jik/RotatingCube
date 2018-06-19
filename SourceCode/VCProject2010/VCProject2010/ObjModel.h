@@ -31,6 +31,9 @@ namespace Engine
 			size_t ibSize_;
 
 			float rotX_ = 0, rotY_ = 0, rotZ_ = 0;
+			float scale_ = 1;
+
+			DirectX::XMFLOAT3 centerOffset_ = DirectX::XMFLOAT3(0,0,0);
 
 		public:
 			ObjModel(const std::string& modelName);
@@ -39,6 +42,8 @@ namespace Engine
 			void Update(float) override;
 
 			void SetRotating(float rotX, float rotY, float rotZ);
+			void SetScale(float scale);
+			void SetCenterOffset(float x,float y,float z);
 		};
 	}
 }

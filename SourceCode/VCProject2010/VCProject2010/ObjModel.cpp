@@ -70,6 +70,8 @@ void ObjModel::Update(float d)
 
 	tsfcpu.view = DirectX::XMMatrixLookAtLH(eye, focus, up);
 	tsfcpu.world = 
+		DirectX::XMMatrixTranslation(centerOffset_.x, centerOffset_.y, centerOffset_.z) *
+		DirectX::XMMatrixScaling(scale_,scale_,scale_) * 
 		DirectX::XMMatrixRotationY(rotY_) * 
 		DirectX::XMMatrixRotationX(rotX_) * 
 		DirectX::XMMatrixRotationZ(rotZ_);
@@ -87,4 +89,14 @@ void Engine::Rendering::ObjModel::SetRotating(float rotX, float rotY, float rotZ
 	rotX_ = rotX;
 	rotY_ = rotY;
 	rotZ_ = rotZ;
+}
+
+void Engine::Rendering::ObjModel::SetScale(float scale)
+{
+	scale_ = scale;
+}
+
+void Engine::Rendering::ObjModel::SetCenterOffset(float x,float y,float z)
+{
+	centerOffset_ = DirectX::XMFLOAT3(x, y, z);
 }
