@@ -44,13 +44,13 @@ float BlinPhong(
 				normalize(normal)))
 		, specPower);
 
-	return diff + spec;
+	return 0.95f * diff + 0.05f * spec;
 }
 
 float Lighting(Light light, float3 normal, float3 wpos)
 {
 	float l = BlinPhong(normal, light.pos - wpos, eyepos - wpos, 10.0f);
-	return l * 0.5f + 0.25f;
+	return l * 0.6f + 0.15f;
 }
 
 float4 main(GSOutput input) : SV_TARGET
