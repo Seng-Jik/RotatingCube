@@ -44,13 +44,13 @@ float BlinPhong(
 				normalize(normal)))
 		, specPower);
 
-	return 0.95f * diff + 0.05f * spec;
+	return 0.8f * diff + 0.2f * spec;
 }
 
 float Lighting(Light light, float3 normal, float3 wpos)
 {
 	float l = BlinPhong(normal, light.pos - wpos, eyepos - wpos, 10.0f);
-	return l * 0.6f + 0.15f;
+	return l * 0.65f + 0.35f;
 }
 
 float4 main(GSOutput input) : SV_TARGET
@@ -62,6 +62,6 @@ float4 main(GSOutput input) : SV_TARGET
 	light.pos.z = 100.0f;
 
 	float rgb = Lighting(light, input.normal, input.wpos);
-	return float4(input.normal.x, input.normal.y, input.normal.z, 1);
+	//return float4(input.normal.x, input.normal.y, input.normal.z, 1);
 	return float4(rgb,rgb,rgb,1.0f);
 }
