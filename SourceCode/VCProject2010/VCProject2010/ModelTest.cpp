@@ -5,7 +5,7 @@ Game::EngineTests::ModelTest::ModelTest(const char * modelName):
 	model_ { NewObject<Engine::Rendering::ObjModel>(modelName) }
 {
 	model_.SetCenterOffset(0, 0, -20);
-	model_.SetScale(1.5);
+	model_.SetScale(1);
 }
 
 void Game::EngineTests::ModelTest::Draw() const

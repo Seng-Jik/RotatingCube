@@ -62,6 +62,6 @@ float4 main(GSOutput input) : SV_TARGET
 	light.pos.z = 100.0f;
 
 	float rgb = Lighting(light, input.normal, input.wpos);
-	//return float4(input.normal.x, input.normal.y, input.normal.z, 1);
+	return float4(input.normal.x, input.normal.y, input.normal.z, 1);
 	return float4(rgb,rgb,rgb,1.0f);
 }

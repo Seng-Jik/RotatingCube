@@ -46,6 +46,12 @@
     <Filter Include="Source Files\Game\Title">
       <UniqueIdentifier>{dc60ce27-790d-4402-a892-d441d21b39e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\GamePlay">
+      <UniqueIdentifier>{6587cade-fd7f-456d-a4b2-273bd85a0b93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GamePlay">
+      <UniqueIdentifier>{7a97f489-0c56-4dbc-9d2c-909d071b3311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -112,7 +118,10 @@
       <Filter>Source Files\Engine\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="ModelTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Game\EngineTests</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMain.cpp">
+      <Filter>Source Files\Game\GamePlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="ModelTest.h">
       <Filter>Header Files\Game\EngineTests</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMain.h">
+      <Filter>Header Files\Game\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="StageData.h">
+      <Filter>Header Files\Game\GamePlay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

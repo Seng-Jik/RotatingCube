@@ -132,6 +132,7 @@
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="ObjModel.cpp" />
@@ -159,11 +160,13 @@
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
+    <ClInclude Include="GameMain.h" />
     <ClInclude Include="ModelTest.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />
+    <ClInclude Include="StageData.h" />
     <ClInclude Include="StageSelectGUI.h" />
     <ClInclude Include="StageSelectMenu.h" />
     <ClInclude Include="TaskList.h" />

@@ -61,6 +61,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 	
 	root.NewObject<Game::MainBackground>();
+	//root.NewObject<Game::EngineTests::ModelTest>("box");
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while(device.EngineMainLoop())

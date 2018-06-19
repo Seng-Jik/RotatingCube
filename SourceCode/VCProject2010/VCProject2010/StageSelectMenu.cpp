@@ -2,6 +2,7 @@
 #include "SavaData.h"
 #include "StageSelectMenu.h"
 #include "StageSelectGUI.h"
+#include "GameMain.h"
 
 Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, StageSelectGUI& gui)
 {
@@ -29,14 +30,16 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 
 			if (stageOpened)
 			{
-				btn.SetOnClick([&mainBackground,this,&gui] {
-					tl_.AddTask([&mainBackground, this, &gui] {
+				btn.SetOnClick([&mainBackground,this,&gui, num] {
+					tl_.AddTask([&mainBackground, this, &gui, num] {
 						for (auto& p : btnAniBatch)
 							for (auto i : p)
 								i->DisableActive();
 						gui.FadeOut();
 						mainBackground.InToGame();
 						Exit();
+
+						mainBackground.NewObject<Game::GamePlay::GameMain>(Game::GamePlay::Stages[num]);
 					},0.5f);
 				});
 			}
