@@ -17,12 +17,13 @@ void Game::GamePlay::RotatingCube::Update(float d)
 	Engine::ObjectSet<Engine::Rendering::ObjModel>::Update(d);
 
 	force_ *= 0.9f;
-	rotating_ += force_;
+
+	rotating_ += DirectX::XMFLOAT3(force_);
 	model_.SetRotating(rotating_);
 
 	//Test
 	if (std::get<0>(Engine::GetDevice().Mouse()) == Engine::MouseState::JustDown)
 	{
-		force_ = DirectX::XMFLOAT3(1, 1, 0);
+		force_ = DirectX::XMFLOAT3(0.5F, 0.5F, 0);
 	}
 }

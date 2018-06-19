@@ -24,6 +24,18 @@ namespace Engine
 			};
 		}
 
+
+
+		DirectX::XMFLOAT3 operator- (DirectX::XMFLOAT3 a, DirectX::XMFLOAT3 b)
+		{
+			return DirectX::XMFLOAT3
+			{
+				a.x - b.x,
+				a.y - b.y,
+				a.z - b.z
+			};
+		}
+
 		template <typename T>
 		T& operator += (T& a, T b)
 		{

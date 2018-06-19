@@ -52,7 +52,7 @@ namespace Engine
 	template<typename T>
 	inline Tween<T>::Tween()
 	{
-		m_value = 0;
+		m_value = T{};
 	}
 
 	template<typename T>
