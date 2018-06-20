@@ -158,6 +158,7 @@
     <ClCompile Include="VertexIn.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnswerBoard.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />

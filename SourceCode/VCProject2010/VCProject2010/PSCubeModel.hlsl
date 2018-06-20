@@ -44,22 +44,23 @@ float BlinPhong(
 				normalize(normal)))
 		, specPower);
 
-	return 0.8f * diff + 0.2f * spec;
+	return 0.95f * diff + 0.05f * spec;
 }
 
 float Lighting(Light light, float3 normal, float3 wpos)
 {
-	float l = BlinPhong(normal, light.pos - wpos, eyepos - wpos, 10.0f);
-	return l * 0.65f + 0.35f;
+	float l = BlinPhong(normal, light.pos - wpos, wpos - eyepos, 10.0f);
+	float distancedown = 100 / distance(wpos, light.pos);
+	return distancedown * (l * 0.85f + 0.15f);
 }
 
 float4 main(GSOutput input) : SV_TARGET
 {
 	//这里有个魔法光源
 	Light light;
-	light.pos.x = 100.0f;
-	light.pos.y = 15.0f;
-	light.pos.z = 100.0f;
+	light.pos.x = 20.0f;
+	light.pos.y = 20.0f;
+	light.pos.z = 150.0f;
 
 	float rgb = Lighting(light, input.normal, input.wpos);
 	//return float4(input.normal.x, input.normal.y, input.normal.z, 1);

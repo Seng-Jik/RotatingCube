@@ -36,9 +36,8 @@ void ObjModel::Draw() const
 	auto& d = Engine::GetDevice();
 	d.Context().VSSetConstantBuffers(0, 1, tsf_.GetAddressOf());
 	d.Context().GSSetShader(gs_.Get(), nullptr, 0);
-	d.Context().GSSetConstantBuffers(0, 1, gscb_.GetAddressOf());
-	d.Context().PSSetConstantBuffers(0, 0, nullptr);
 	d.Context().PSSetShader(ps_.Get(), nullptr, 0);
+	d.Context().PSSetConstantBuffers(0, 1, gscb_.GetAddressOf());
 	constexpr float col[] = { 0,0,0,0 };
 
 

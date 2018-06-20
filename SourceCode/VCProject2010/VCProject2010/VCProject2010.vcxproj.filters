@@ -221,6 +221,9 @@
     <ClInclude Include="OverwriteArray.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="AnswerBoard.h">
+      <Filter>Header Files\Game\GamePlay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VSDefaultWVP.hlsl">

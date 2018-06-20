@@ -71,5 +71,6 @@ void Game::MainBackground::ReturnToLogo()
 void Game::MainBackground::InToGame()
 {
 	bkCamera_.Run(-1, 1, 1);
+	light_.Run(0, 1, 1);
 }
 
