@@ -9,6 +9,7 @@ struct GSOutput
 cbuffer GSCB
 {
 	float4 eyepos;
+	float lightPower;
 };
 
 struct Light
@@ -50,7 +51,7 @@ float BlinPhong(
 float Lighting(Light light, float3 normal, float3 wpos)
 {
 	float l = BlinPhong(normal, light.pos - wpos, wpos - eyepos, 10.0f);
-	float distancedown = 100 / distance(wpos, light.pos);
+	float distancedown = lightPower / distance(wpos, light.pos);
 	return distancedown * (l * 0.85f + 0.15f);
 }
 

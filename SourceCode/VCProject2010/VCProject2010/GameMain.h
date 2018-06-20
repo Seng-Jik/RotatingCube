@@ -3,6 +3,7 @@
 #include "ObjModel.h"
 #include "StageData.h"
 #include "RotatingCube.h"
+#include "TaskList.h"
 
 namespace Game
 {
@@ -11,10 +12,12 @@ namespace Game
 		class GameMain : public Engine::ObjectSet<Engine::GameObject>
 		{
 		private:
-			RotatingCube& rotCube_;
-
+			RotatingCube* rotCube_;
+			Engine::TaskList tasks_;
 		public:
 			GameMain(const decltype(*Stages)& stage);
+
+			void Update(float d);
 		};
 	}
 }

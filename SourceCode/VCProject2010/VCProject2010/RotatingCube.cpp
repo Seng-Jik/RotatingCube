@@ -14,6 +14,8 @@ Game::GamePlay::RotatingCube::RotatingCube(const decltype(*Stages)& stage):
 	model_.SetScale(stage.Scaling);
 
 	std::fill(deltas_.begin(), deltas_.end(), DirectX::XMFLOAT2(0, 0));
+
+	model_.LightPower().Run(100, 1, 1);
 }
 
 void Game::GamePlay::RotatingCube::Update(float d)
@@ -24,13 +26,6 @@ void Game::GamePlay::RotatingCube::Update(float d)
 
 	rotating_ += DirectX::XMFLOAT3(force_);
 	model_.SetRotating(rotating_);
-
-	//Test
-	/*if (std::get<0>(Engine::GetDevice().Mouse()) == Engine::MouseState::JustDown)
-	{
-		force_ = DirectX::XMFLOAT3(0.05F, 0.05F, 0);
-		force_.Run(DirectX::XMFLOAT3(0, 0, 0), 1, 1);
-	}*/
 
 	const auto mouseState = std::get<0>(Engine::GetDevice().Mouse());
 	const auto mouseDelta = Engine::GetDevice().MouseDelta();

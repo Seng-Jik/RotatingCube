@@ -15,6 +15,7 @@ namespace Engine
 			struct GSCB
 			{
 				DirectX::XMVECTOR eyepos;
+				float lightPower = 0;
 			};
 
 			Engine::Rendering::PtrVBuffer vbo_;
@@ -33,6 +34,8 @@ namespace Engine
 			float rotX_ = 0, rotY_ = 0, rotZ_ = 0;
 			float scale_ = 1;
 
+			Tween<float> lightPower_ = 0;
+
 			DirectX::XMFLOAT3 centerOffset_ = DirectX::XMFLOAT3(0,0,0);
 
 		public:
@@ -40,6 +43,11 @@ namespace Engine
 
 			void Draw() const override;
 			void Update(float) override;
+
+			inline auto& LightPower()
+			{
+				return lightPower_;
+			}
 
 			void SetRotating(DirectX::XMFLOAT3 rot);
 			void SetRotating(float rotX, float rotY, float rotZ);

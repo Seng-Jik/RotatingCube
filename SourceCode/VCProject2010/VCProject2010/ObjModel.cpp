@@ -57,6 +57,8 @@ void ObjModel::Draw() const
 
 void ObjModel::Update(float d)
 {
+	lightPower_.Update(d);
+
 	Engine::Rendering::Transform tsfcpu;
 	tsfcpu.prj = Engine::GetDevice().Perspective();
 
@@ -79,6 +81,7 @@ void ObjModel::Update(float d)
 
 	GSCB gscb;
 	gscb.eyepos = eye;
+	gscb.lightPower = lightPower_;
 
 	Engine::Rendering::UpdateCBuffer(gscb_, gscb);
 }
