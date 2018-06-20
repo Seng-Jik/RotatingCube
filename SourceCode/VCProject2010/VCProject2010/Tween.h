@@ -28,6 +28,7 @@ namespace Engine
 		return sin(PI / 2 * x);
 	}
 
+#pragma warning(disable:4244)
 	template<typename T>
 	class Tween
 	{
@@ -37,6 +38,7 @@ namespace Engine
 
 		void Update(float deltaTime);
 		void Run(T target, float time, int funcID = 0);
+		void Stop();
 
 		operator T() const;
 		const Tween<T>& operator = (const T&);
@@ -104,6 +106,12 @@ namespace Engine
 		m_allTime = time;
 		m_funcID = funcID;
 	}
+	template<typename T>
+	inline void Tween<T>::Stop()
+	{
+		m_target.Clear();
+	}
+
 	template<typename T>
 	inline Tween<T>::operator T() const
 	{

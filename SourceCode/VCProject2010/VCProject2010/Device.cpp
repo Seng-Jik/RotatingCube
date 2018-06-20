@@ -3,8 +3,10 @@
 #include "Optional.h"
 #include "CommonClass.h"
 #include "Shaders.h"
+#include "Math.h"
 #include "Assets.h"
 using namespace Engine;
+using namespace Engine::Math;
 
 Engine::Device::Device(HWND hwnd) :
 	hWnd_{ hwnd }
@@ -197,6 +199,11 @@ Engine::Device::Device(HWND hwnd) :
 	
 }
 
+DirectX::XMFLOAT2 Engine::Device::MouseDelta() const
+{
+	return std::get<1>(Mouse()) - mouseLastFrame_;
+}
+
 void Engine::Device::DepthTest(bool b)
 {
 	context_->OMSetDepthStencilState((b ? depthEnable_ : depthDisable_).Get(),0);
@@ -217,6 +224,8 @@ float Engine::Device::GetScreenWdivH() const
 
 bool Engine::Device::EngineMainLoop()
 {
+	mouseLastFrame_ = std::get<1>(Mouse());
+
 	const bool run = IsWindow((HWND)hWnd_);
 
 	static_assert(sizeof(HWND) == sizeof(hWnd_),"HWND failed.");

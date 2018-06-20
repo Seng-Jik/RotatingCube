@@ -33,6 +33,7 @@ namespace Engine
 		const void* hWnd_;
 
 		std::tuple<MouseState, DirectX::XMFLOAT2> mouse_ = std::make_tuple(MouseState::Up,DirectX::XMFLOAT2(0,0));
+		DirectX::XMFLOAT2 mouseLastFrame_ = DirectX::XMFLOAT2(0, 0);
 
 		ComPtr<ID3D11DepthStencilState> depthEnable_, depthDisable_;
 	public:
@@ -69,6 +70,8 @@ namespace Engine
 		{
 			return mouse_;
 		}
+
+		DirectX::XMFLOAT2 MouseDelta() const;
 
 		void DepthTest(bool);
 
