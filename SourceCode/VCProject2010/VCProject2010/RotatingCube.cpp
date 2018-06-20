@@ -40,6 +40,7 @@ void Game::GamePlay::RotatingCube::Update(float d)
 	if (mouseState == MouseState::Down)
 	{
 		force_.Stop();
+		force_ = DirectX::XMFLOAT3(0, 0, 0);
 		rotating_.y += -mouseDelta.x * RotateScaling;
 		rotating_.x += mouseDelta.y * RotateScaling;
 
@@ -62,6 +63,6 @@ void Game::GamePlay::RotatingCube::Update(float d)
 			0.0f
 		);
 
-		force_.Run(DirectX::XMFLOAT3(0, 0, 0),LengthSqrt(force_) * 1000, 1);
+		force_.Run(DirectX::XMFLOAT3(0, 0, 0),Clamp(LengthSqrt(force_) * 1000,0.0f,1.0f), 1);
 	}
 }

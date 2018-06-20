@@ -52,6 +52,14 @@ namespace Engine
 			return x.x * x.x + x.y * x.y;
 		}
 
+		template <typename T>
+		inline T Clamp(T x, T bottom, T top)
+		{
+			if (x > top) return top;
+			else if (x < bottom) return bottom;
+			else return x;
+		}
+
 		inline DirectX::XMFLOAT3 operator- (DirectX::XMFLOAT3 a, DirectX::XMFLOAT3 b)
 		{
 			return DirectX::XMFLOAT3
