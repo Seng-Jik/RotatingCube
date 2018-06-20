@@ -10,6 +10,7 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage)
 
 void Game::GamePlay::GameMain::Update(float d)
 {
+	Engine::ObjectSet<Engine::GameObject>::Update(d);
 	tasks_.Update(d);
 }
 
