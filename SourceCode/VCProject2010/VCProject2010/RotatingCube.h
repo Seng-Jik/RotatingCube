@@ -2,6 +2,7 @@
 #include "ObjectSet.h"
 #include "ObjModel.h"
 #include "StageData.h"
+#include "OverwriteArray.h"
 
 namespace Game
 {
@@ -17,6 +18,8 @@ namespace Game
 
 			Engine::Tween<DirectX::XMFLOAT3> 
 				force_ = DirectX::XMFLOAT3(0, 0, 0);
+
+			Engine::OverwriteArray<DirectX::XMFLOAT2, 256> deltas_;
 
 		public:
 			RotatingCube(const decltype(*Stages)& stage);

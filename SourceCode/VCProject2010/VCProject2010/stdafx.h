@@ -2,7 +2,8 @@
 
 #include <cstdint>
 #include <cmath>
-
+#include <algorithm>
+#include <numeric>
 #include <stack>
 #include <ostream>
 #include <string>

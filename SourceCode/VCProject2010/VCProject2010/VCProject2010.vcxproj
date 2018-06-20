@@ -166,6 +166,7 @@
     <ClInclude Include="ModelTest.h" />
     <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="ObjModel.h" />
+    <ClInclude Include="OverwriteArray.h" />
     <ClInclude Include="RotatingCube.h" />
     <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />

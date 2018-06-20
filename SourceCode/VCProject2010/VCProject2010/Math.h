@@ -14,6 +14,15 @@ namespace Engine
 			};
 		}
 
+		inline DirectX::XMFLOAT2 operator+ (DirectX::XMFLOAT2 a, DirectX::XMFLOAT2 b)
+		{
+			return DirectX::XMFLOAT2
+			{
+				a.x + b.x,
+				a.y + b.y
+			};
+		}
+
 		inline DirectX::XMFLOAT3 operator* (DirectX::XMFLOAT3 a, float b)
 		{
 			return DirectX::XMFLOAT3
@@ -24,9 +33,23 @@ namespace Engine
 			};
 		}
 
+		inline DirectX::XMFLOAT2 operator* (DirectX::XMFLOAT2 a, float b)
+		{
+			return DirectX::XMFLOAT2
+			{
+				a.x * b,
+				a.y * b
+			};
+		}
+
 		inline float LengthSqrt(DirectX::XMFLOAT3 x)
 		{
 			return x.x * x.x + x.y * x.y + x.z * x.z;
+		}
+
+		inline float LengthSqrt(DirectX::XMFLOAT2 x)
+		{
+			return x.x * x.x + x.y * x.y;
 		}
 
 		inline DirectX::XMFLOAT3 operator- (DirectX::XMFLOAT3 a, DirectX::XMFLOAT3 b)
