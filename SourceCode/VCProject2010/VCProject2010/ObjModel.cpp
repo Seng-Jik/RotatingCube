@@ -47,8 +47,9 @@ void ObjModel::Draw() const
 
 	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
 	d.Context().IASetIndexBuffer(ibo_.Get(), DXGI_FORMAT_R32_UINT, 0);
+	d.DepthTest(true);
 	d.Context().DrawIndexed(ibSize_, 0,0);
-
+	d.DepthTest(false);
 	d.Context().GSSetShader(nullptr, nullptr, 0);
 	d.Context().GSSetConstantBuffers(0, 0, nullptr);
 

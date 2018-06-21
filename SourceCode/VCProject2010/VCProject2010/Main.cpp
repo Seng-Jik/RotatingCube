@@ -14,6 +14,7 @@
 #include "MainBackground.h"
 #include "Cursor.h"
 #include <Windows.h>
+#include "RotatingCube.h"
 #include "ObjModel.h"
 
 static Engine::ObjectSet<Engine::GameObject> root;
@@ -60,8 +61,8 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	auto& device = Engine::GetDevice();
 
 	
-	root.NewObject<Game::MainBackground>();
-	//root.NewObject<Game::EngineTests::ModelTest>("box");
+	//root.NewObject<Game::MainBackground>();
+	root.NewObject<Game::GamePlay::RotatingCube>(Game::GamePlay::Stages[0]);
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while(device.EngineMainLoop())
