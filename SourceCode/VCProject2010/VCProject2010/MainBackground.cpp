@@ -59,7 +59,7 @@ void Game::MainBackground::Update(float time)
 void Game::MainBackground::ReturnToLogo()
 {
 	reciveMouseClick_ = false;
-	Engine::ShowCursor(true);
+	Engine::ShowCursor(false);
 	bkCamera_.Run(0, 2.5f, 1);
 
 	titleGUI_.Emplace(&NewObject<Title::TitleGUI>());
