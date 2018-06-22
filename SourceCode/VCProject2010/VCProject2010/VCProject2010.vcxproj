@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="Help.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="AnswerBoard.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="Help.h" />

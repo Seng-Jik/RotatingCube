@@ -94,22 +94,24 @@ void Engine::Rendering::Sprite2D::Draw() const
 		for (auto& p : vbcpu_)
 			p.color = colorMod_;
 
-		vbcpu_[0].position.x = position_.x - size_.x * zoom_;
+		const auto spilitXZoom = float(spriteModeSplit_) / size_.x;
+
+		vbcpu_[0].position.x = position_.x - size_.x * zoom_ * spilitXZoom;
 		vbcpu_[0].position.y = position_.y - size_.y * zoom_;
 
-		vbcpu_[1].position.x = position_.x - size_.x * zoom_;
+		vbcpu_[1].position.x = position_.x - size_.x * zoom_ * spilitXZoom;
 		vbcpu_[1].position.y = position_.y + size_.y * zoom_;
 
-		vbcpu_[2].position.x = position_.x + size_.x * zoom_;
+		vbcpu_[2].position.x = position_.x + size_.x * zoom_ * spilitXZoom;
 		vbcpu_[2].position.y = position_.y - size_.y * zoom_;
 
-		vbcpu_[3].position.x = position_.x + size_.x * zoom_;
+		vbcpu_[3].position.x = position_.x + size_.x * zoom_ * spilitXZoom;
 		vbcpu_[3].position.y = position_.y + size_.y * zoom_;
 
-		vbcpu_[4].position.x = position_.x + size_.x * zoom_;
+		vbcpu_[4].position.x = position_.x + size_.x * zoom_ * spilitXZoom;
 		vbcpu_[4].position.y = position_.y - size_.y * zoom_;
 
-		vbcpu_[5].position.x = position_.x - size_.x * zoom_;
+		vbcpu_[5].position.x = position_.x - size_.x * zoom_ * spilitXZoom;
 		vbcpu_[5].position.y = position_.y + size_.y * zoom_;
 
 		const auto left0 = float(spriteModeSplit_*usingSpriteNum_) / size_.x;
@@ -152,6 +154,8 @@ void Engine::Rendering::Sprite2D::SetAsSpriteSet(int xSplit, int num)
 {
 	spriteModeSplit_ = xSplit;
 	usingSpriteNum_ = num;
+
+	updatevb_ = true;
 }
 
 DirectX::XMFLOAT4 Engine::Rendering::Sprite2D::GetSpriteRect() const

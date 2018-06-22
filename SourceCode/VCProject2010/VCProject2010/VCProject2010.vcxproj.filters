@@ -129,6 +129,9 @@
     <ClCompile Include="Help.cpp">
       <Filter>Source Files\Game\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Source Files\Game\GamePlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="Help.h">
       <Filter>Header Files\Game\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Header Files\Game\GamePlay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
