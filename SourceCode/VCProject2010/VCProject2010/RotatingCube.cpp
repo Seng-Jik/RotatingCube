@@ -41,8 +41,13 @@ void Game::GamePlay::RotatingCube::Update(float d)
 
 		deltas_.Write(mouseDelta * d);
 	}
+	else if (mouseState == MouseState::JustDown)
+	{
+		model_.Alpha().Run(0.25f, 0.15f, 1);
+	}
 	else if (mouseState == MouseState::JustUp)
 	{
+		model_.Alpha().Run(1, 0.15f, 1);
 		constexpr auto ForceScaling = 0.1f;
 		const auto delta = std::accumulate(deltas_.begin(), deltas_.end(), DirectX::XMFLOAT2(0,0),
 			[](DirectX::XMFLOAT2 a, DirectX::XMFLOAT2 b) {

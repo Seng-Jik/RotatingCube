@@ -12,10 +12,11 @@ namespace Engine
 		{
 		private:
 
-			struct GSCB
+			struct PSCB
 			{
 				DirectX::XMVECTOR eyepos;
 				float lightPower = 0;
+				float alpha = 1;
 			};
 
 			Engine::Rendering::PtrVBuffer vbo_;
@@ -34,7 +35,7 @@ namespace Engine
 			float rotX_ = 0, rotY_ = 0, rotZ_ = 0;
 			float scale_ = 1;
 
-			Tween<float> lightPower_ = 0;
+			Tween<float> lightPower_ = 0,alpha_ = 1;
 
 			DirectX::XMFLOAT3 centerOffset_ = DirectX::XMFLOAT3(0,0,0);
 
@@ -53,6 +54,11 @@ namespace Engine
 			void SetRotating(float rotX, float rotY, float rotZ);
 			void SetScale(float scale);
 			void SetCenterOffset(float x,float y,float z);
+
+			inline auto& Alpha()
+			{
+				return alpha_;
+			}
 		};
 	}
 }

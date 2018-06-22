@@ -27,8 +27,8 @@ ObjModel::ObjModel(const std::string & modelName)
 
 	tsf_ = Engine::Rendering::CreateConstantBuffer(tsfcpu);
 
-	GSCB gscb;
-	gscb_ = Engine::Rendering::CreateConstantBuffer(gscb);
+	PSCB pscb;
+	gscb_ = Engine::Rendering::CreateConstantBuffer(pscb);
 }
 
 void ObjModel::Draw() const
@@ -59,6 +59,7 @@ void ObjModel::Draw() const
 void ObjModel::Update(float d)
 {
 	lightPower_.Update(d);
+	alpha_.Update(d);
 
 	Engine::Rendering::Transform tsfcpu;
 	tsfcpu.prj = Engine::GetDevice().Perspective();
@@ -80,11 +81,12 @@ void ObjModel::Update(float d)
 
 	Engine::Rendering::UpdateCBuffer(tsf_, tsfcpu.Transpose());
 
-	GSCB gscb;
-	gscb.eyepos = eye;
-	gscb.lightPower = lightPower_;
+	PSCB pscb;
+	pscb.eyepos = eye;
+	pscb.lightPower = lightPower_;
+	pscb.alpha = alpha_;
 
-	Engine::Rendering::UpdateCBuffer(gscb_, gscb);
+	Engine::Rendering::UpdateCBuffer(gscb_, pscb);
 }
 
 void Engine::Rendering::ObjModel::SetRotating(DirectX::XMFLOAT3 rot)
