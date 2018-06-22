@@ -4,7 +4,7 @@
 
 Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground* bk):
 	clk_{ NewObject<Clock>() },
-	back_ { NewObject<Engine::Button>("back") }
+	back_ { NewObject<Engine::Button>("backs") }
 {
 	clk_.Alpha() = 0;
 	clk_.Alpha().Run(1, 1, 1);
