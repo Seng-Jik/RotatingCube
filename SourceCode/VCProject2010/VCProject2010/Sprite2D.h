@@ -26,6 +26,9 @@ namespace Engine
 			static ComPtr<ID3D11PixelShader> getPShader();
 			static ComPtr<ID3D11SamplerState> getSamplerState();
 
+			int spriteModeSplit_;
+			int usingSpriteNum_ = 0;
+
 		public:
 			Sprite2D(const Sprite2D&) = delete;
 			const Sprite2D& operator = (const Sprite2D&) = delete;
@@ -36,6 +39,8 @@ namespace Engine
 			void SetZoom(float zoom);
 			void SetPos(float x, float y);
 			void Draw() const override;
+
+			void SetAsSpriteSet(int xSplit, int num);
 
 			DirectX::XMFLOAT4 GetSpriteRect() const;
 		};

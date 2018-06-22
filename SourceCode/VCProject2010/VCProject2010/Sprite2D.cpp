@@ -48,24 +48,14 @@ ComPtr<ID3D11SamplerState> Engine::Rendering::Sprite2D::getSamplerState()
 
 Engine::Rendering::Sprite2D::Sprite2D(const char * tex) 
 {
-	vbcpu_[0].texCoord = DirectX::XMFLOAT2(0, 1);
-	vbcpu_[1].texCoord = DirectX::XMFLOAT2(0, 0);
-	vbcpu_[2].texCoord = DirectX::XMFLOAT2(1, 1);
-
-	vbcpu_[3].texCoord = DirectX::XMFLOAT2(1, 0);
-	vbcpu_[4].texCoord = DirectX::XMFLOAT2(1, 1);
-	vbcpu_[5].texCoord = DirectX::XMFLOAT2(0, 0);
-
-	for (auto& p : vbcpu_)
-		p.position.z = 0.4f;
-	
-
 	PtrTex2D t;
 	DirectX::XMINT2 size;
 	std::tie(t, size) = LoadTex2D(tex);
 	const_cast<PtrTex2D&>(tex_) = std::move(t);
 	const_cast<PtrTex2DShaderResView&>(texResView_) = Engine::Rendering::CreateShaderResView(tex_);
 	const_cast<DirectX::XMINT2&>(size_) = std::move(size);
+
+	spriteModeSplit_ = size.x;
 }
 
 void Engine::Rendering::Sprite2D::SetColorMod(DirectX::XMFLOAT3 rgb)
@@ -121,6 +111,19 @@ void Engine::Rendering::Sprite2D::Draw() const
 
 		vbcpu_[5].position.x = position_.x - size_.x * zoom_;
 		vbcpu_[5].position.y = position_.y + size_.y * zoom_;
+
+		const auto left0 = float(spriteModeSplit_*usingSpriteNum_) / size_.x;
+		const auto left1 = float(spriteModeSplit_*(usingSpriteNum_ + 1)) / size_.x;
+		vbcpu_[0].texCoord = DirectX::XMFLOAT2(left0, 1);
+		vbcpu_[1].texCoord = DirectX::XMFLOAT2(left0, 0);
+		vbcpu_[2].texCoord = DirectX::XMFLOAT2(left1, 1);
+
+		vbcpu_[3].texCoord = DirectX::XMFLOAT2(left1, 0);
+		vbcpu_[4].texCoord = DirectX::XMFLOAT2(left1, 1);
+		vbcpu_[5].texCoord = DirectX::XMFLOAT2(left0, 0);
+
+		for (auto& p : vbcpu_)
+			p.position.z = 0.4f;
 		
 		VertexIn::UpdateVBuffer(vb_, vbcpu_.data());
 	}
@@ -143,6 +146,12 @@ void Engine::Rendering::Sprite2D::Draw() const
 	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
 	d.Context().Draw(6, 0);
 
+}
+
+void Engine::Rendering::Sprite2D::SetAsSpriteSet(int xSplit, int num)
+{
+	spriteModeSplit_ = xSplit;
+	usingSpriteNum_ = num;
 }
 
 DirectX::XMFLOAT4 Engine::Rendering::Sprite2D::GetSpriteRect() const

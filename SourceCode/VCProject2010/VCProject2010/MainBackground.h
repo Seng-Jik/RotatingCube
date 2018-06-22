@@ -39,7 +39,9 @@ namespace Game
 
 		void ReturnToLogo();
 
-		void InToGame();
+		void GoToGame();
+		void GoToHelp();
+		void ReturnToStageSelect();
 	};
 
 }

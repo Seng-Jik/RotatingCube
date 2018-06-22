@@ -36,7 +36,7 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 							for (auto i : p)
 								i->DisableActive();
 						gui.FadeOut();
-						mainBackground.InToGame();
+						mainBackground.GoToGame();
 						Exit();
 
 						mainBackground.NewObject<Game::GamePlay::GameMain>(Game::GamePlay::Stages[num - 1]);

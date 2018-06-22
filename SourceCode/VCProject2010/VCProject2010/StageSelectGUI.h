@@ -13,7 +13,7 @@ namespace Game
 		class StageSelectGUI : public Engine::ObjectSet<Engine::GameObject>
 		{
 		private:
-			Engine::Button& back_;
+			Engine::Button &back_,&help_;
 			Engine::TaskList tl_;
 			StageSelectMenu& menu_;
 		public:

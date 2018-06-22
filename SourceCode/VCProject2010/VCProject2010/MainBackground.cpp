@@ -68,9 +68,20 @@ void Game::MainBackground::ReturnToLogo()
 	}, 2.5f);
 }
 
-void Game::MainBackground::InToGame()
+void Game::MainBackground::GoToGame()
 {
+	//TODO:没有把light切回去
 	bkCamera_.Run(-1, 1, 1);
 	light_.Run(0, 1, 1);
+}
+
+void Game::MainBackground::GoToHelp()
+{
+	bkCamera_.Run(-1, 1, 1);
+}
+
+void Game::MainBackground::ReturnToStageSelect()
+{
+	bkCamera_.Run(1, 0.5f, 1);
 }
 

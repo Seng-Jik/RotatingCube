@@ -133,6 +133,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="Help.cpp" />
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="ObjModel.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ModelTest.h" />
     <ClInclude Include="ObjLoader.h" />
@@ -208,6 +210,7 @@
       <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DisableOptimizations>
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EnableDebuggingInformation>
     </FxCompile>
+    <None Include="..\..\..\README.md" />
     <None Include="VertexOut.hlsli">
       <FileType>Document</FileType>
     </None>
