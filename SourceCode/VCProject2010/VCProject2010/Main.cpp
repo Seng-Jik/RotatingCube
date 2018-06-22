@@ -62,8 +62,8 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	auto& device = Engine::GetDevice();
 
 	
-	//root.NewObject<Game::MainBackground>();
-	root.NewObject<Game::GamePlay::Clock>();
+	root.NewObject<Game::MainBackground>();
+	//root.NewObject<Game::GamePlay::Clock>();
 
 	// 引擎主循环，处理屏幕图像刷新等工作
 	while(device.EngineMainLoop())

@@ -36,7 +36,7 @@ Game::GamePlay::Clock::Clock() :
 
 void Game::GamePlay::Clock::Update(float d)
 {
-
+	alpha_.Update(d);
 	zoom_.Update(d);
 	x_.Update(d);
 	y_.Update(d);
@@ -51,6 +51,15 @@ void Game::GamePlay::Clock::Update(float d)
 	m2_.SetPos(x_ + 56 * zoom_, y_);
 	ms1_.SetPos(x_ + 93 * zoom_, y_);
 	ms2_.SetPos(x_ + 130 * zoom_, y_);
+
+	min1_.SetAlpha(alpha_);
+	min2_.SetAlpha(alpha_);
+	m1_.SetAlpha(alpha_);
+	sec1_.SetAlpha(alpha_);
+	sec2_.SetAlpha(alpha_);
+	m2_.SetAlpha(alpha_);
+	ms1_.SetAlpha(alpha_);
+	ms2_.SetAlpha(alpha_);
 
 	min1_.SetZoom(zoom_ * 0.25f);
 	min2_.SetZoom(zoom_ * 0.25f);
@@ -86,6 +95,7 @@ void Game::GamePlay::Clock::SetZoom(float zoom, float tween)
 
 void Game::GamePlay::Clock::SetTime(float sec)
 {
+	sec_ = sec;
 	const int ms = int((sec - std::floor(sec)) * 100);
 	const int se = int(std::floor(sec)) % 60;
 	const int min = int(std::floor(sec)) / 60 % 100;

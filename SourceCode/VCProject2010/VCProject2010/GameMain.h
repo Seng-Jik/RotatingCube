@@ -4,6 +4,7 @@
 #include "StageData.h"
 #include "RotatingCube.h"
 #include "TaskList.h"
+#include "Clock.h"
 
 namespace Game
 {
@@ -14,6 +15,9 @@ namespace Game
 		private:
 			RotatingCube* rotCube_;
 			Engine::TaskList tasks_;
+
+			Clock& clk_;
+			float timer_ = -1;
 		public:
 			GameMain(const decltype(*Stages)& stage);
 
