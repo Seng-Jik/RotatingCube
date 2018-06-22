@@ -66,3 +66,8 @@ void Game::GamePlay::RotatingCube::Update(float d)
 		force_.Run(DirectX::XMFLOAT3(0, 0, 0),Clamp(LengthSqrt(force_) * 1000,0.0f,1.0f), 1);
 	}
 }
+
+void Game::GamePlay::RotatingCube::FadeOut()
+{
+	model_.LightPower().Run(0, 0.25f, 1);
+}

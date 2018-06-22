@@ -8,3 +8,8 @@ Game::GamePlay::AnswerBoard::AnswerBoard():
 	board_.SetScale(19.5F);
 	board_.LightPower().Run(100, 1, 1);
 }
+
+void Game::GamePlay::AnswerBoard::FadeOut()
+{
+	board_.LightPower().Run(0, 0.25f, 1);
+}

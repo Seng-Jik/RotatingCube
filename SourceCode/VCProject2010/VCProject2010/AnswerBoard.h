@@ -12,7 +12,7 @@ namespace Game
 		public:
 			AnswerBoard();
 			
-
+			void FadeOut();
 		};
 	}
 }

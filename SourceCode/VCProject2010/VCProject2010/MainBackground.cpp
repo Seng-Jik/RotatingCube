@@ -70,7 +70,7 @@ void Game::MainBackground::ReturnToLogo()
 
 void Game::MainBackground::GoToGame()
 {
-	//TODO:没有把light切回去
+	//TODO:某些情况下没有把light切回去
 	bkCamera_.Run(-1, 1, 1);
 	light_.Run(0, 1, 1);
 }
@@ -83,5 +83,6 @@ void Game::MainBackground::GoToHelp()
 void Game::MainBackground::ReturnToStageSelect()
 {
 	bkCamera_.Run(1, 0.5f, 1);
+	light_.Run(1, 1, 1);
 }
 

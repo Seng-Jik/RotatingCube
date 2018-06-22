@@ -25,6 +25,8 @@ namespace Game
 			RotatingCube(const decltype(*Stages)& stage);
 
 			void Update(float d) override;
+
+			void FadeOut();
 		};
 	}
 }

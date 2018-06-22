@@ -6,6 +6,8 @@
 #include "TaskList.h"
 #include "Clock.h"
 #include "AnswerBoard.h"
+#include "Button.h"
+#include "MainBackground.h"
 
 namespace Game
 {
@@ -18,12 +20,16 @@ namespace Game
 			AnswerBoard* ansBoard_;
 			Engine::TaskList tasks_;
 
+			Engine::Button &back_;
+
 			Clock& clk_;
 			float timer_ = -1;
 		public:
-			GameMain(const decltype(*Stages)& stage);
+			GameMain(const decltype(*Stages)& stage,MainBackground* bk = nullptr);
 
 			void Update(float d);
+
+			void Exit();
 		};
 	}
 }
