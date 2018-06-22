@@ -8,10 +8,11 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage):
 	clk_.Alpha().Run(1, 1, 1);
 	clk_.SetPos(0, 0);
 	clk_.SetPos(0, 200, 1);
+	clk_.DrawOnTop = true;
 
 	tasks_.AddTask([this,&stage] {
 		rotCube_ = &NewObject<RotatingCube>(stage);
-
+		ansBoard_ = &NewObject<AnswerBoard>();
 		timer_ = 0;
 	}, 1);
 }

@@ -13,5 +13,6 @@ namespace Engine
 		virtual void Draw() const{}
 		virtual bool Live() const { return true; }
 
+		bool DrawOnTop = false;
 	};
 }

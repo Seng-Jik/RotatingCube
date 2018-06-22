@@ -129,6 +129,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnswerBoard.cpp" />
     <ClCompile Include="Assets.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Clock.cpp" />

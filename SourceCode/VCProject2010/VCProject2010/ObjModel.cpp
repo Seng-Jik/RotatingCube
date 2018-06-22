@@ -4,7 +4,8 @@
 
 using namespace Engine::Rendering;
 
-ObjModel::ObjModel(const std::string & modelName)
+ObjModel::ObjModel(const std::string & modelName,bool dp):
+	depthTest_ { dp }
 {
 	const auto obj = Engine::Rendering::LoadObjModel(modelName);
 	
@@ -47,7 +48,7 @@ void ObjModel::Draw() const
 
 	d.Context().IASetVertexBuffers(0, 1, &buf, stride, offset);
 	d.Context().IASetIndexBuffer(ibo_.Get(), DXGI_FORMAT_R32_UINT, 0);
-	d.DepthTest(true);
+	d.DepthTest(depthTest_);
 	d.Context().DrawIndexed(ibSize_, 0,0);
 	d.DepthTest(false);
 	d.Context().GSSetShader(nullptr, nullptr, 0);

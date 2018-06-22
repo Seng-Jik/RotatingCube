@@ -39,8 +39,10 @@ namespace Engine
 
 			DirectX::XMFLOAT3 centerOffset_ = DirectX::XMFLOAT3(0,0,0);
 
+			const bool depthTest_;
+
 		public:
-			ObjModel(const std::string& modelName);
+			ObjModel(const std::string& modelName,bool depthTest = true);
 
 			void Draw() const override;
 			void Update(float) override;

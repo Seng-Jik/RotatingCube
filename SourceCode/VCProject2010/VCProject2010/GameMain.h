@@ -5,6 +5,7 @@
 #include "RotatingCube.h"
 #include "TaskList.h"
 #include "Clock.h"
+#include "AnswerBoard.h"
 
 namespace Game
 {
@@ -14,6 +15,7 @@ namespace Game
 		{
 		private:
 			RotatingCube* rotCube_;
+			AnswerBoard* ansBoard_;
 			Engine::TaskList tasks_;
 
 			Clock& clk_;

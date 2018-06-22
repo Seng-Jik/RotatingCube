@@ -5,7 +5,7 @@
 
 namespace Engine
 {
-	template <typename ObjectType>
+	template <typename ObjectType = GameObject>
 	class ObjectSet : public GameObject
 	{
 	private:
@@ -34,8 +34,20 @@ namespace Engine
 
 		virtual void Draw() const 
 		{
+			static std::stack<ObjectType*> onTop;
 			for (const auto& p : objects_)
-				p->Draw();
+			{
+				if (p->DrawOnTop)
+					onTop.push(p.get());
+				else
+					p->Draw();
+			}
+
+			while (!onTop.empty())
+			{
+				onTop.top()->Draw();
+				onTop.pop();
+			}
 		}
 
 		virtual bool Live() const 
