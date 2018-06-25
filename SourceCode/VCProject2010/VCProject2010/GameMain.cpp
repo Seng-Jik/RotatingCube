@@ -50,7 +50,7 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 			back_.Alpha().Run(0, 0.25f, 1);
 			tasks_.AddTask([this,bk] {
 				clk_.Alpha().Run(0, 0.25f, 1);
-				NewObject<StageComplete>(bk, [this]() {Exit(); });
+				NewObject<StageComplete>(clk_.GetTime(),bk, [this]() {Exit(); });
 			},0.25f);
 		});
 	}, 1);

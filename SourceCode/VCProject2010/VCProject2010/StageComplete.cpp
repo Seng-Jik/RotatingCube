@@ -1,11 +1,21 @@
 #include "stdafx.h"
 #include "StageComplete.h"
 #include "Button.h"
+#include "Clock.h"
 
-Game::GamePlay::StageComplete::StageComplete(Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
+Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
 {
 	hintProgress_.Run(1, 3, 1);
+
+	auto& clk = NewObject<Clock>();
+	clk.SetTime(time);
+	clk.SetZoom(1);
+	clk.Alpha() = 0;
+
+	tl_.AddTask([&clk] {
+		clk.Alpha().Run(1, 0.5f, 1);
+	},3);
 
 	auto& back = NewObject<Engine::Button>("list");
 	auto& rest = NewObject<Engine::Button>("restart");
@@ -27,18 +37,18 @@ Game::GamePlay::StageComplete::StageComplete(Engine::ObjectSet<>* mainBk, std::f
 	tl_.AddTask([&] {
 
 		tl_.AddTask([&back] {
-			back.Zoom().Run(0.5f, 0.2f, 1);
-			back.Alpha().Run(1, 0.2f, 1);
+			back.Zoom().Run(0.5f, 0.3f, 1);
+			back.Alpha().Run(1, 0.3f, 1);
 		}, 0.25f);
 
 		tl_.AddTask([&rest] {
-			rest.Zoom().Run(0.5f, 0.2f, 1);
-			rest.Alpha().Run(1, 0.2f, 1);
+			rest.Zoom().Run(0.5f, 0.3f, 1);
+			rest.Alpha().Run(1, 0.3f, 1);
 		}, 0.45f);
 
 		tl_.AddTask([&next] {
-			next.Zoom().Run(0.5f, 0.2f, 1);
-			next.Alpha().Run(1, 0.2f, 1);
+			next.Zoom().Run(0.5f, 0.3f, 1);
+			next.Alpha().Run(1, 0.3f, 1);
 		}, 0.65f);
 
 		tl_.AddTask([&] {
@@ -46,7 +56,28 @@ Game::GamePlay::StageComplete::StageComplete(Engine::ObjectSet<>* mainBk, std::f
 			back.SetEnable(true);
 			next.SetEnable(true);
 		},0.85f);
-	},3);
+	},3.5f);
+
+	const auto exitFunction = [&clk,&back,&rest,&next,gameMainExit,this] {
+		hintProgress_.Run(0, 0.5f, 1);
+		clk.Alpha().Run(0, 0.5f, 1);
+		back.Alpha().Run(0, 0.5f, 1);
+		rest.Alpha().Run(0, 0.5f, 1);
+		next.Alpha().Run(0, 0.5f, 1);
+		gameMainExit();
+	};
+
+	back.SetOnClick([exitFunction] {
+		exitFunction();
+	});
+
+	rest.SetOnClick([exitFunction] {
+		exitFunction();
+	});
+
+	next.SetOnClick([exitFunction] {
+		exitFunction();
+	});
 }
 
 void Game::GamePlay::StageComplete::Update(float d)
