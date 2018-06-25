@@ -36,7 +36,7 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 
 	tasks_.AddTask([this,&stage] {
 		rotCube_ = &NewObject<RotatingCube>(stage);
-		ansBoard_ = &NewObject<AnswerBoard>();
+		ansBoard_ = &NewObject<AnswerBoard>(stage);
 		timer_ = 0;
 
 		back_.Alpha().Run(0.5f, 0.5f, 1);

@@ -62,7 +62,7 @@ std::tuple<PtrTex2D,PtrRTView, DirectX::XMINT2> Engine::Rendering::CreateRTTTex(
 	dsDesc.MipLevels = 1;
 	dsDesc.ArraySize = 1;
 	dsDesc.CPUAccessFlags = 0;
-	dsDesc.SampleDesc.Count = 4;
+	dsDesc.SampleDesc.Count = 1;
 	dsDesc.SampleDesc.Quality = 0;
 	dsDesc.MiscFlags = 0;
 	dsDesc.Usage = D3D11_USAGE_DEFAULT;

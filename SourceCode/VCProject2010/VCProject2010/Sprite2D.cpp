@@ -24,6 +24,12 @@ ComPtr<ID3D11PixelShader> Engine::Rendering::Sprite2D::getPShader()
 	return ret;
 }
 
+ComPtr<ID3D11PixelShader> Engine::Rendering::Sprite2D::getPShaderRT()
+{
+	static const auto ret = LoadPShader("Sprite2DRT");
+	return ret;
+}
+
 ComPtr<ID3D11SamplerState> Engine::Rendering::Sprite2D::getSamplerState()
 {
 	static D3D11_SAMPLER_DESC samplerDesc = 
@@ -65,7 +71,7 @@ Engine::Rendering::Sprite2D::Sprite2D(const Engine::Rendering::PtrTex2D & rt)
 	DirectX::XMINT2 size{ int(desc.Width),int(desc.Height) };
 
 	const_cast<PtrTex2D&>(tex_) = rt;
-	const_cast<PtrTex2DShaderResView&>(texResView_) = Engine::Rendering::CreateShaderResView(tex_, D3D11_SRV_DIMENSION_TEXTURE2DMS);
+	const_cast<PtrTex2DShaderResView&>(texResView_) = Engine::Rendering::CreateShaderResView(tex_);
 	const_cast<DirectX::XMINT2&>(size_) = std::move(size);
 
 	spriteModeSplit_ = size.x;
@@ -147,7 +153,7 @@ void Engine::Rendering::Sprite2D::Draw() const
 	auto cbp = getCBuffer();
 	d.Context().VSSetConstantBuffers(0, 1, &cbp);
 	d.Context().PSSetConstantBuffers(0, 0, nullptr);
-	d.Context().PSSetShader(getPShader().Get(), nullptr, 0);
+	d.Context().PSSetShader(isRT ? getPShader().Get() : getPShader().Get(), nullptr, 0);
 	constexpr float col[] = { 0,0,0,0 };
 
 

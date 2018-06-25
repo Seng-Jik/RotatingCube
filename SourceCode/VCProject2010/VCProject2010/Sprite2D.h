@@ -24,10 +24,13 @@ namespace Engine
 
 			static ID3D11Buffer* getCBuffer();
 			static ComPtr<ID3D11PixelShader> getPShader();
+			static ComPtr<ID3D11PixelShader> getPShaderRT();
 			static ComPtr<ID3D11SamplerState> getSamplerState();
 
 			int spriteModeSplit_;
 			int usingSpriteNum_ = 0;
+
+			const bool isRT = false;
 
 		public:
 			Sprite2D(const Sprite2D&) = delete;

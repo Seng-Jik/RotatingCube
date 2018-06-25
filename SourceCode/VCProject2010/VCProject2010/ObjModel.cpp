@@ -4,7 +4,7 @@
 
 using namespace Engine::Rendering;
 
-ObjModel::ObjModel(const std::string & modelName,bool dp):
+ObjModel::ObjModel(const std::string & modelName,bool dp, const char* psName):
 	depthTest_ { dp }
 {
 	const auto obj = Engine::Rendering::LoadObjModel(modelName);
@@ -13,7 +13,7 @@ ObjModel::ObjModel(const std::string & modelName,bool dp):
 	ibo_ = Engine::Rendering::VertexIn::CreateIBuffer(std::get<1>(obj).data(), std::get<1>(obj).size());
 	ibSize_ = std::get<1>(obj).size();
 
-	ps_ = Engine::Rendering::LoadPShader("CubeModel");
+	ps_ = Engine::Rendering::LoadPShader(psName);
 	gs_ = Engine::Rendering::LoadGShader("NormalCalc");
 
 	Engine::Rendering::Transform tsfcpu;

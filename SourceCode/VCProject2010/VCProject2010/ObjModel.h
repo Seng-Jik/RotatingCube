@@ -42,10 +42,11 @@ namespace Engine
 			const bool depthTest_;
 
 		public:
-			ObjModel(const std::string& modelName,bool depthTest = true);
+			ObjModel(const std::string& modelName,bool depthTest = true,const char* psName = "CubeModel");
 
 			void Draw() const override;
 			void Update(float) override;
+
 
 			inline auto& LightPower()
 			{

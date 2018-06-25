@@ -2,13 +2,8 @@
 #include "AnswerBoard.h"
 #include "Sprite2D.h"
 
-void Game::GamePlay::AnswerBoard::renderAnswerToRT(const decltype(*Stages)& stg)
-{
-	Engine::Rendering::ObjModel model{ stg.ModelName,false };
-	model.SetCenterOffset
-}
 
-Game::GamePlay::AnswerBoard::AnswerBoard(const decltype(*Stages)&):
+Game::GamePlay::AnswerBoard::AnswerBoard(const decltype(*Stages)& stg):
 	board_ {
 		NewObject<Engine::Rendering::ObjModel>("board", false)
 	}
@@ -17,15 +12,11 @@ Game::GamePlay::AnswerBoard::AnswerBoard(const decltype(*Stages)&):
 	board_.SetScale(19.5F);
 	board_.LightPower().Run(100, 1, 1);
 
-	std::tie(answer_, answerRtView_, std::ignore) = Engine::Rendering::CreateRTTTex();
-
-	Engine::GetDevice().Context().OMSetRenderTargets(1, answerRtView_.GetAddressOf(), nullptr);
-	const float col[] = { 0,0,0,0 };
-	Engine::GetDevice().Context().ClearRenderTargetView(answerRtView_.Get(), col);
-	Engine::GetDevice().ResetRenderTarget();
-
-	auto& p = NewObject<Engine::Rendering::Sprite2D>(answer_);
-	p.DrawOnTop = true;
+	auto& model = NewObject<Engine::Rendering::ObjModel>( stg.ModelName,false,"ModelBlack" );
+	model.SetCenterOffset(stg.CenterOffset.x, stg.CenterOffset.y, stg.CenterOffset.z);
+	model.SetRotating(stg.AnswerRotating);
+	model.SetScale(stg.Scaling);
+	model.DrawOnTop = true;
 }
 
 void Game::GamePlay::AnswerBoard::FadeOut()
