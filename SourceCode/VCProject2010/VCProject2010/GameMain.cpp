@@ -46,11 +46,11 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 			back_.SetEnable(true);
 		}, 0.5f);
 
-		rotCube_->SetFinishedEvent([bk,this]() {
+		rotCube_->SetFinishedEvent([bk,this, stage]() {
 			back_.Alpha().Run(0, 0.25f, 1);
-			tasks_.AddTask([this,bk] {
+			tasks_.AddTask([this,bk, stage] {
 				clk_.Alpha().Run(0, 0.25f, 1);
-				NewObject<StageComplete>(clk_.GetTime(),bk, [this]() {Exit(); });
+				NewObject<StageComplete>(clk_.GetTime(),stage.Current, stage.NextStage,bk, [this]() {Exit(); });
 			},0.25f);
 		});
 	}, 1);

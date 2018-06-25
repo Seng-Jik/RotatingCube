@@ -69,3 +69,8 @@ void Engine::Button::DisableActive()
 {
 	activeEnabled_ = false;
 }
+
+void Engine::Button::EnableActive()
+{
+	activeEnabled_ = true;
+}

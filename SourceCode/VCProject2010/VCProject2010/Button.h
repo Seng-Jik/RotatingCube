@@ -46,5 +46,6 @@ namespace Engine
 		void SetEnable(bool b);
 
 		void DisableActive();
+		void EnableActive();
 	};
 }

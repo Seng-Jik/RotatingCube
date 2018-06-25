@@ -4,8 +4,9 @@
 #include "Clock.h"
 #include "StageSelectGUI.h"
 #include "MainBackground.h"
+#include "GameMain.h"
 
-Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
+Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName nextStg,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
 {
 	hintProgress_.Run(1, 3, 1);
@@ -36,6 +37,10 @@ Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mai
 	rest.Zoom() = 0.95f;
 	next.Zoom() = 0.95f;
 
+	back.DisableActive();
+	rest.DisableActive();
+	next.DisableActive();
+
 	tl_.AddTask([&] {
 
 		tl_.AddTask([&back] {
@@ -54,6 +59,9 @@ Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mai
 		}, 0.65f);
 
 		tl_.AddTask([&] {
+			rest.EnableActive();
+			back.EnableActive();
+			next.EnableActive();
 			rest.SetEnable(true);
 			back.SetEnable(true);
 			next.SetEnable(true);
@@ -77,12 +85,19 @@ Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mai
 		static_cast<MainBackground*>(mainBk)->ReturnToStageSelect();
 	});
 
-	rest.SetOnClick([exitFunction] {
+	rest.SetOnClick([exitFunction, mainBk, stg] {
 		exitFunction();
+		static_cast<MainBackground*>(mainBk)->TaskList().AddTask([mainBk,stg] {
+			mainBk->NewObject<GameMain>(Stages[stg-1], static_cast<MainBackground*>(mainBk));
+		}, 0.75f);
 	});
 
-	next.SetOnClick([exitFunction] {
+	next.SetOnClick([exitFunction, nextStg , mainBk] {
 		exitFunction();
+
+		static_cast<MainBackground*>(mainBk)->TaskList().AddTask([mainBk, nextStg] {
+			mainBk->NewObject<GameMain>(Stages[nextStg-1], static_cast<MainBackground*>(mainBk));
+		}, 0.75f);
 	});
 }
 

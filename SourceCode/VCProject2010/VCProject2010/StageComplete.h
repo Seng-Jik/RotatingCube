@@ -3,7 +3,7 @@
 #include "Tween.h"
 #include "Sprite2D.h"
 #include "TaskList.h"
-
+#include "StageData.h"
 namespace Game
 {
 	namespace GamePlay
@@ -15,7 +15,7 @@ namespace Game
 			Engine::Tween<float> hintProgress_ = 0;
 			Engine::TaskList tl_;
 		public:
-			StageComplete(float time,Engine::ObjectSet<>* mainBk,std::function<void()> gameMainExit);
+			StageComplete(float time,StageName stg, StageName nextStg,Engine::ObjectSet<>* mainBk,std::function<void()> gameMainExit);
 
 			void Update(float) override;
 		};
