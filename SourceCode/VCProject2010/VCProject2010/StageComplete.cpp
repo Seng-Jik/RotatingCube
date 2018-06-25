@@ -5,10 +5,13 @@
 #include "StageSelectGUI.h"
 #include "MainBackground.h"
 #include "GameMain.h"
+#include "SavaData.h"
 
 Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName nextStg,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
 {
+	SaveData::Get().OpenStage(stg, time);
+
 	hintProgress_.Run(1, 3, 1);
 
 	auto& clk = NewObject<Clock>();
