@@ -20,3 +20,13 @@ bool Game::SaveData::StageOpened(int stage) const
 	return false;
 }
 
+float Game::SaveData::GetStageTime(GamePlay::StageName stgName)
+{
+	return 2333.0f;
+}
+
+void Game::SaveData::OpenStage(GamePlay::StageName stgName, float time) const
+{
+	Engine::Log("SaveData::OpenStage", stgName, time);
+}
+

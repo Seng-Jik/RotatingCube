@@ -1,4 +1,5 @@
 #pragma once
+#include "StageData.h"
 namespace Game
 {
 	class SaveData
@@ -12,5 +13,7 @@ namespace Game
 		static SaveData& Get();
 
 		bool StageOpened(int stage) const;
+		float GetStageTime(GamePlay::StageName stgName);
+		void OpenStage(GamePlay::StageName stgName,float time) const;
 	};
 }
