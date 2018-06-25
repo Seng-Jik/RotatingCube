@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "ObjectSet.h"
 #include "ObjModel.h"
 #include "StageData.h"
@@ -26,12 +27,19 @@ namespace Game
 			bool gamming_ = true;
 			bool started_ = false;
 
+			std::function<void()> finishedEvent_;
+
 		public:
 			RotatingCube(const decltype(*Stages)& stage);
 
 			void Update(float d) override;
 
 			void FadeOut();
+
+			inline void SetFinishedEvent(decltype(finishedEvent_) f)
+			{
+				finishedEvent_ = f;
+			}
 
 			inline bool Finished() const
 			{

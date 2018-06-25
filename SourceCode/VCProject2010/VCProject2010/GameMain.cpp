@@ -44,6 +44,10 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 		tasks_.AddTask([this] {
 			back_.SetEnable(true);
 		}, 0.5f);
+
+		rotCube_->SetFinishedEvent([this]() {
+			Exit();
+		});
 	}, 1);
 }
 
@@ -55,11 +59,13 @@ void Game::GamePlay::GameMain::Update(float d)
 
 	if (rotCube_)
 	{
-		if (timer_ >= 0 && rotCube_->Started())
-			timer_ += d;
 		if (!rotCube_->Finished())
-			clk_.SetTime(timer_ >= 0 ? timer_ : 0);
+		{
+			if (timer_ >= 0 && rotCube_->Started())
+				timer_ += d;
 
+			clk_.SetTime(timer_ >= 0 ? timer_ : 0);
+		}
 	}
 }
 

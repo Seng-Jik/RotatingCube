@@ -68,10 +68,11 @@ void Game::GamePlay::RotatingCube::Update(float d)
 		else if (mouseState == MouseState::JustUp)
 		{
 			model_.Alpha().Run(1, 0.15f, 1);
-			if (std::abs(rotating_.Value().x - answer_.x) < 0.25f && std::abs(rotating_.Value().y - answer_.y) < 0.25f)
+			if (std::abs(rotating_.Value().x - answer_.x) < 0.125f && std::abs(rotating_.Value().y - answer_.y) < 0.125f)
 			{
 				rotating_.Run(answer_, 0.1f, 1);
 				gamming_ = false;
+				finishedEvent_();
 			}
 			else
 			{
