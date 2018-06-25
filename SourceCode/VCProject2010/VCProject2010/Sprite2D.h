@@ -34,6 +34,7 @@ namespace Engine
 			const Sprite2D& operator = (const Sprite2D&) = delete;
 
 			Sprite2D(const char* tex);
+			Sprite2D(const Engine::Rendering::PtrTex2D& ptex);
 			void SetColorMod(DirectX::XMFLOAT3 rgb);
 			void SetAlpha(float a);
 			void SetZoom(float zoom);

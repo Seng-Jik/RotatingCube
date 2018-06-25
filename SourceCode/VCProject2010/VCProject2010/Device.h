@@ -78,6 +78,8 @@ namespace Engine
 		DirectX::XMINT2 GetScreenSize() const;
 		float GetScreenWdivH() const;
 
+		void ResetRenderTarget();
+
 		bool EngineMainLoop();
 	};
 

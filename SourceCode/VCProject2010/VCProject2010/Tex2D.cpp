@@ -52,12 +52,37 @@ std::tuple<PtrTex2D, DirectX::XMINT2> Engine::Rendering::LoadTex2D(const char * 
 	return std::make_tuple(ret,DirectX::XMINT2(w,h));
 }
 
-PtrTex2DShaderResView Engine::Rendering::CreateShaderResView(const PtrTex2D & p)
+std::tuple<PtrTex2D,PtrRTView, DirectX::XMINT2> Engine::Rendering::CreateRTTTex()
+{
+	D3D11_TEXTURE2D_DESC dsDesc;
+	dsDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	dsDesc.Width = 800;
+	dsDesc.Height = 600;
+	dsDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+	dsDesc.MipLevels = 1;
+	dsDesc.ArraySize = 1;
+	dsDesc.CPUAccessFlags = 0;
+	dsDesc.SampleDesc.Count = 4;
+	dsDesc.SampleDesc.Quality = 0;
+	dsDesc.MiscFlags = 0;
+	dsDesc.Usage = D3D11_USAGE_DEFAULT;
+
+	PtrTex2D ret;
+	const auto res = Engine::GetDevice().D3DDevice().CreateTexture2D(&dsDesc, nullptr, ret.GetAddressOf());
+	Must(SUCCEEDED(res));
+	
+	PtrRTView rtv;
+	const auto res2 = Engine::GetDevice().D3DDevice().CreateRenderTargetView(ret.Get(), nullptr, rtv.GetAddressOf());
+
+	return std::make_tuple(ret,rtv, DirectX::XMINT2(800, 600));
+}
+
+PtrTex2DShaderResView Engine::Rendering::CreateShaderResView(const PtrTex2D & p, D3D11_SRV_DIMENSION vd)
 {
 	PtrTex2DShaderResView ret;
 	D3D11_SHADER_RESOURCE_VIEW_DESC desc;
 	desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	desc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	desc.ViewDimension = vd;
 	desc.Texture2D.MipLevels = -1;
 	desc.Texture2D.MostDetailedMip = 0;
 	Engine::GetDevice().D3DDevice().CreateShaderResourceView(p.Get(), &desc, ret.GetAddressOf());

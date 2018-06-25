@@ -222,6 +222,11 @@ float Engine::Device::GetScreenWdivH() const
 	return size.x / float(size.y);
 }
 
+void Engine::Device::ResetRenderTarget()
+{
+	context_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), zBufferView_.Get());
+}
+
 bool Engine::Device::EngineMainLoop()
 {
 	mouseLastFrame_ = std::get<1>(Mouse());

@@ -58,6 +58,19 @@ Engine::Rendering::Sprite2D::Sprite2D(const char * tex)
 	spriteModeSplit_ = size.x;
 }
 
+Engine::Rendering::Sprite2D::Sprite2D(const Engine::Rendering::PtrTex2D & rt)
+{
+	D3D11_TEXTURE2D_DESC desc;
+	rt->GetDesc(&desc);
+	DirectX::XMINT2 size{ int(desc.Width),int(desc.Height) };
+
+	const_cast<PtrTex2D&>(tex_) = rt;
+	const_cast<PtrTex2DShaderResView&>(texResView_) = Engine::Rendering::CreateShaderResView(tex_, D3D11_SRV_DIMENSION_TEXTURE2DMS);
+	const_cast<DirectX::XMINT2&>(size_) = std::move(size);
+
+	spriteModeSplit_ = size.x;
+}
+
 void Engine::Rendering::Sprite2D::SetColorMod(DirectX::XMFLOAT3 rgb)
 {
 	colorMod_.x = rgb.x;

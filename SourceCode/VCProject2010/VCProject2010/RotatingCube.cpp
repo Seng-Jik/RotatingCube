@@ -40,6 +40,8 @@ void Game::GamePlay::RotatingCube::Update(float d)
 		rotating_.x += mouseDelta.y * RotateScaling;
 
 		deltas_.Write(mouseDelta * d);
+
+		Log("Rot", rotating_.x, rotating_.y,rotating_.z);
 	}
 	else if (mouseState == MouseState::JustDown)
 	{
