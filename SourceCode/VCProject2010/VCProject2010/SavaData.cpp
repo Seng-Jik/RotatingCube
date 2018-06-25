@@ -25,8 +25,15 @@ float Game::SaveData::GetStageTime(GamePlay::StageName stgName)
 	return 2333.0f;
 }
 
-void Game::SaveData::OpenStage(GamePlay::StageName stgName, float time) const
+void Game::SaveData::OpenStage(GamePlay::StageName stgName)
 {
-	Engine::Log("SaveData::OpenStage", stgName, time);
+	Engine::Log("OpenStage", stgName);
 }
+
+void Game::SaveData::WriteTime(GamePlay::StageName stgName,float time)
+{
+	Engine::Log("WriteTime", stgName, time);
+}
+
+
 

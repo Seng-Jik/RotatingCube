@@ -10,7 +10,8 @@
 Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName nextStg,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
 {
-	SaveData::Get().OpenStage(stg, time);
+	SaveData::Get().WriteTime(stg, time);
+	SaveData::Get().OpenStage(nextStg);
 
 	hintProgress_.Run(1, 3, 1);
 

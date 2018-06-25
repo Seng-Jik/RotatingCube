@@ -14,6 +14,7 @@ namespace Game
 
 		bool StageOpened(int stage) const;
 		float GetStageTime(GamePlay::StageName stgName);
-		void OpenStage(GamePlay::StageName stgName,float time) const;
+		void OpenStage(GamePlay::StageName stgName);
+		void WriteTime(GamePlay::StageName stgName,float time);
 	};
 }
