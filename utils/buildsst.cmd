@@ -12,3 +12,7 @@
 @sst ..\assets\backs.png ..\Bin\backs.sst RGBA
 @sst ..\assets\nums.png ..\Bin\nums.sst RGBA
 @sst ..\assets\help.png ..\Bin\help.sst RGBA
+@sst ..\assets\finish.png ..\Bin\finish.sst RGBA
+@sst ..\assets\list.png ..\Bin\list.sst RGBA
+@sst ..\assets\restart.png ..\Bin\restart.sst RGBA
+@sst ..\assets\next.png ..\Bin\next.sst RGBA

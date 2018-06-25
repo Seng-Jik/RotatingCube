@@ -142,6 +142,7 @@
     <ClCompile Include="RotatingCube.cpp" />
     <ClCompile Include="SavaData.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
+    <ClCompile Include="StageComplete.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
     <ClCompile Include="StageSelectMenu.cpp" />
     <ClCompile Include="TaskList.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="RotatingCube.h" />
     <ClInclude Include="SavaData.h" />
     <ClInclude Include="Sprite2D.h" />
+    <ClInclude Include="StageComplete.h" />
     <ClInclude Include="StageData.h" />
     <ClInclude Include="StageSelectGUI.h" />
     <ClInclude Include="StageSelectMenu.h" />

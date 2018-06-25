@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameMain.h"
 #include "StageSelectGUI.h"
+#include "StageComplete.h"
 
 Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground* bk):
 	clk_{ NewObject<Clock>() },
@@ -46,7 +47,7 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 		}, 0.5f);
 
 		rotCube_->SetFinishedEvent([this]() {
-			Exit();
+			NewObject<StageComplete>();
 		});
 	}, 1);
 }

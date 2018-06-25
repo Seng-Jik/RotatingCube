@@ -135,6 +135,9 @@
     <ClCompile Include="AnswerBoard.cpp">
       <Filter>Source Files\Game\GamePlay</Filter>
     </ClCompile>
+    <ClCompile Include="StageComplete.cpp">
+      <Filter>Source Files\Game\GamePlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -237,6 +240,9 @@
       <Filter>Header Files\Game\Title</Filter>
     </ClInclude>
     <ClInclude Include="Clock.h">
+      <Filter>Header Files\Game\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="StageComplete.h">
       <Filter>Header Files\Game\GamePlay</Filter>
     </ClInclude>
   </ItemGroup>
