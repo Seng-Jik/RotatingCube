@@ -13,13 +13,18 @@ namespace Game
 		private:
 			Engine::Rendering::ObjModel& model_;
 
-			DirectX::XMFLOAT3
+			Engine::Tween<DirectX::XMFLOAT3>
 				rotating_ = DirectX::XMFLOAT3(0,0,0);
 
 			Engine::Tween<DirectX::XMFLOAT3> 
 				force_ = DirectX::XMFLOAT3(0, 0, 0);
 
+			DirectX::XMFLOAT3 answer_;
+
 			Engine::OverwriteArray<DirectX::XMFLOAT2, 256> deltas_;
+
+			bool gamming_ = true;
+			bool started_ = false;
 
 		public:
 			RotatingCube(const decltype(*Stages)& stage);
@@ -27,6 +32,16 @@ namespace Game
 			void Update(float d) override;
 
 			void FadeOut();
+
+			inline bool Finished() const
+			{
+				return !gamming_;
+			}
+
+			inline bool Started() const
+			{
+				return started_;
+			}
 		};
 	}
 }

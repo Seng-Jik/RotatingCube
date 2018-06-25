@@ -16,8 +16,8 @@ namespace Game
 		class GameMain : public Engine::ObjectSet<Engine::GameObject>
 		{
 		private:
-			RotatingCube* rotCube_;
-			AnswerBoard* ansBoard_;
+			RotatingCube* rotCube_ = nullptr;
+			AnswerBoard* ansBoard_ = nullptr;
 			Engine::TaskList tasks_;
 
 			Engine::Button &back_;

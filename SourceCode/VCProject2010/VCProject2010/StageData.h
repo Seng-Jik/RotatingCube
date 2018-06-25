@@ -26,7 +26,15 @@ namespace Game
 			DirectX::XMFLOAT3 InitRotating;
 		} Stages[] = 
 		{
-			{ "Stage1",DirectX::XMFLOAT3(67.7283f,70.6874f,0),0.5f,DirectX::XMFLOAT3(0,-20,-40),Stage2,DirectX::XMFLOAT3(70,50,0) },
+			{ 
+				"Stage1",
+				DirectX::XMFLOAT3(67.7283f,70.6874f,0),
+				0.5f,
+				DirectX::XMFLOAT3(0,-20,-40),
+				Stage2,
+				DirectX::XMFLOAT3(3.11155f,4.69016f,0) 
+			},
+
 			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage3,DirectX::XMFLOAT3(0,0,0) },
 			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage4,DirectX::XMFLOAT3(0,0,0) },
 			{ "box",DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),Stage5,DirectX::XMFLOAT3(0,0,0) },

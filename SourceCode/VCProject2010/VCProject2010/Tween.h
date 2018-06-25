@@ -40,6 +40,8 @@ namespace Engine
 		void Run(T target, float time, int funcID = 0);
 		void Stop();
 
+		auto& Value();
+
 		operator T() const;
 		const Tween<T>& operator = (const T&);
 	private:
@@ -110,6 +112,12 @@ namespace Engine
 	inline void Tween<T>::Stop()
 	{
 		m_target.Clear();
+	}
+
+	template<typename T>
+	inline auto & Tween<T>::Value()
+	{
+		return m_value;
 	}
 
 	template<typename T>

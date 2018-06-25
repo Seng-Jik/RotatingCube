@@ -52,9 +52,15 @@ void Game::GamePlay::GameMain::Update(float d)
 	Engine::ObjectSet<Engine::GameObject>::Update(d);
 	tasks_.Update(d);
 
-	if(timer_ >= 0)
-		timer_ += d;
-	clk_.SetTime(timer_ >= 0 ? timer_ : 0);
+
+	if (rotCube_)
+	{
+		if (timer_ >= 0 && rotCube_->Started())
+			timer_ += d;
+		if (!rotCube_->Finished())
+			clk_.SetTime(timer_ >= 0 ? timer_ : 0);
+
+	}
 }
 
 void Game::GamePlay::GameMain::Exit()
