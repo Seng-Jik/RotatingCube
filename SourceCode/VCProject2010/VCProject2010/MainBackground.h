@@ -42,6 +42,11 @@ namespace Game
 		void GoToGame();
 		void GoToHelp();
 		void ReturnToStageSelect();
+
+		inline auto& TaskList()
+		{
+			return tl_;
+		}
 	};
 
 }

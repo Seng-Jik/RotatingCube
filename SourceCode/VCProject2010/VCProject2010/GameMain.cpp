@@ -80,5 +80,9 @@ void Game::GamePlay::GameMain::Exit()
 	ansBoard_->FadeOut();
 	rotCube_->FadeOut();
 	back_.Alpha().Run(0, 0.25f, 1);
+
+	tasks_.AddTask([this] {
+		Kill();
+	}, 0.3f);
 }
 

@@ -2,6 +2,8 @@
 #include "StageComplete.h"
 #include "Button.h"
 #include "Clock.h"
+#include "StageSelectGUI.h"
+#include "MainBackground.h"
 
 Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
@@ -59,16 +61,20 @@ Game::GamePlay::StageComplete::StageComplete(float time,Engine::ObjectSet<>* mai
 	},3.5f);
 
 	const auto exitFunction = [&clk,&back,&rest,&next,gameMainExit,this] {
-		hintProgress_.Run(0, 0.5f, 1);
-		clk.Alpha().Run(0, 0.5f, 1);
-		back.Alpha().Run(0, 0.5f, 1);
-		rest.Alpha().Run(0, 0.5f, 1);
-		next.Alpha().Run(0, 0.5f, 1);
+		hintProgress_.Run(0, 0.3f, 1);
+		clk.Alpha().Run(0, 0.3f, 1);
+		back.Alpha().Run(0, 0.3f, 1);
+		rest.Alpha().Run(0, 0.3f, 1);
+		next.Alpha().Run(0, 0.3f, 1);
 		gameMainExit();
 	};
 
-	back.SetOnClick([exitFunction] {
+	back.SetOnClick([exitFunction,mainBk,this] {
 		exitFunction();
+		static_cast<MainBackground*>(mainBk)->TaskList().AddTask([mainBk] {
+			mainBk->NewObject<Title::StageSelectGUI>(static_cast<MainBackground&>(*mainBk));
+		},0.75f);
+		static_cast<MainBackground*>(mainBk)->ReturnToStageSelect();
 	});
 
 	rest.SetOnClick([exitFunction] {
