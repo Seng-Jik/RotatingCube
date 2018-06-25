@@ -9,7 +9,6 @@
 @sst ..\assets\6.png ..\Bin\num6.sst RGBA
 @sst ..\assets\locked.png ..\Bin\locked.sst RGBA
 @sst ..\assets\back.png ..\Bin\back.sst RGBA
-@sst ..\assets\backs.png ..\Bin\backs.sst RGBA
 @sst ..\assets\nums.png ..\Bin\nums.sst RGBA
 @sst ..\assets\help.png ..\Bin\help.sst RGBA
 @sst ..\assets\finish.png ..\Bin\finish.sst RGBA

@@ -5,7 +5,7 @@
 
 Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground* bk):
 	clk_{ NewObject<Clock>() },
-	back_ { NewObject<Engine::Button>("backs") }
+	back_ { NewObject<Engine::Button>("back") }
 {
 	clk_.Alpha() = 0;
 	clk_.Alpha().Run(1, 1, 1);
@@ -35,7 +35,7 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 		Exit();
 	});
 
-	tasks_.AddTask([this,&stage] {
+	tasks_.AddTask([this,&stage,bk] {
 		rotCube_ = &NewObject<RotatingCube>(stage);
 		ansBoard_ = &NewObject<AnswerBoard>(stage);
 		timer_ = 0;
@@ -46,8 +46,12 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 			back_.SetEnable(true);
 		}, 0.5f);
 
-		rotCube_->SetFinishedEvent([this]() {
-			NewObject<StageComplete>();
+		rotCube_->SetFinishedEvent([bk,this]() {
+			back_.Alpha().Run(0, 0.25f, 1);
+			tasks_.AddTask([this,bk] {
+				clk_.Alpha().Run(0, 0.25f, 1);
+				NewObject<StageComplete>(bk, [this]() {Exit(); });
+			},0.25f);
 		});
 	}, 1);
 }

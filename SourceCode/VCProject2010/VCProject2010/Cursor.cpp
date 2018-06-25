@@ -33,5 +33,7 @@ void Engine::Cursor::Update(float time)
 	pos.y -= 0.5f;
 	pos.x *= 800;
 	pos.y *= -600;
+	pos.x += 18.0f;
+	pos.y -= 18.0f;
 	SetPos(pos.x, pos.y);
 }
