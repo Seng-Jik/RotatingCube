@@ -8,7 +8,7 @@ namespace Game
 {
 	namespace GamePlay
 	{
-		class StageComplete : Engine::ObjectSet<>
+		class StageComplete : public Engine::ObjectSet<>
 		{
 		private:
 			Engine::Rendering::Sprite2D& finishHint_;
