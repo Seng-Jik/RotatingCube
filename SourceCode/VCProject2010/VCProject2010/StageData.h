@@ -73,7 +73,7 @@ namespace Game
 				0.6f,
 				DirectX::XMFLOAT3(0,0,0),
 				Stage6,
-				DirectX::XMFLOAT3(0.0606575f,3.37265f,0) 
+				DirectX::XMFLOAT3(1.84747f,5.667f,0) 
 			},
 
 			{ "box",Stage6,DirectX::XMFLOAT3(0,0,0),1,DirectX::XMFLOAT3(0,0,-20),None,DirectX::XMFLOAT3(0,0,0) },
