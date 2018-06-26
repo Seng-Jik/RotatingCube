@@ -45,7 +45,7 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	rest.DisableActive();
 	next.DisableActive();
 
-	tl_.AddTask([&] {
+	tl_.AddTask([&,nextStg] {
 
 		tl_.AddTask([&back] {
 			back.Zoom().Run(0.5f, 0.3f, 1);
@@ -57,18 +57,19 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 			rest.Alpha().Run(1, 0.3f, 1);
 		}, 0.45f);
 
-		tl_.AddTask([&next] {
+		tl_.AddTask([&next,nextStg] {
 			next.Zoom().Run(0.5f, 0.3f, 1);
-			next.Alpha().Run(1, 0.3f, 1);
+			next.Alpha().Run(nextStg == None ? 0.5f : 1, 0.3f, 1);
 		}, 0.65f);
 
-		tl_.AddTask([&] {
+		tl_.AddTask([&, nextStg] {
 			rest.EnableActive();
 			back.EnableActive();
-			next.EnableActive();
+			if(nextStg != None)
+				next.EnableActive();
 			rest.SetEnable(true);
 			back.SetEnable(true);
-			next.SetEnable(true);
+			next.SetEnable(nextStg != None);
 		},0.85f);
 	},3.5f);
 
@@ -97,11 +98,14 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	});
 
 	next.SetOnClick([exitFunction, nextStg , mainBk] {
-		exitFunction();
+		if (nextStg != None)
+		{
+			exitFunction();
 
-		static_cast<MainBackground*>(mainBk)->TaskList().AddTask([mainBk, nextStg] {
-			mainBk->NewObject<GameMain>(Stages[nextStg-1], static_cast<MainBackground*>(mainBk));
-		}, 0.75f);
+			static_cast<MainBackground*>(mainBk)->TaskList().AddTask([mainBk, nextStg] {
+				mainBk->NewObject<GameMain>(Stages[nextStg - 1], static_cast<MainBackground*>(mainBk));
+			}, 0.75f);
+		}
 	});
 }
 

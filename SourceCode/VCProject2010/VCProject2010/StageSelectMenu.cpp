@@ -15,8 +15,8 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 		{
 			num++;
 
-			const auto stageOpened = Game::SaveData::Get().StageOpened(num);
-			std::string texName = stageOpened ? "num" + std::to_string(num) : "locked";
+			const auto stageOpened_ = Game::SaveData::Get().StageOpened(num);
+			std::string texName = stageOpened_ ? "num" + std::to_string(num) : "locked";
 			auto& btn = NewObject<Engine::Button>(texName.c_str());
 
 			btn.PosX() = x * 150.0f;
@@ -24,11 +24,11 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 
 			btn.Zoom() = 0;
 
-			btn.SetEnable(stageOpened);
+			btn.SetEnable(stageOpened_);
 
 			btns[num - 1] = &btn;
 
-			if (stageOpened)
+			if (stageOpened_)
 			{
 				btn.SetOnClick([&mainBackground,this,&gui, num] {
 					tl_.AddTask([&mainBackground, this, &gui, num] {
