@@ -5,7 +5,8 @@ using namespace Engine::Rendering;
 
 Game::Title::TitleGUI::TitleGUI() :
 	logo_ { NewObject<Sprite2D>("cube") },
-	hint_ { NewObject<Sprite2D>("titlehint")}
+	hint_ { NewObject<Sprite2D>("titlehint")},
+	about_{ NewObject<Sprite2D>("about") }
 {
 	logoAnimationTween_ = 0;
 	logoAnimationTween_.Run(1, 2, 2);
@@ -17,6 +18,9 @@ Game::Title::TitleGUI::TitleGUI() :
 
 	hint_.SetZoom(0.5f);
 	hint_.SetPos(0, -100);
+
+	about_.SetPos(0, -240);
+	about_.SetZoom(0.6f);
 }
 
 void Game::Title::TitleGUI::Update(float time)
@@ -24,6 +28,9 @@ void Game::Title::TitleGUI::Update(float time)
 	timer_ += time;
 	hintAlphaMul_.Update(time);
 	hint_.SetAlpha(hintAlphaMul_ * (sinf(timer_ * 3) * 0.25f + 0.75f));
+
+
+	about_.SetAlpha(hintAlphaMul_ * 0.5f);
 
 	tl_.Update(time);
 	logoAnimationTween_.Update(time);

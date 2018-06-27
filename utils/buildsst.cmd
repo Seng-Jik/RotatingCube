@@ -15,3 +15,4 @@
 @sst ..\assets\list.png ..\Bin\list.sst RGBA
 @sst ..\assets\restart.png ..\Bin\restart.sst RGBA
 @sst ..\assets\next.png ..\Bin\next.sst RGBA
+@sst ..\assets\about.png ..\Bin\about.sst RGBA

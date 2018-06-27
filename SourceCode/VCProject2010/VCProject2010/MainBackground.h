@@ -32,6 +32,8 @@ namespace Game
 		bool reciveMouseClick_ = false;
 
 		Engine::Optional<Title::TitleGUI*> titleGUI_;
+		
+
 	public:
 		MainBackground();
 		void Draw() const override;

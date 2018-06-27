@@ -23,6 +23,8 @@ namespace Game
 			float timer_ = 0;
 
 			bool live_ = true;
+
+			Engine::Rendering::Sprite2D& about_;
 		public:
 			TitleGUI();
 			void Update(float time) override;
