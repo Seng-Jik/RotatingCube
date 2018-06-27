@@ -80,6 +80,8 @@ namespace Engine
 
 		void ResetRenderTarget();
 
+		bool KeyDown(int keyName) const;
+
 		bool EngineMainLoop();
 	};
 

@@ -46,6 +46,39 @@ void Game::GamePlay::RotatingCube::Update(float d)
 	const auto mouseState = std::get<0>(Engine::GetDevice().Mouse());
 	const auto mouseDelta = Engine::GetDevice().MouseDelta();
 
+	constexpr float KeyRotate = 0.0025f;
+	if (Engine::GetDevice().KeyDown(VK_UP))
+	{
+		force_.Stop();
+		force_ = DirectX::XMFLOAT3(0, 0, 0);
+
+		rotating_.Value() += DirectX::XMFLOAT3(KeyRotate, 0, 0);
+	}
+
+	if (Engine::GetDevice().KeyDown(VK_DOWN))
+	{
+		force_.Stop();
+		force_ = DirectX::XMFLOAT3(0, 0, 0);
+
+		rotating_.Value() += DirectX::XMFLOAT3(-KeyRotate, 0, 0);
+	}
+
+	if (Engine::GetDevice().KeyDown(VK_LEFT))
+	{
+		force_.Stop();
+		force_ = DirectX::XMFLOAT3(0, 0, 0);
+
+		rotating_.Value() += DirectX::XMFLOAT3(0,-KeyRotate, 0);
+	}
+
+	if (Engine::GetDevice().KeyDown(VK_RIGHT))
+	{
+		force_.Stop();
+		force_ = DirectX::XMFLOAT3(0, 0, 0);
+
+		rotating_.Value() += DirectX::XMFLOAT3(0,KeyRotate, 0);
+	}
+
 	constexpr auto RotateScaling = 10;
 	if (gamming_)
 	{

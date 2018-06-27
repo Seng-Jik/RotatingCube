@@ -227,6 +227,12 @@ void Engine::Device::ResetRenderTarget()
 	context_->OMSetRenderTargets(1, renderTargetView_.GetAddressOf(), zBufferView_.Get());
 }
 
+bool Engine::Device::KeyDown(int keyName) const
+{
+	return GetKeyState(keyName) < 0;
+}
+
+
 bool Engine::Device::EngineMainLoop()
 {
 	mouseLastFrame_ = std::get<1>(Mouse());
@@ -268,6 +274,7 @@ bool Engine::Device::EngineMainLoop()
 					int16_t(HIWORD(msg.lParam)) / float(r.bottom - r.top)
 				};
 			}
+			
 			
 			DispatchMessage(&msg);
 
