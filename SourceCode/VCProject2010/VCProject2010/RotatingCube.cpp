@@ -92,7 +92,7 @@ void Game::GamePlay::RotatingCube::Update(float d)
 
 			deltas_.Write(mouseDelta * d);
 
-			Log("Rot", rotating_.Value().x, rotating_.Value().y, rotating_.Value().z);
+			//Log("Rot", rotating_.Value().x, rotating_.Value().y, rotating_.Value().z);
 		}
 		else if (mouseState == MouseState::JustDown)
 		{
