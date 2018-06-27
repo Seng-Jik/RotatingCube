@@ -216,6 +216,11 @@
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EnableDebuggingInformation>
     </FxCompile>
     <None Include="..\..\..\README.md" />
+    <None Include="..\..\..\utils\buildsst.cmd" />
+    <None Include="..\..\..\utils\cleansst.cmd" />
+    <None Include="..\..\..\utils\command.cmd" />
+    <None Include="..\..\..\utils\game.cmd" />
+    <None Include="..\..\..\utils\release.cmd" />
     <None Include="VertexOut.hlsli">
       <FileType>Document</FileType>
     </None>
