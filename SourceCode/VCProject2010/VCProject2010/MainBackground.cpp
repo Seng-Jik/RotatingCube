@@ -78,6 +78,7 @@ void Game::MainBackground::GoToGame()
 void Game::MainBackground::GoToHelp()
 {
 	bkCamera_.Run(-1, 1, 1);
+	light_.Run(0, 1, 1);
 }
 
 void Game::MainBackground::ReturnToStageSelect()
