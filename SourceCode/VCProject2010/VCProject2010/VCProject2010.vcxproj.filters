@@ -292,5 +292,8 @@
     <None Include="..\..\..\utils\release.cmd">
       <Filter>Utils</Filter>
     </None>
+    <None Include="开发文档报告.md" />
+    <None Include="使用说明书.md" />
+    <None Include="参赛作品信息.md" />
   </ItemGroup>
 </Project>
