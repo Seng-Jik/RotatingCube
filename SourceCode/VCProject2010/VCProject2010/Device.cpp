@@ -9,8 +9,8 @@
 using namespace Engine;
 using namespace Engine::Math;
 
-Magic magic;
-HWND oldHwnd;
+static Magic magic;
+static HWND oldHwnd;
 
 Engine::Device::Device(HWND hwnd) :
 	hWnd_{ hwnd }
@@ -306,7 +306,7 @@ Device & Engine::GetDevice()
 	return device.Value();
 }
 
-void Engine::InitDevice(HWND hWnd,HINSTANCE hInstance)
+void Engine::InitDevice(HWND hWnd, HINSTANCE hInstance)
 {
 	RECT rect;
 	oldHwnd = hWnd;
@@ -314,9 +314,9 @@ void Engine::InitDevice(HWND hWnd,HINSTANCE hInstance)
 	GetClientRect(hWnd, &rect);
 	ShowWindow(hWnd, SW_HIDE);
 
-	HWND new_wind = magic.init(hInstance, "Magic", "Magic", rect.right, rect.bottom);
-	assert(new_wind);
+	magic.UpdateWindow(hWnd, hInstance, "Rotating Cube", "Magic", rect.right, rect.bottom);
+	assert(hWnd);
 
-	device.Emplace(new_wind);
+	device.Emplace(hWnd);
 }
 

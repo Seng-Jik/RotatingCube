@@ -1,9 +1,10 @@
 #pragma once
 class Magic
 {
-public:
+private:
 	HWND hwnd;
-	HWND init(HINSTANCE hInstance, const char * lpName, const char * lpClass,int width,int height);
+public:
+	HWND UpdateWindow(HWND&,HINSTANCE hInstance, const char * lpName, const char * lpClass,int width,int height);
 	~Magic();
 };
 

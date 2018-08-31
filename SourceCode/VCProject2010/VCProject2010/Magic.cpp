@@ -7,7 +7,7 @@ LRESULT CALLBACK winProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
 
-HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, int width, int height)
+HWND Magic::UpdateWindow(HWND& h,HINSTANCE hInstance,const char * lpName, const char * lpClass, int width, int height)
 {
 	WNDCLASS  wcex;
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
@@ -21,6 +21,9 @@ HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, 
 	wcex.lpszMenuName = NULL;
 	wcex.lpszClassName = lpClass;
 
+	RECT r;
+	GetWindowRect(h, &r);
+
 	if (!RegisterClass(&wcex))
 	{
 		return 0;
@@ -30,8 +33,8 @@ HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, 
 		lpClass,
 		lpName,
 		WS_SYSMENU,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
+		r.left,
+		r.top,
 		width,
 		height,
 		NULL,
@@ -41,9 +44,9 @@ HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, 
 	);
 
 	ShowWindow(hwnd, SW_SHOW);
-	UpdateWindow(hwnd);
+	::UpdateWindow(hwnd);
 
-	return hwnd;
+	h = hwnd;
 }
 
 Magic::~Magic()
