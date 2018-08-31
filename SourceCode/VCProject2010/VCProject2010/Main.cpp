@@ -58,7 +58,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 	const HWND hWnd = FindWindow("Darkstar Window Class", WindowTitle.c_str());
 
-	Engine::InitDevice(hWnd);
+	Engine::InitDevice(hWnd, hInstance);
 	auto& device = Engine::GetDevice();
 
 	

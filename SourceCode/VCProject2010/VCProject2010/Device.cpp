@@ -5,8 +5,12 @@
 #include "Shaders.h"
 #include "Math.h"
 #include "Assets.h"
+#include "Magic.h"
 using namespace Engine;
 using namespace Engine::Math;
+
+Magic magic;
+HWND oldHwnd;
 
 Engine::Device::Device(HWND hwnd) :
 	hWnd_{ hwnd }
@@ -274,6 +278,9 @@ bool Engine::Device::EngineMainLoop()
 					int16_t(HIWORD(msg.lParam)) / float(r.bottom - r.top)
 				};
 			}
+			else if (msg.message == WM_CLOSE) {
+				CloseWindow(oldHwnd);
+			}
 			
 			
 			DispatchMessage(&msg);
@@ -299,8 +306,16 @@ Device & Engine::GetDevice()
 	return device.Value();
 }
 
-void Engine::InitDevice(HWND hWnd)
+void Engine::InitDevice(HWND hWnd,HINSTANCE hInstance)
 {
-	device.Emplace(hWnd);
+	RECT rect;
+	oldHwnd = hWnd;
+
+	GetClientRect(hWnd, &rect);
+	ShowWindow(hWnd, SW_HIDE);
+
+	HWND new_wind = magic.init(hInstance, "Magic", "Magic", rect.right, rect.bottom);
+
+	device.Emplace(new_wind);
 }
 

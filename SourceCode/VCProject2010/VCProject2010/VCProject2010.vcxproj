@@ -136,6 +136,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="Help.cpp" />
+    <ClCompile Include="Magic.cpp" />
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="ObjModel.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="Help.h" />
+    <ClInclude Include="Magic.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ModelTest.h" />
     <ClInclude Include="ObjLoader.h" />

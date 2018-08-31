@@ -7,6 +7,7 @@ namespace Engine
 {
 	using Microsoft::WRL::ComPtr;
 
+
 	enum class MouseState
 	{
 		JustDown,
@@ -36,6 +37,7 @@ namespace Engine
 		DirectX::XMFLOAT2 mouseLastFrame_ = DirectX::XMFLOAT2(0, 0);
 
 		ComPtr<ID3D11DepthStencilState> depthEnable_, depthDisable_;
+
 	public:
 		Device(HWND hwnd);
 
@@ -86,6 +88,6 @@ namespace Engine
 	};
 
 	Device& GetDevice();
-	void InitDevice(HWND hWnd);
+	void InitDevice(HWND hWnd, HINSTANCE hInstance);
 
 }
