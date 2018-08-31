@@ -2,11 +2,16 @@
 #include "Magic.h"
 #include "CommonClass.h"
 
+LRESULT CALLBACK winProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+	return DefWindowProc(hWnd, Msg, wParam, lParam);
+}
+
 HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, int width, int height)
 {
 	WNDCLASS  wcex;
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = NULL;
+	wcex.lpfnWndProc = winProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = hInstance;
@@ -14,14 +19,14 @@ HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, 
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = NULL;
-	wcex.lpszClassName = "HJ";
+	wcex.lpszClassName = lpClass;
 
 	if (!RegisterClass(&wcex))
 	{
 		return 0;
 	}
 
-	this->hwnd = CreateWindow(
+	hwnd = CreateWindow(
 		lpClass,
 		lpName,
 		WS_SYSMENU,
@@ -35,14 +40,14 @@ HWND Magic::init(HINSTANCE hInstance,const char * lpName, const char * lpClass, 
 		NULL
 	);
 
-	ShowWindow(this->hwnd, SW_SHOW);
-	UpdateWindow(this->hwnd);
+	ShowWindow(hwnd, SW_SHOW);
+	UpdateWindow(hwnd);
 
-	return this->hwnd;
+	return hwnd;
 }
 
 Magic::~Magic()
 {
-	if (IsWindow(this->hwnd)) CloseWindow(this->hwnd);
+	if (IsWindow(hwnd)) CloseWindow(hwnd);
 }
 

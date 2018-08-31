@@ -315,6 +315,7 @@ void Engine::InitDevice(HWND hWnd,HINSTANCE hInstance)
 	ShowWindow(hWnd, SW_HIDE);
 
 	HWND new_wind = magic.init(hInstance, "Magic", "Magic", rect.right, rect.bottom);
+	assert(new_wind);
 
 	device.Emplace(new_wind);
 }
