@@ -1,4 +1,4 @@
-@call cleansst.cmd
+@call cleanAssets.cmd
 @sst ..\assets\cube.png ..\Bin\cube.sst RGBA
 @sst ..\assets\titlehint.png ..\Bin\titlehint.sst RGBA
 @sst ..\assets\cursor.png ..\Bin\cursor.sst RGBA
@@ -18,4 +18,5 @@
 @sst ..\assets\restart.png ..\Bin\restart.sst RGBA
 @sst ..\assets\next.png ..\Bin\next.sst RGBA
 @sst ..\assets\about.png ..\Bin\about.sst RGBA
+@copy ..\assets\*.ogg ..\Bin\
 @pause
