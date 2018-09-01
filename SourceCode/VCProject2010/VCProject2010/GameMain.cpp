@@ -3,6 +3,13 @@
 #include "StageSelectGUI.h"
 #include "StageComplete.h"
 
+Mix_Music * Game::GamePlay::GameMain::bgm_ = nullptr;
+
+void Game::GamePlay::GameMain::ClearMusic()
+{
+	Mix_FreeMusic(bgm_);
+}
+
 Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground* bk):
 	clk_{ NewObject<Clock>() },
 	back_ { NewObject<Engine::Button>("back") }
@@ -13,6 +20,9 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 	clk_.SetPos(0, 200, 1);
 	clk_.DrawOnTop = true;
 
+	if(!bgm_)
+		bgm_ = Mix_LoadMUS("GameBGM.ogg");
+
 	back_.Alpha() = 0;
 	back_.Zoom() = 0.5f;
 	back_.PosY() = -200;
@@ -20,6 +30,7 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 	back_.DrawOnTop = true;
 
 	back_.SetOnClick([this,bk] {
+		Mix_HaltMusic();
 		if (bk)
 		{
 			bk->ReturnToStageSelect();
@@ -36,6 +47,8 @@ Game::GamePlay::GameMain::GameMain(const decltype(*Stages)& stage,MainBackground
 	});
 
 	tasks_.AddTask([this,&stage,bk] {
+		if(!Mix_PlayingMusic())
+			Mix_PlayMusic(bgm_,-1);
 		rotCube_ = &NewObject<RotatingCube>(stage);
 		ansBoard_ = &NewObject<AnswerBoard>(stage);
 		timer_ = 0;

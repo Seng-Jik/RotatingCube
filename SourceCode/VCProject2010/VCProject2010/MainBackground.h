@@ -7,6 +7,7 @@
 #include "TaskList.h"
 #include "Tex2D.h"
 #include "TitleGUI.h"
+#include <SDL_mixer.h>
 
 namespace Game
 {
@@ -33,9 +34,10 @@ namespace Game
 
 		Engine::Optional<Title::TitleGUI*> titleGUI_;
 		
-
+		Mix_Music * titleBgm_ = nullptr;
 	public:
 		MainBackground();
+		~MainBackground();
 		void Draw() const override;
 		void Update(float time) override;
 

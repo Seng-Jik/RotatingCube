@@ -18,6 +18,11 @@
 #include "ObjModel.h"
 #include "GameMain.h"
 
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
+#include <SDL_mixer.h>
+
+
 static Engine::ObjectSet<Engine::GameObject> root;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +52,8 @@ int PASCAL WinMain(HINSTANCE hInstance,
                    LPSTR     lpCmdLine,
                    int       nCmdShow)
 {
+	SDL_SetMainReady();
+
 	// 初始化游戏引擎
 	if( !CSystem::InitGameEngine( hInstance, lpCmdLine ) )
 		return 0;
@@ -57,6 +64,10 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	CSystem::SetWindowTitle(WindowTitle.c_str());
 
 	const HWND hWnd = FindWindow("Darkstar Window Class", WindowTitle.c_str());
+
+	SDL_Init(SDL_INIT_AUDIO);
+	Mix_Init(MIX_INIT_OGG);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 8192);
 
 	Engine::InitDevice(hWnd, hInstance);
 	auto& device = Engine::GetDevice();
@@ -77,6 +88,13 @@ int PASCAL WinMain(HINSTANCE hInstance,
 		GetMouseCursor().Update(fTimeDelta);
 		GetMouseCursor().Draw();
 	};
+
+	Game::GamePlay::GameMain::ClearMusic();
+
+	root.Clear();
+	Mix_CloseAudio();
+	Mix_Quit();
+	SDL_Quit();
 
 	// 关闭游戏引擎
 	CSystem::ShutdownGameEngine();

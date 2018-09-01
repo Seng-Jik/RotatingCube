@@ -83,6 +83,7 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	};
 
 	back.SetOnClick([exitFunction,mainBk,this] {
+		Mix_HaltMusic();
 		exitFunction();
 		static_cast<MainBackground*>(mainBk)->TaskList().AddTask([mainBk] {
 			mainBk->NewObject<Title::StageSelectGUI>(static_cast<MainBackground&>(*mainBk));

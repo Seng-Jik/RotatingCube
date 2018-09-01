@@ -6,7 +6,8 @@
 Game::MainBackground::MainBackground()	:
 	pe_ { "TitleBackground" },
 	pecbcpu_{ 0,DirectX::XMFLOAT2(0,0),Engine::GetDevice().GetScreenWdivH(),0 },
-	pecb_{ Engine::Rendering::CreateConstantBuffer(pecbcpu_) }
+	pecb_{ Engine::Rendering::CreateConstantBuffer(pecbcpu_) },
+	titleBgm_ { Mix_LoadMUS("Title_BGM.ogg") }
 {
 	pe_.SetConstantBuffer(pecb_);
 	light_ = 0;
@@ -22,6 +23,16 @@ Game::MainBackground::MainBackground()	:
 	}, 2.5f);
 
 	titleGUI_.Emplace(&NewObject<Title::TitleGUI>());
+
+	auto p = std::string(Mix_GetError());
+	if(titleBgm_)
+		Mix_PlayMusic(titleBgm_,-1);
+}
+
+Game::MainBackground::~MainBackground()
+{
+	if(titleBgm_)
+		Mix_FreeMusic(titleBgm_);
 }
 
 
@@ -70,6 +81,7 @@ void Game::MainBackground::ReturnToLogo()
 
 void Game::MainBackground::GoToGame()
 {
+	Mix_FadeOutMusic(500);
 	//TODO:某些情况下没有把light切回去
 	bkCamera_.Run(-1, 1, 1);
 	light_.Run(0, 1, 1);
@@ -83,6 +95,8 @@ void Game::MainBackground::GoToHelp()
 
 void Game::MainBackground::ReturnToStageSelect()
 {
+	if(!Mix_PlayingMusic())
+		Mix_PlayMusic(titleBgm_,-1);
 	bkCamera_.Run(1, 0.5f, 1);
 	light_.Run(1, 1, 1);
 }

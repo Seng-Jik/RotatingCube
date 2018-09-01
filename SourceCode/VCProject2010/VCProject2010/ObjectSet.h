@@ -67,5 +67,12 @@ namespace Engine
 		{
 			live_ = false;
 		}
+
+		void Clear()
+		{
+			objects_.clear();
+			while (!newObjs_.empty())
+				newObjs_.pop();
+		}
 	};
 }

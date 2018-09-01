@@ -49,8 +49,8 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(VCInstallDir)include;$(WindowsSdkDir)include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\3rdParty\include;$(VCInstallDir)include;$(WindowsSdkDir)include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\3rdParty\include;$(VCInstallDir)include;$(WindowsSdkDir)include;$(IncludePath)</IncludePath>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Game</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Game</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
@@ -58,11 +58,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(ProjectDir)..\..\Src;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\3rdParty;$(ProjectDir)..\..\Src;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(ProjectDir)..\..\Src;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\3rdParty;$(ProjectDir)..\..\Src;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,7 +79,7 @@
       <DisableSpecificWarnings>4838</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;SDL2.lib;SDL2_mixer.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\..\Bin\Game.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
@@ -113,7 +113,7 @@
       <DisableSpecificWarnings>4838</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;SDL2.lib;SDL2_mixer.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\..\..\Bin\Game.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>

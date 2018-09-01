@@ -24,7 +24,10 @@ namespace Game
 
 			Clock& clk_;
 			float timer_ = -1;
+
+			static Mix_Music* bgm_;
 		public:
+			static void ClearMusic();
 			GameMain(const decltype(*Stages)& stage,MainBackground* bk = nullptr);
 
 			void Update(float d);
