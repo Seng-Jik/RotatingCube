@@ -21,6 +21,7 @@
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include "SoundEffect.h"
 
 
 static Engine::ObjectSet<Engine::GameObject> root;
@@ -68,6 +69,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 	SDL_Init(SDL_INIT_AUDIO);
 	Mix_Init(MIX_INIT_OGG);
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 8192);
+	Game::SoundEffect::Init();
 
 	Engine::InitDevice(hWnd, hInstance);
 	auto& device = Engine::GetDevice();
@@ -91,6 +93,7 @@ int PASCAL WinMain(HINSTANCE hInstance,
 
 	Game::GamePlay::GameMain::ClearMusic();
 
+	Game::SoundEffect::Quit();
 	root.Clear();
 	Mix_CloseAudio();
 	Mix_Quit();

@@ -3,6 +3,7 @@
 #include "StageSelectMenu.h"
 #include "StageSelectGUI.h"
 #include "GameMain.h"
+#include "SoundEffect.h"
 
 Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, StageSelectGUI& gui)
 {
@@ -31,6 +32,7 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 			if (stageOpened_)
 			{
 				btn.SetOnClick([&mainBackground,this,&gui, num] {
+					
 					tl_.AddTask([&mainBackground, this, &gui, num] {
 						for (auto& p : btnAniBatch)
 							for (auto i : p)

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Button.h"
+#include "SoundEffect.h"
 
 void Engine::Button::SetOnClick(const std::function<void()>& onClick)
 {
@@ -53,6 +54,7 @@ void Engine::Button::Update(float time)
 		{
 			clickEnabled_ = false;
 			DisableActive();
+			Game::SoundEffect::Play(Game::SoundEffect::SoundEffect::Pluck);
 			onClick_();
 		}
 

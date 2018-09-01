@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TitleGUI.h"
+#include "SoundEffect.h"
 
 using namespace Engine::Rendering;
 
@@ -45,5 +46,7 @@ void Game::Title::TitleGUI::Click()
 	logoAnimationTween_.Run(0, 0.5f, 1);
 	hintAlphaMul_.Run(0, 0.1f, 1);
 	tl_.AddTask([this] { Kill(); }, 0.5f);
+
+	SoundEffect::Play(SoundEffect::SoundEffect::Entry);
 }
 

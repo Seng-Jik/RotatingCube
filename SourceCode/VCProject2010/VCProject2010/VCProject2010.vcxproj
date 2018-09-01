@@ -142,6 +142,7 @@
     <ClCompile Include="ObjModel.cpp" />
     <ClCompile Include="RotatingCube.cpp" />
     <ClCompile Include="SavaData.cpp" />
+    <ClCompile Include="SoundEffect.cpp" />
     <ClCompile Include="Sprite2D.cpp" />
     <ClCompile Include="StageComplete.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="OverwriteArray.h" />
     <ClInclude Include="RotatingCube.h" />
     <ClInclude Include="SavaData.h" />
+    <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="Sprite2D.h" />
     <ClInclude Include="StageComplete.h" />
     <ClInclude Include="StageData.h" />
