@@ -7,7 +7,7 @@ LRESULT CALLBACK winProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
 
-HWND Magic::UpdateWindow(HWND& h,HINSTANCE hInstance,const char * lpName, const char * lpClass, int width, int height)
+void Magic::UpdateWindow(HWND& h,HINSTANCE hInstance,const char * lpName, const char * lpClass, int width, int height)
 {
 	WNDCLASS  wcex;
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
@@ -26,7 +26,7 @@ HWND Magic::UpdateWindow(HWND& h,HINSTANCE hInstance,const char * lpName, const 
 
 	if (!RegisterClass(&wcex))
 	{
-		return 0;
+		abort();
 	}
 
 	hwnd = CreateWindow(
