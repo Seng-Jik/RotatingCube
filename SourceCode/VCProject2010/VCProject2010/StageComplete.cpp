@@ -6,12 +6,15 @@
 #include "MainBackground.h"
 #include "GameMain.h"
 #include "SavaData.h"
+#include "SoundEffect.h"
 
 Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName nextStg,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
 {
 	SaveData::Get().WriteTime(stg, time);
 	SaveData::Get().OpenStage(nextStg);
+
+	SoundEffect::Play(SoundEffect::SoundEffect::Win);
 
 	hintProgress_.Run(1, 3, 1);
 

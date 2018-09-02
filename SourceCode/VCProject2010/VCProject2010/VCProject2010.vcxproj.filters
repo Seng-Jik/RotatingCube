@@ -141,10 +141,10 @@
     <ClCompile Include="Magic.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="SoundEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundEffect.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>

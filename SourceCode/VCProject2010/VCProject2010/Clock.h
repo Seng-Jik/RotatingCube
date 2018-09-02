@@ -9,7 +9,7 @@ namespace Game
 		{
 		private:
 			Engine::Rendering::Sprite2D
-				&m1_, &min1_, &min2_, &sec1_, &sec2_;// , &ms1_, &ms2_;
+				&m1_,&m2_, &min1_, &min2_, &sec1_, &sec2_, &ms1_, &ms2_;
 
 			Engine::Tween<float> zoom_ = 1, x_ = 0, y_ = 0,alpha_ = 1;
 

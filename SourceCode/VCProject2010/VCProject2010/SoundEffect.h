@@ -7,7 +7,8 @@ namespace Game
 		enum class SoundEffect : int
 		{
 			Pluck = 0,
-			Entry = 1
+			Entry = 1,
+			Win = 2
 		};
 
 		void Init();
