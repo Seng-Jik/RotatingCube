@@ -5,6 +5,9 @@
 #include "GameMain.h"
 #include "SoundEffect.h"
 #include "Clock.h"
+#include "StarDisplayer.h"
+
+using namespace Game::GamePlay;
 
 Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, StageSelectGUI& gui)
 {
@@ -30,6 +33,9 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 
 			if (stageOpened && stageTime > 0)
 			{
+				auto& star = NewObject<StarDisplayer>(btn.PosX(), btn.PosY() -72.0f, stageTime, 0.25f);
+				star.Show();
+
 				auto& clock = NewObject<GamePlay::Clock>();
 				clock.SetPos(btn.PosX(), btn.PosY() - 100);
 				clock.Alpha() = 0;
@@ -38,6 +44,8 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 				clock.SetTime(stageTime);
 				clock.Update(0);
 				clock.SetColorMul(2);
+
+
 			}
 
 			btn.Zoom() = 0;
@@ -102,6 +110,15 @@ void Game::Title::StageSelectMenu::Exit()
 
 	for (auto& obj : *this)
 	{
+		try
+		{
+			dynamic_cast<Game::GamePlay::StarDisplayer&>(*obj).Hide();
+		}
+		catch (std::bad_cast)
+		{
+
+		}
+
 		try
 		{
 			dynamic_cast<Game::GamePlay::Clock&>(*obj).Alpha().Run(0, 0.25f, 1);
