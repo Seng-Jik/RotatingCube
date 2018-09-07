@@ -165,12 +165,14 @@ Engine::Device::Device(HWND hwnd) :
 	// Perspective
 	{
 		const auto aspect = float(winRect.right - winRect.left) / (winRect.bottom - winRect.top);
-		perspective_ = DirectX::XMMatrixPerspectiveFovLH(
+		const auto per = DirectX::XMMatrixPerspectiveFovLH(
 			DirectX::XM_PIDIV2,
 			aspect,
 			0.1f,
 			1000.0f
 		);
+
+		DirectX::XMStoreFloat4x4(&perspective_, per);
 	}
 
 	//Depth States

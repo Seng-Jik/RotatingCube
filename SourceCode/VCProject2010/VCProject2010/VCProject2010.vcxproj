@@ -112,6 +112,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp14</LanguageStandard>
       <DisableSpecificWarnings>4838;5046</DisableSpecificWarnings>
+      <Optimization>Full</Optimization>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Winmm.lib;..\..\Src\CommonClass_2010.Lib;SDL2.lib;SDL2_mixer.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>

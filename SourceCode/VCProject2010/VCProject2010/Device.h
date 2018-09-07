@@ -19,6 +19,8 @@ namespace Engine
 	class Device
 	{
 	private:
+		DirectX::XMFLOAT4X4 perspective_;
+
 		ComPtr<ID3D11Device> device_;
 		ComPtr<ID3D11DeviceContext> context_;
 		ComPtr<IDXGISwapChain> swapChain_;
@@ -29,7 +31,7 @@ namespace Engine
 		ComPtr<ID3D11DepthStencilView> zBufferView_;
 		ComPtr<ID3D11InputLayout> inputLayout_;
 
-		DirectX::XMMATRIX perspective_;
+		
 
 		const void* hWnd_;
 
@@ -45,7 +47,7 @@ namespace Engine
 
 		auto Perspective()
 		{
-			return perspective_;
+			return DirectX::XMLoadFloat4x4(&perspective_);
 		}
 
 		inline auto& RenderTargetView()
