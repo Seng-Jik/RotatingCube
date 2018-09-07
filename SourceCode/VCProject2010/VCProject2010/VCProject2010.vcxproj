@@ -14,18 +14,19 @@
     <ProjectGuid>{67DF80B2-7718-4470-AAC1-1F2D83FB9707}</ProjectGuid>
     <RootNamespace>VCProject2010</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>NotSet</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -147,6 +148,7 @@
     <ClCompile Include="StageComplete.cpp" />
     <ClCompile Include="StageSelectGUI.cpp" />
     <ClCompile Include="StageSelectMenu.cpp" />
+    <ClCompile Include="StarDisplayer.cpp" />
     <ClCompile Include="TaskList.cpp" />
     <ClCompile Include="Tex2D.cpp" />
     <ClCompile Include="MainBackground.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="StageData.h" />
     <ClInclude Include="StageSelectGUI.h" />
     <ClInclude Include="StageSelectMenu.h" />
+    <ClInclude Include="StarDisplayer.h" />
     <ClInclude Include="TaskList.h" />
     <ClInclude Include="Tex2D.h" />
     <ClInclude Include="MainBackground.h" />

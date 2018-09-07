@@ -74,5 +74,15 @@ namespace Engine
 			while (!newObjs_.empty())
 				newObjs_.pop();
 		}
+
+		auto begin() const
+		{
+			return objects_.begin();
+		}
+
+		auto end() const
+		{
+			return objects_.end();
+		}
 	};
 }

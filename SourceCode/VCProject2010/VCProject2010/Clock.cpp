@@ -43,7 +43,7 @@ void Game::GamePlay::Clock::Update(float d)
 
 	Engine::ObjectSet<Engine::Rendering::Sprite2D>::Update(d);
 
-	const int offset = 50;
+	const auto offset = 50 * zoom_;
 	min1_.SetPos(x_ - 72 * zoom_ - offset, y_);
 	min2_.SetPos(x_ - 36 * zoom_ - offset, y_);
 	m1_.SetPos(x_ - 0 * zoom_ - offset, y_);
@@ -92,6 +92,15 @@ void Game::GamePlay::Clock::SetZoom(float zoom, float tween)
 		zoom_.Run(zoom, tween, 1);
 	else
 		zoom_ = zoom;
+}
+
+void Game::GamePlay::Clock::SetColorMul(float cx)
+{
+	DirectX::XMFLOAT3 xm(cx, cx, cx);
+	for (auto& obj : *this)
+	{
+		obj->SetColorMod(xm);
+	}
 }
 
 void Game::GamePlay::Clock::SetTime(float sec)

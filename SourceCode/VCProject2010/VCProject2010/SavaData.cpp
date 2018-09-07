@@ -58,13 +58,14 @@ void Game::SaveData::OpenStage(GamePlay::StageName stgName)
 	}
 }
 
-void Game::SaveData::WriteTime(GamePlay::StageName stgName,float time)
+void Game::SaveData::WriteTime(GamePlay::StageName stgName, float time)
 {
-	if (time > stageTime_[stgName])
+	if (time < stageTime_[stgName] || stageTime_[stgName] < 0)
 	{
 		stageTime_[stgName] = time;
 		flush();
 	}
+
 }
 
 

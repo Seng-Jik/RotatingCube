@@ -4,6 +4,7 @@
 #include "StageSelectGUI.h"
 #include "GameMain.h"
 #include "SoundEffect.h"
+#include "Clock.h"
 
 Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, StageSelectGUI& gui)
 {
@@ -16,24 +17,43 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 		{
 			num++;
 
-			const auto stageOpened_ = Game::SaveData::Get().StageOpened(num);
-			std::string texName = stageOpened_ ? "num" + std::to_string(num) : "locked";
+			const auto stageOpened = Game::SaveData::Get().StageOpened(num);
+			const auto stageTime = Game::SaveData::Get().GetStageTime(Game::GamePlay::StageName(num));
+			std::string texName = stageOpened ? "num" + std::to_string(num) : "locked";
 			auto& btn = NewObject<Engine::Button>(texName.c_str());
+			
+			
 
-			btn.PosX() = x * 150.0f;
-			btn.PosY() = y * -150.0f + 200.0f;
+			btn.PosX() = x * 190.0f;
+			btn.PosY() = y * -200.0f + 200.0f; 
+			btn.SetColorMod(DirectX::XMFLOAT3(3,3,3));
+
+			if (stageOpened && stageTime > 0)
+			{
+				auto& clock = NewObject<GamePlay::Clock>();
+				clock.SetPos(btn.PosX(), btn.PosY() - 100);
+				clock.Alpha() = 0;
+				clock.Alpha().Run(1, 0.25f, 1);
+				clock.SetZoom(0.5);
+				clock.SetTime(stageTime);
+				clock.Update(0);
+				clock.SetColorMul(2);
+			}
 
 			btn.Zoom() = 0;
 
-			btn.SetEnable(stageOpened_);
+			btn.SetEnable(stageOpened);
 
 			btns[num - 1] = &btn;
 
-			if (stageOpened_)
+			if (stageOpened)
 			{
 				btn.SetOnClick([&mainBackground,this,&gui, num] {
+
+
 					
 					tl_.AddTask([&mainBackground, this, &gui, num] {
+						
 						for (auto& p : btnAniBatch)
 							for (auto i : p)
 								i->DisableActive();
@@ -69,7 +89,7 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 
 void Game::Title::StageSelectMenu::Update(float time)
 {
-	Engine::ObjectSet<Engine::Button>::Update(time);
+	Engine::ObjectSet<Engine::GameObject>::Update(time);
 	tl_.Update(time);
 }
 
@@ -81,6 +101,18 @@ void Game::Title::StageSelectMenu::Exit()
 			for (auto p : btnAniBatch[i])
 				p->Zoom().Run(0, 0.15f, 1);
 		}, i * 0.05f);
+	}
+
+	for (auto& obj : *this)
+	{
+		try
+		{
+			dynamic_cast<Game::GamePlay::Clock&>(*obj).Alpha().Run(0, 0.25f, 1);
+		}
+		catch (std::bad_cast)
+		{
+
+		}
 	}
 
 	tl_.AddTask([this] {

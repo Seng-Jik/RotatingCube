@@ -10,7 +10,7 @@ namespace Game
 	namespace Title
 	{
 		class StageSelectGUI;
-		class StageSelectMenu : public Engine::ObjectSet<Engine::Button>
+		class StageSelectMenu : public Engine::ObjectSet<Engine::GameObject>
 		{
 		private:
 			Engine::TaskList tl_;

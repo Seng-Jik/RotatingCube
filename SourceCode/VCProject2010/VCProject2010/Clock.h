@@ -26,6 +26,7 @@ namespace Game
 
 			void SetPos(float x, float y,float tween = -1);
 			void SetZoom(float zoom, float tween = -1);
+			void SetColorMul(float cx);
 
 			void SetTime(float sec);
 			inline float GetTime() const
