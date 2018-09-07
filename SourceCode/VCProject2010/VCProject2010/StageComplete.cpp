@@ -52,7 +52,7 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	rest.DisableActive();
 	next.DisableActive();
 
-	auto& star = NewObject<StarDisplayer>(0, -50, time, 1.0f);
+	auto& star = NewObject<StarDisplayer>(0.0f, -50.0f, time, 1.0f);
 
 	tl_.AddTask([&,nextStg] {
 		star.Show();

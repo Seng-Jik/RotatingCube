@@ -241,7 +241,7 @@ bool Engine::Device::EngineMainLoop()
 {
 	mouseLastFrame_ = std::get<1>(Mouse());
 
-	const bool run = IsWindow((HWND)hWnd_);
+	const auto run = IsWindow((HWND)hWnd_);
 
 	static_assert(sizeof(HWND) == sizeof(hWnd_),"HWND failed.");
 
