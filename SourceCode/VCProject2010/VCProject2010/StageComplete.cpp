@@ -20,6 +20,8 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 
 	auto& clk = NewObject<Clock>();
 	clk.SetTime(time);
+	clk.Update(0);
+	clk.SetColorMul(3);
 	clk.SetZoom(1);
 	clk.Alpha() = 0;
 
