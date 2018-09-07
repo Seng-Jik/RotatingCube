@@ -7,6 +7,7 @@
 #include "GameMain.h"
 #include "SavaData.h"
 #include "SoundEffect.h"
+#include "StarDisplayer.h"
 
 Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName nextStg,Engine::ObjectSet<>* mainBk, std::function<void()> gameMainExit):
 	finishHint_{ NewObject<Engine::Rendering::Sprite2D>("finish") }
@@ -22,6 +23,7 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	clk.SetTime(time);
 	clk.Update(0);
 	clk.SetColorMul(3);
+	clk.SetPos(0, 50);
 	clk.SetZoom(1);
 	clk.Alpha() = 0;
 
@@ -36,7 +38,7 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	back.PosX() = -100;
 	next.PosX() = 100;
 
-	back.PosY() = next.PosY() = rest.PosY() = -150;
+	back.PosY() = next.PosY() = rest.PosY() = -190;
 
 	back.Alpha() = 0;
 	rest.Alpha() = 0;
@@ -51,6 +53,8 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	next.DisableActive();
 
 	tl_.AddTask([&,nextStg] {
+
+		NewObject<StarDisplayer>(0, -50, time, 1.0f);
 
 		tl_.AddTask([&back] {
 			back.Zoom().Run(0.5f, 0.3f, 1);
@@ -121,6 +125,6 @@ void Game::GamePlay::StageComplete::Update(float d)
 	hintProgress_.Update(d);
 	finishHint_.SetAlpha(hintProgress_);
 	finishHint_.SetZoom(2 - 1.5f*hintProgress_);
-	finishHint_.SetPos(0, 100 * hintProgress_);
+	finishHint_.SetPos(0, 200 * hintProgress_);
 	Engine::ObjectSet<>::Update(d);
 }
