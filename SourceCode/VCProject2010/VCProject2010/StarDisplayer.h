@@ -15,6 +15,9 @@ namespace Game
 		public:
 			StarDisplayer(float x,float y,float time,float zoom);
 
+			void Show();
+			void Hide();
+
 			void Update(float t) override;
 		};
 	}

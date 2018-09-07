@@ -52,9 +52,11 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 	rest.DisableActive();
 	next.DisableActive();
 
-	tl_.AddTask([&,nextStg] {
+	auto& star = NewObject<StarDisplayer>(0, -50, time, 1.0f);
 
-		NewObject<StarDisplayer>(0, -50, time, 1.0f);
+	tl_.AddTask([&,nextStg] {
+		star.Show();
+		
 
 		tl_.AddTask([&back] {
 			back.Zoom().Run(0.5f, 0.3f, 1);
@@ -82,12 +84,13 @@ Game::GamePlay::StageComplete::StageComplete(float time,StageName stg,StageName 
 		},0.85f);
 	},3.5f);
 
-	const auto exitFunction = [&clk,&back,&rest,&next,gameMainExit,this] {
+	const auto exitFunction = [&clk,&back,&rest,&next,gameMainExit,this,&star] {
 		hintProgress_.Run(0, 0.3f, 1);
 		clk.Alpha().Run(0, 0.3f, 1);
 		back.Alpha().Run(0, 0.3f, 1);
 		rest.Alpha().Run(0, 0.3f, 1);
 		next.Alpha().Run(0, 0.3f, 1);
+		star.Hide();
 		gameMainExit();
 	};
 

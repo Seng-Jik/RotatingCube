@@ -9,7 +9,7 @@ Game::GamePlay::StarDisplayer::StarDisplayer(float x,float y,float time, float z
 	starNum_ { time < 2.0f ? 3 : (time < 6.0f ? 2 : (time < 10.0f ? 1 : 0))}
 {
 	alpha_ = 0;
-	alpha_.Run(1, 0.5f, 1);
+	
 	zoom *= 0.5f;
 
 	auto& l = NewObject<Sprite2D>(starNum_ >= 1 ? "filled" : "empty");
@@ -23,6 +23,16 @@ Game::GamePlay::StarDisplayer::StarDisplayer(float x,float y,float time, float z
 	l.SetZoom(zoom);
 	c.SetZoom(zoom);
 	r.SetZoom(zoom);
+}
+
+void Game::GamePlay::StarDisplayer::Show()
+{
+	alpha_.Run(1, 0.5f, 1);
+}
+
+void Game::GamePlay::StarDisplayer::Hide()
+{
+	alpha_.Run(0, 0.5f, 1);
 }
 
 void Game::GamePlay::StarDisplayer::Update(float t)
