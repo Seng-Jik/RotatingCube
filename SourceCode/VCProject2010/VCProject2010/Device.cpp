@@ -297,7 +297,7 @@ bool Engine::Device::EngineMainLoop()
 		device.Context().ClearDepthStencilView(&device.DepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 	}
 
-	return run;
+	return run == TRUE;
 }
 
 static Engine::Optional<Device> device;
