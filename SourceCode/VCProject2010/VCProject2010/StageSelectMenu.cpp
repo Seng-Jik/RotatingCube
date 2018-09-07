@@ -48,10 +48,7 @@ Game::Title::StageSelectMenu::StageSelectMenu(MainBackground& mainBackground, St
 
 			if (stageOpened)
 			{
-				btn.SetOnClick([&mainBackground,this,&gui, num] {
-
-
-					
+				btn.SetOnClick([&mainBackground,this,&gui, num] {					
 					tl_.AddTask([&mainBackground, this, &gui, num] {
 						
 						for (auto& p : btnAniBatch)
